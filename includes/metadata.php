@@ -445,211 +445,14 @@ function snhotel_x_meta_repeat( $slug, $field, $object_type, $object_id, $value 
 function snhotel_cmb_fields( $meta_boxes = array() ) {
     $user_dropdown = snhotel_users_dropdown( 'delete_others_pages' );
 
-    $room_fields = array(
-        array(
-            'id' => 'room_type',
-            'name' => __( 'Room Type', 'snhotel' ),
-            'type' => 'select',
-            'options' => array(
-                'Single' => 'Single',
-                'Double' => 'Double',
-                'Twin' => 'Twin',
-                'Triple' => 'Triple',
-                'Quad' => 'Quad',
-                'Family' => 'Family',
-                'Suite' => 'Suite',
-                'Villa' => 'Villa',
-                'Bungalow' => 'Bungalow',
-                'Tent' => 'Tent'
-            )
-        ),
-        array(
-              'id' => 'room_size',
-              'name' => __( 'Room Size', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please enter the total size of the guest room', 'snhotel' )
-        ),
-        array(
-              'id' => 'occupancy_adults',
-              'name' => __( 'Occupancy Adults', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please enter the regular number of adults for this room', 'snhotel' )
-        ),
-        array(
-              'id' => 'occupancy_child',
-              'name' => __( 'Occupancy Children', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please enter the regular number of children for this room', 'snhotel' )
-        ),
-        array(
-              'id' => 'extra_beds',
-              'name' => __( 'Extrabeds', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please enter the max. allowable number of Extrabeds (e.g. 1 Extrabed for Adults and 2 Extrabeds for Children)', 'snhotel' )
-        ),
-        array(
-              'id' => 'min_price',
-              'name' => __( 'Min. Price', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please enter the lowest BAR rate for this room, e.g. $1600', 'snhotel' )
-        ),
-        array(
-            'id' => 'pet_policy',
-            'name' => __( 'Please select your pet policy', 'snhotel' ),
-            'type' => 'select',
-            'options' => array(
-                'not allowed'                      => 'not allowed',
-                'not allowed (guide animals only)' => 'not allowed (guide animals only)',
-                'small pets free of charge'        => 'small pets free of charge',
-                'free of charge'                   => 'free of charge',
-                'at a charge'                      => 'at a charge'
-            )
-        ),
-        array(
-              'id' => 'entertainment',
-              'name' => __( 'Entertainment', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'facilities_room',
-              'name' => __( 'Room Features', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'bed_features',
-              'name' => __( 'Bed Features', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'bath',
-              'name' => __( 'Bathroom', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'communication',
-              'name' => __( 'Communication', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'safety',
-              'name' => __( 'Safety', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'on_request',
-              'name' => __( 'On Request', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Please add all items you would like to display on your website.', 'snhotel' ),
-              'repeatable' => true
-        ),
-        array(
-              'id' => 'ibe_room',
-              'name' => __( 'Link to Booking Engine', 'snhotel' ),
-              'type' => 'url',
-              'desc' => __( 'Please enter the link to your Booking Engine, preferably straight to the Room Type', 'snhotel' ),
-        ),
-        array(
-            'id' => 'offers',
-            'name' => __( 'Offers' ),
-            'type' => 'post_select',
-            'use_ajax' => true,
-            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
-            'multiple' => true,
-            'desc' => sprintf( __( 'Add offers to this room. You have to <a href="%s" target="_blank">create some offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),
-        ),
-        array(
-              'id' => 'photo',
-              'name' => __( 'Photographs of this room', 'snhotel' ),
-              'type' => 'image',
-              'desc' => __( 'Some photographs of this room.', 'snhotel' ),
-              'repeatable' => true
-        ),
-    );
-
-    $event_fields = array(
-        array(
-              'id' => 'start_time',
-              'name' => __( 'Event Begins', 'snhotel' ),
-              'type' => 'datetime_unix',
-              'desc' => __( 'Please enter the start time of the event', 'snhotel' ),
-        ),
-        array(
-              'id' => 'end_time',
-              'name' => __( 'Event Ends', 'snhotel' ),
-              'type' => 'datetime_unix',
-              'desc' => __( 'Please enter the end time of the event', 'snhotel' ),
-        ),
-        array(
-              'id' => 'owner',
-              'name' => __( 'Organizer', 'snhotel' ),
-              'type' => 'select',
-              'desc' => __( 'Please choose organizer or set one up under <a href="users.php">Users</a>', 'snhotel' ),
-              'options' => $user_dropdown
-        ),
-        array(
-            'id' => 'offers',
-            'name' => __( 'Offers' ),
-            'type' => 'post_select',
-            'use_ajax' => true,
-            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
-            'repeatable' => true,
-            'desc' => sprintf( __( 'Add offers to this room. You have to <a href="%s" target="_blank">create some offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),
-        ),
-        array(
-            'id' => 'facility',
-            'name' => __( 'Facilities' ),
-            'type' => 'post_select',
-            'use_ajax' => true,
-            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_facility' ),
-            'repeatable' => true,
-            'desc' => sprintf( __( 'Add facilities here. You have to <a href="%s" target="_blank">create some facilities</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),
-        ),
-        array(
-            'id' => 'leisure',
-            'name' => __( 'Leisures' ),
-            'type' => 'post_select',
-            'use_ajax' => true,
-            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_leisure' ),
-            'repeatable' => true,
-            'desc' => sprintf( __( 'Add Leisures here. You have to <a href="%s" target="_blank">create some leisures</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_leisure' ) ),
-        ),
-        array(
-            'id' => 'outlet',
-            'name' => __( 'Outlets' ),
-            'type' => 'post_select',
-            'use_ajax' => true,
-            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_outlet' ),
-            'repeatable' => true,
-            'desc' => sprintf( __( 'Add outlets here. You have to <a href="%s" target="_blank">create some outlets</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_outlet' ) ),
-        ),
-    );
-
-    $activity_fields = $event_fields;
-    $activity_fields[] = array(
-        'id' => 'occurance',
-        'name' => __( 'Occurance', 'snhotel' ),
-        'type' => 'text',
-        'desc' => __( 'please enter the date or occurence (e.g. Every other Monday) of this activity', 'snhotel' ),
-    );
-
+   
     $offer_termsCondition = array(
       array(
             'id' => 'termsCondition',
-            'name' => __( 'Terms & Conditions', 'snhotel' ),
+            'name' => __( '', 'snhotel' ),
             'type' => 'text',
             'desc' => __( 'Add all additonal limitations that are not covered through the above offer restrictions', 'snhotel' ),
+			'repeatable' => true,
       ),
     );
 
@@ -667,30 +470,30 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
       array(
         'id' => 'availability_From',
-        'name' => __( 'Offer availabilty from(eligibility duration)', 'snhotel' ),
+        'name' => __( 'Offer availabilty from', 'snhotel' ),
         'type' => 'datetime_unix',
 
       ),
       array(
         'id' => 'availability_to',
-        'name' => __( 'Offer availabilty to(eligibility duration)', 'snhotel' ),
+        'name' => __( 'Offer availabilty to', 'snhotel' ),
         'type' => 'datetime_unix',
 
       ),
       array(
         'id' => 'price',
-        'name' => __( 'How many days/hours in advance do you need to buy/book(DD:HH)', 'snhotel' ),
+        'name' => __( 'How many days/hours in advance do you need to buy/book?(DD:HH)', 'snhotel' ),
         'type' => 'text',
 
       ),
       array(
-            'id' => 'ineligibleRegion',
+            'id' => 'ineligibleRegion(e.g. Delhi)',
             'name' => __( 'Ineligible Region', 'snhotel' ),
             'type' => 'text',
             'repeatable' => true,
       ),
       array(
-            'id' => 'eligibleRegion',
+            'id' => 'eligibleRegion(e.g. Bangalore)',
             'name' => __( 'Eligible Region', 'snhotel' ),
             'type' => 'text',
             'repeatable' => true,
@@ -709,13 +512,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
       array(
             'id' => 'limitationMust',
-            'name' => __( 'Is there a limitation how many items must be bought', 'snhotel' ),
+            'name' => __( 'Is there a limitation how many items must be bought?', 'snhotel' ),
             'type' => 'text',
 
       ),
       array(
             'id' => 'limitationCan',
-            'name' => __( 'Is there a limitation how many items can be bought', 'snhotel' ),
+            'name' => __( 'Is there a limitation how many items can be bought?', 'snhotel' ),
             'type' => 'text',
 
       ),
@@ -747,14 +550,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Lead Time', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Enter the time required prior to the offer being able to delivered', 'snhotel' ),
-              'repeatable' => true,
+              
         ),
 		array(
               'id' => 'offerPrice',
               'name' => __( 'Offer Price(Price)', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
-              'repeatable' => true,
+              
         ),
 		array(
               'id' => 'currency',
@@ -768,14 +571,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Price Details', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Provide any clarification on price', 'snhotel' ),
-              'repeatable' => true,
+              
         ),
 		array(
               'id' => 'benefit',
               'name' => __( 'Original Price', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
-              'repeatable' => true,
+              
         ),
 		array(
               'id' => 'availabilityStarts',
@@ -791,89 +594,10 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         ),
 		array(
               'id' => 'offerEnds',
-              'name' => __( 'Does the offer expire', 'snhotel' ),
+              'name' => __( 'Does the offer expire?', 'snhotel' ),
               'type' => 'datetime_unix',
 
         ),
-    );
-
-
-    $facility_fields = array(
-        array(
-            'id' => 'address',
-            'name' => __( 'Address', 'snhotel' ),
-            'type' => 'textarea',
-            'desc' => __( 'Physical address of the item.', 'snhotel' ),
-        ),
-        array(
-            'id' => 'telephone',
-            'name' => __( 'Telephone', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __( 'The telephone number.', 'snhotel' ),
-        ),
-        array(
-            'id' => 'fax',
-            'name' => __( 'Fax Number', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __( 'The fax number.', 'snhotel' ),
-        ),
-        array(
-            'id' => 'map',
-            'name' => __( 'Map', 'snhotel' ),
-            'type' => 'url',
-            'desc' => __( 'A URL to a map of the place.', 'snhotel' ),
-        ),
-        array(
-            'id' => 'opening_hours',
-            'name' => __( 'Opening Hours', 'snhotel' ),
-            'type' => 'textarea',
-            'desc' => __( 'The opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas \',\' separating each day. Day or time ranges are specified using a hyphen \'-\'.', 'snhotel' ),
-        ),
-        array(
-            'id' => 'opening_hours_schema',
-            'name' => __( 'Opening Hours (Schema.org)', 'snhotel' ),
-            'type' => 'textarea',
-            'desc' => __( 'The opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas \',\' separating each day. Day or time ranges are specified using a hyphen \'-\'.', 'snhotel' ),
-        ),
-        array(
-            'id' => 'style',
-            'name' => __( 'Style', 'snhotel' ),
-            'type' => 'text',
-            'desc' => ''
-        ),
-    );
-
-    $services_fields = array(
-        array(
-            'id' => 'address',
-            'name' => __( 'Address', 'snhotel' ),
-            'type' => 'textarea',
-            'desc' => '',
-        ),
-        array(
-            'id' => 'place',
-            'name' => __( 'Place', 'snhotel' ),
-            'type' => 'text',
-            'desc' => ''
-        ),
-    );
-
-    $meta_boxes[] = array(
-        'title' => __( 'Room Features', 'snhotel' ),
-        'pages' => 'snhotel_room',
-        'fields' => $room_fields
-    );
-
-    $meta_boxes[] = array(
-        'title' => __( 'Event Information', 'snhotel' ),
-        'pages' => 'snhotel_event',
-        'fields' => $event_fields
-    );
-
-    $meta_boxes[] = array(
-        'title' => __( 'Activity Information', 'snhotel' ),
-        'pages' => 'snhotel_activity',
-        'fields' => $activity_fields
     );
 
     $meta_boxes[] = array(
@@ -883,29 +607,18 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     );
 
     $meta_boxes[] = array(
-        'title' => __( 'Offer Restriction', 'beidq' ),
+        'title' => __( 'Offer Restriction', 'snhotel' ),
         'pages' => 'snhotel_offer',
         'fields' => $offer_validity
     );
 
     $meta_boxes[] = array(
-        'title' => __( 'Terms & Conditions', 'beidq' ),
+        'title' => __( 'Terms & Conditions', 'snhotel' ),
         'pages' => 'snhotel_offer',
         'fields' => $offer_termsCondition
     );
 
-    $meta_boxes[] = array(
-        'title' => __( 'Facilities', 'snhotel' ),
-        'pages' => array( 'snhotel_facility', 'snhotel_leisure', 'snhotel_outlet' ),
-        'fields' => $facility_fields
-    );
-
-    $meta_boxes[] = array(
-        'title' => __( 'Services', 'snhotel' ),
-        'pages' => array( 'snhotel_services' ),
-        'fields' => $services_fields
-    );
-
+    
     return $meta_boxes;
 }
 
