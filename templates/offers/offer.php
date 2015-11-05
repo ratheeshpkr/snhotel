@@ -1,8 +1,7 @@
 <?php
-global $post;
-
+		global $post;
 ?>
-<div class="container">		
+	<div class="container">		
 		<?php
 		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
 		$meta_url = $post_meta_data_url['url'];
@@ -72,7 +71,7 @@ global $post;
 		echo '</br>';
 		echo '<strong>Is there a limitation how many items must be bought:</strong>'.$meta_limitationMust = get_post_meta($post->ID,'limitationMust', true); 
 		echo '</br>';
-		echo '<strong>Product Offered:</strong>'.$meta_limitationCan = get_post_meta($post->ID,'limitationCan', true); 
+		echo '<strong>Is there a limitation how many items can be bought::</strong>'.$meta_limitationCan = get_post_meta($post->ID,'limitationCan', true); 
 		echo '</br>';
 		$post_meta_data = get_post_custom($post->ID,'termsCondition', true);
 		$meta_termsCondition = $post_meta_data['termsCondition'];
@@ -83,18 +82,3 @@ global $post;
 		}
 		?>
 	</div>
-     <!--   <div class="hotel-offers snhotel-half">
-            <?php snhotel_print_tax_link( 'hotel_offers' ); ?>
-             <span class="time">
-                <?php _e( 'book by', 'snhotel' ); ?> <time itemprop="priceValidUntil" datetime="<?php echo date( 'c', $price_valid_to ) ?>"><?php echo date_i18n( 'j F, Y', $price_valid_to ); ?></time>
-            </span>
-            <span class="snhotel-separator">|</span>
-                <span class="price">
-                    <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                        <a href="<?php echo $url; ?>"><?php _e( 'from', 'snhotel' ); ?> <span itemprop="priceDiscount"><?php echo $currency; ?> <?php echo $price; ?></span></a>
-                        <span class="snhotel-separator">|</span>
-                        <span itemprop="priceCurrency"><?php echo $currency; ?></span> <del><span itemprop="price"><?php echo $discount; ?></span></del>
-                    </span>
-                </span>
-            
-        </div>-->
