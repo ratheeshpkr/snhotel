@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: snHotel - Responsive hotel websites
+Plugin Name: snHotel 
 Plugin URI: http://sakha.com/
-Description: Responsive hotel websites
+Description: 
 Version: 0.1
 Author: Sakha
 Author URI: http://sakha.com/
@@ -127,18 +127,18 @@ class Sn_hotel {
      * @uses wp_localize_script()
      * @uses wp_enqueue_style
      */
-    /*public function enqueue_scripts() {
+    public function enqueue_scripts() {
 
         /**
          * All styles goes here
-         
+         */
         wp_enqueue_style( 'snhotel-styles', plugins_url( 'assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
         wp_enqueue_style( 'ui-styles', plugins_url( 'assets/css/ui.css', __FILE__ ), false, date( 'Ymd' ) );
         wp_enqueue_style( 'flexslider', plugins_url( 'assets/css/flexslider.css', __FILE__ ), false, date( 'Ymd' ) );
 
         /**
          * All scripts goes here
-         
+         */
         wp_enqueue_script( 'jquery' );
         wp_enqueue_script( 'jquery-ui-core' );
         wp_enqueue_script( 'jquery-ui-accordion' );
@@ -155,7 +155,7 @@ class Sn_hotel {
         // $translation_array = array( 'some_string' => __( 'Some string to translate', 'snhotel' ), 'a_value' => '10' );
         // wp_localize_script( 'base-plugin-scripts', 'snhotel', $translation_array ) );
 
-    //}
+    }
 
     /**
      * Register necessary post types and custom taxonomies
@@ -200,9 +200,9 @@ class Sn_hotel {
        
         //taxonomies
         
-        register_taxonomy( 'snhotel_hotel_offers', array( 'offer' ),
+        register_taxonomy( 'snhotel_hotel_offers', array( 'snhotel_offer' ),
             array(
-                'hierarchical'   => true,
+                'hierarchical'   => false,
                 'label'          => __( 'Hotel Offers', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
