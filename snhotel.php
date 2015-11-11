@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: snHotel 
-Plugin URI: http://sakha.com/
+Plugin URI: http://www.sakhatech.com/
 Description: 
 Version: 0.1
 Author: Sakha
-Author URI: http://sakha.com/
+Author URI: http://www.sakhatech.com/
 License: GPL2
 */
 
