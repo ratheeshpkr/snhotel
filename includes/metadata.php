@@ -546,7 +546,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'name' => '',
           'type' => 'image',
       ),
-    );
+    ); 
 
     $accommodation_amenities = array(
       array(

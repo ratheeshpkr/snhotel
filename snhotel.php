@@ -246,7 +246,7 @@ class Sn_hotel {
                 'rewrite'        => array('slug' => 'Accommodation'),
                 'singular_label' => __( 'Accommodation', 'snhotel' )
             )
-        );
+        ); 
 }
     /**
      * Show error nag in admin area if required plugins are not
