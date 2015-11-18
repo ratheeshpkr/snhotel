@@ -195,6 +195,35 @@ class Sn_hotel {
                 'parent'             => __( 'Parent Offer', 'snhotel' ),
             ),
         ) );
+		
+		register_post_type( 'snhotel_event', array(
+            'label'           => __( 'Events', 'snhotel' ),
+            'public'          => true,
+            'show_ui'         => true,
+            'show_in_menu'    => $show_in_menu,
+            'capability_type' => 'post',
+            'hierarchical'    => false,
+            'rewrite'         => array('slug' => 'events'),
+            'query_var'       => true,
+            'has_archive'     => true,
+            'supports'        => array('title', 'editor', 'thumbnail'),
+            'labels'          => array(
+                'name'               => __( 'Events', 'snhotel' ),
+                'singular_name'      => __( 'Event', 'snhotel' ),
+                'menu_name'          => __( 'Event', 'snhotel' ),
+                'add_new'            => __( 'Add Event', 'snhotel' ),
+                'add_new_item'       => __( 'Add New Event', 'snhotel' ),
+                'edit'               => __( 'Edit', 'snhotel' ),
+                'edit_item'          => __( 'Edit Event', 'snhotel' ),
+                'new_item'           => __( 'New Event', 'snhotel' ),
+                'view'               => __( 'View Event', 'snhotel' ),
+                'view_item'          => __( 'View Event', 'snhotel' ),
+                'search_items'       => __( 'Search Events', 'snhotel' ),
+                'not_found'          => __( 'No Events Found', 'snhotel' ),
+                'not_found_in_trash' => __( 'No Events Found in Trash', 'snhotel' ),
+                'parent'             => __( 'Parent Event', 'snhotel' ),
+            ),
+        ) );
 
         register_post_type( 'snhotel_room', array(
             'label'           => __( 'Accommodation', 'snhotel' ),
@@ -234,6 +263,17 @@ class Sn_hotel {
                 'query_var'      => true,
                 'rewrite'        => array('slug' => 'hotel-offers'),
                 'singular_label' => __( 'Offers', 'snhotel' )
+            )
+        );
+		
+		register_taxonomy( 'snhotel_event', array( 'snhotel_event' ),
+            array(
+                'hierarchical'   => false,
+                'label'          => __( 'Event Taxonomy', 'snhotel' ),
+                'show_ui'        => true,
+                'query_var'      => true,
+                'rewrite'        => array('slug' => 'snhotel_event'),
+                'singular_label' => __( 'Events', 'snhotel' )
             )
         );
 
@@ -353,6 +393,20 @@ class Sn_hotel {
             $find[] = $this->theme_dir_path. $file;
 
         }
+		
+		if ( is_single() && get_post_type() == 'snhotel_event' ) {
+            $file   = 'single-snhotel_event.php';
+            $find[] = $file;
+            $find[] = $this->theme_dir_path. $file;
+
+        } 
+
+        else if ( is_post_type_archive('snhotel_event')) {
+            $file   = 'archive-snhotel_event.php';
+            $find[] = $file;
+            $find[] = $this->theme_dir_path. $file;
+
+        }
 
         if ( $file ) {
             $template = locate_template( $find );
@@ -384,7 +438,7 @@ class Sn_hotel {
         global $current_screen;
 
         $post_types = array(
-            'snhotel_room', 'snhotel_offer'
+            'snhotel_room', 'snhotel_offer','snhotel_event'
         );
 
         if ( in_array( $current_screen->post_type, $post_types ) ) {

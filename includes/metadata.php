@@ -170,6 +170,17 @@ function snhotel_get_currencies() {
 
     return $currency;
 }
+function snhotel_get_occurances() {
+    $occurance = array(
+        'D' => 'Daily',
+        'W' => 'Weekly',
+        'M' => 'Monthly',
+        'Y' => 'Yearly',
+        'C' => 'Custom'
+    );
+
+    return $occurance;
+}
 
 function snhotel_metada_init() {
     if ( function_exists( 'x_add_metadata_group' ) && function_exists( 'x_add_metadata_field' ) ) {
@@ -846,7 +857,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Original Price', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
-
+              
         ),
 		array(
               'id' => 'availabilityStarts',
@@ -867,7 +878,214 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 
         ),
     );
+    
+    $event_fields = array(
+		array(
+              'id' => 'url',
+              'name' => __( 'Location', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Select custom post type that provides location information for this event', 'snhotel' ),
+              'repeatable' => true,
+        ),
 
+		array(
+              'id' => 'startDate',
+              'name' => __( 'Start Date/Time', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        array(
+              'id' => 'endDate',
+              'name' => __( 'End Date/Time', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        array(
+              'id' => 'doorTime',
+              'name' => __( 'Door Time', 'snhotel' ),
+              'type' => 'datetime_unix',
+              'desc' => __( 'Enter the time when participants should show up', 'snhotel' ),
+
+        ),
+        array(
+              'id' => 'occurance',
+              'name' => __( 'Occurance', 'snhotel' ),
+              'type' => 'select',
+              'desc' => __( 'select daily, weekly, monthly, yearly or custom', 'snhotel' ),
+              'options' => snhotel_get_occurances()
+        ),
+        array(
+              'id' => 'custom',
+              'name' => __( 'Enter value for Custom', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'e.g. every other Monday', 'snhotel' ),
+              'repeatable' => true,
+        ),
+    );
+    $offer_details = array(
+		array(
+              'id' => 'url',
+              'name' => __( 'Product Offered(itemOffered)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Select the item for which this offer is valid(e.g. room and/or restaurant)', 'snhotel' ),
+              'repeatable' => true,
+        ),
+
+        array(
+              'id' => 'availability',
+              'name' => __( 'Availability (availability)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
+        ),
+		array(
+              'id' => 'offerPrice',
+              'name' => __( 'Offer Price(Price)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
+              
+        ),
+		array(
+              'id' => 'currency',
+              'name' => __( 'Currency', 'snhotel' ),
+              'type' => 'select',
+              'desc' => __( 'Please select the currency', 'snhotel' ),
+              'options' => snhotel_get_currencies()
+        ),
+        
+		array(
+              'id' => 'availabilityStarts',
+              'name' => __( 'Availability Starts', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        array(
+              'id' => 'availability_End',
+              'name' => __( 'Availability Ends', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+		array(
+              'id' => 'offerEnds',
+              'name' => __( 'Does the offer expire?', 'snhotel' ),
+              'desc' => __( 'Price ValidUntil', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+    );
+    
+    $facility_features = array(
+      array(
+            'id' => 'featurestitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Features"', 'snhotel'),
+      ),
+      array(
+            'id' => 'featuresdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Alarm clock, minibar...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_amenities = array(
+      array(
+            'id' => 'amenitiestitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Amenities"', 'snhotel'),
+      ),
+      array(
+            'id' => 'amenitiesdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Turn-Down Service, Club Lounge Access...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_security = array(
+      array(
+            'id' => 'securitytitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Security"', 'snhotel'),
+      ),
+      array(
+            'id' => 'securitydisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Figer-Print Access, Sprinkler System, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_communication = array(
+      array(
+            'id' => 'communicationtitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Communication"', 'snhotel'),
+      ),
+      array(
+            'id' => 'communicationdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Wired Internet, Wireless Internet, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_entertainment = array(
+      array(
+            'id' => 'entertainmenttitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Entertainment"', 'snhotel'),
+      ),
+      array(
+            'id' => 'entertainmentdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: iPhone Dock, 40" OLED TV...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_openinghour = array(
+      array(
+            'id' => 'openinghourtitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Opening Hours"', 'snhotel'),
+      ),
+      array(
+            'id' => 'openinghourdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'time',
+            'repeatable' => true,
+      ),
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Event Details', 'snhotel' ),
+        'pages' => 'snhotel_event',
+        'fields' => $event_fields
+    );
+    
+    $meta_boxes[] = array(
+        'title' => __( 'Offer Details', 'snhotel' ),
+        'pages' => 'snhotel_event',
+        'fields' => $offer_details
+    );
+    
+    $meta_boxes[] = array(
+        'title' => __( 'Offer Restriction', 'snhotel' ),
+        'pages' => 'snhotel_event',
+        'fields' => $offer_validity
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Terms & Conditions', 'snhotel' ),
+        'pages' => 'snhotel_event',
+        'fields' => $offer_termsCondition
+    );
+    
     $meta_boxes[] = array(
         'title' => __( 'Offer Details', 'snhotel' ),
         'pages' => 'snhotel_offer',
@@ -885,8 +1103,38 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_offer',
         'fields' => $offer_termsCondition
     );
-
-
+    
+    $meta_boxes[] = array(
+        'title' => __( 'Features', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_features
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Amenities', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_amenities
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Security', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_security
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Communication', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_communication
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Entertainment', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_entertainment
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Opening Hours', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_openinghour
+    );
+    
     return $meta_boxes;
 }
 
