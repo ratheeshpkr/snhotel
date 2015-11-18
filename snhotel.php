@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: snHotel 
+Plugin Name: snHotel
 Plugin URI: http://www.sakhatech.com/
-Description: 
+Description:
 Version: 0.1
 Author: Sakha
 Author URI: http://www.sakhatech.com/
@@ -166,7 +166,7 @@ class Sn_hotel {
 
         $show_in_menu = false;
 
-        
+
         register_post_type( 'snhotel_offer', array(
             'label'           => __( 'Offers', 'snhotel' ),
             'public'          => true,
@@ -196,10 +196,36 @@ class Sn_hotel {
             ),
         ) );
 
+        register_post_type( 'snhotel_room', array(
+            'label'           => __( 'Accommodation', 'snhotel' ),
+            'public'          => true,
+            'show_ui'         => true,
+            'show_in_menu'    => $show_in_menu,
+            'capability_type' => 'post',
+            'hierarchical'    => false,
+            'rewrite'         => array('slug' => 'Accommodation'),
+            'query_var'       => true,
+            'has_archive'     => true,
+            'supports'        => array('title', 'editor', 'thumbnail'),
+            'labels'          => array(
+                'name'               => __( 'Accommodations', 'snhotel' ),
+                'singular_name'      => __( 'Accommodation', 'snhotel' ),
+                'menu_name'          => __( 'Accommodation', 'snhotel' ),
+                'add_new'            => __( 'Add Accommodation', 'snhotel' ),
+                'add_new_item'       => __( 'Add New Accommodation', 'snhotel' ),
+                'edit'               => __( 'Edit', 'snhotel' ),
+                'edit_item'          => __( 'Edit Accommodation', 'snhotel' ),
+                'new_item'           => __( 'New Accommodation', 'snhotel' ),
+                'view'               => __( 'View Accommodation', 'snhotel' ),
+                'view_item'          => __( 'View Accommodation', 'snhotel' ),
+                'search_items'       => __( 'Search Accommodations', 'snhotel' ),
+                'not_found'          => __( 'No Accommodations Found', 'snhotel' ),
+                'not_found_in_trash' => __( 'No Accommodations Found in Trash', 'snhotel' ),
+                'parent'             => __( 'Parent Accommodation', 'snhotel' ),
+            ),
+        ) );
 
-       
         //taxonomies
-        
         register_taxonomy( 'snhotel_hotel_offers', array( 'snhotel_offer' ),
             array(
                 'hierarchical'   => false,
@@ -211,6 +237,16 @@ class Sn_hotel {
             )
         );
 
+        register_taxonomy( 'snhotel_room', array( 'snhotel_room' ),
+            array(
+                'hierarchical'   => false,
+                'label'          => __( 'Accommodation Taxonomy', 'snhotel' ),
+                'show_ui'        => true,
+                'query_var'      => true,
+                'rewrite'        => array('slug' => 'Accommodation'),
+                'singular_label' => __( 'Accommodation', 'snhotel' )
+            )
+        );
 }
     /**
      * Show error nag in admin area if required plugins are not
@@ -309,14 +345,14 @@ class Sn_hotel {
             $find[] = $file;
             $find[] = $this->theme_dir_path. $file;
 
-        } 
+        }
 
         else if ( is_post_type_archive('snhotel_offer')) {
             $file   = 'archive-snhotel_offer.php';
             $find[] = $file;
             $find[] = $this->theme_dir_path. $file;
 
-        } 
+        }
 
         if ( $file ) {
             $template = locate_template( $find );

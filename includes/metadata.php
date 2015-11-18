@@ -445,7 +445,275 @@ function snhotel_x_meta_repeat( $slug, $field, $object_type, $object_id, $value 
 function snhotel_cmb_fields( $meta_boxes = array() ) {
     $user_dropdown = snhotel_users_dropdown( 'delete_others_pages' );
 
-   
+    $accommodation_features = array(
+      array(
+            'id' => 'featurestitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Room Features"', 'snhotel'),
+      ),
+      array(
+            'id' => 'featuresdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Alarm clock, minibar...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
+    $accommodation_size = array(
+      array(
+            'id' => 'size',
+            'name' => __( 'Size', 'snhotel' ),
+            'type' => 'text',
+      ),
+      array(
+            'id' => 'sizeunit',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'select',
+            'options' => array(
+                'sqm' => 'Square Meter',
+                'sqf' => 'Square Feet'
+            )
+      ),
+    );
+
+
+    $accommodation_defaultoccupancy = array(
+      array(
+          'id'   => 'occupancyadults',
+          'name' => 'Adults',
+          'type' => 'checkbox',
+      ),
+      array(
+          'id'   => 'occupancykids',
+          'name' => 'Kid(s)',
+          'type' => 'checkbox',
+      ),
+      array(
+          'id'   => 'occupancypets',
+          'name' => 'Pet(s)',
+          'type' => 'checkbox',
+      ),
+    );
+
+
+    $accommodation_additionaloccupancy = array(
+      array(
+          'id'   => 'additionaloccupancyadults',
+          'name' => 'Adults',
+          'type' => 'checkbox',
+      ),
+      array(
+          'id'   => 'additionaloccupancykids',
+          'name' => 'Kid(s)',
+          'type' => 'checkbox',
+      ),
+      array(
+          'id'   => 'additionaloccupancypets',
+          'name' => 'Pet(s)',
+          'type' => 'checkbox',
+      ),
+    );
+
+    $accommodation_view = array(
+      array(
+            'id' => 'view',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+
+    $accommodation_bedroomimage = array(
+      array(
+          'id'   => 'bedroomimage',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+
+    $accommodation_bathroomimages = array(
+      array(
+          'id'   => 'bathroomimage',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+
+    $accommodation_viewfromaccommodationimages = array(
+      array(
+          'id'   => 'viewfromaccommodationimages',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+
+    $accommodation_amenities = array(
+      array(
+            'id' => 'amenitiestitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Room Amenities"', 'snhotel'),
+      ),
+      array(
+            'id' => 'amenitiesdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Turn-Down Service, Club Lounge Access...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
+    $accommodation_security = array(
+      array(
+            'id' => 'securitytitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Room Security"', 'snhotel'),
+      ),
+      array(
+            'id' => 'securitydisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Figer-Print Access, Sprinkler System, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
+    $accommodation_communication = array(
+      array(
+            'id' => 'communicationtitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Room Communication"', 'snhotel'),
+      ),
+      array(
+            'id' => 'communicationdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Wired Internet, Wireless Internet, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
+    $accommodation_bed = array(
+      array(
+            'id' => 'bedtitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Bed"', 'snhotel'),
+      ),
+      array(
+            'id' => 'beddisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: King Size Bed,400 thread count bed sheets, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
+    $accommodation_entertainment = array(
+      array(
+            'id' => 'entertainmenttitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Room Entertainment"', 'snhotel'),
+      ),
+      array(
+            'id' => 'entertainmentdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: iPhone Dock, 40" OLED TV...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'Size', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_size,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'Bedroom Image', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_bedroomimage,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'Bathroom Image', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_bathroomimages,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'View from Accommodation Image', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_viewfromaccommodationimages,
+      'context' => 'side',
+    );
+
+
+    $meta_boxes[] = array(
+      'title' => __( 'View', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_view,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'Default Occupancy', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_defaultoccupancy,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'Additional Occupancy (Extra Beds)', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_additionaloccupancy,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Room Features', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_features
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Room Amenities', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_amenities
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Room Security', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_security
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Room Communication', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_communication
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Bed', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_bed
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Entertainment', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_entertainment
+    );
+
     $offer_termsCondition = array(
       array(
             'id' => 'termsCondition',
@@ -550,14 +818,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Lead Time', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Enter the time required prior to the offer being able to delivered', 'snhotel' ),
-              
+
         ),
 		array(
               'id' => 'offerPrice',
               'name' => __( 'Offer Price(Price)', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
-              
+
         ),
 		array(
               'id' => 'currency',
@@ -571,14 +839,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Price Details', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Provide any clarification on price', 'snhotel' ),
-              
+
         ),
 		array(
               'id' => 'benefit',
               'name' => __( 'Original Price', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
-              
+
         ),
 		array(
               'id' => 'availabilityStarts',
@@ -618,7 +886,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'fields' => $offer_termsCondition
     );
 
-    
+
     return $meta_boxes;
 }
 

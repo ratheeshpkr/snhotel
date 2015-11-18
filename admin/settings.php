@@ -11,9 +11,11 @@ class Sn_Hotel_Settings {
         $capability = apply_filters( 'snhotel_menu_capability', 'activate_plugins' );
 
         add_menu_page( __( 'snhotel', 'wpuf' ), __( 'snhotel', 'wpuf' ), $capability, 'snhotel', array($this, 'plugin_settings'), null, $menu_position );
-        
+
         add_submenu_page( 'snhotel', __( 'Offers', 'snhotel' ), __( 'Offers', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_offer' );
-        
+
+        add_submenu_page( 'snhotel', __( 'Accommodations', 'snhotel' ), __( 'Accommodations', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_room' );
+
     }
 
     function plugin_settings() {
