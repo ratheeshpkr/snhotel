@@ -900,6 +900,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'datetime_unix',
 
         ),
+        
+        array(
+              'id' => 'duration',
+              'name' => __( 'Duration', 'snhotel' ),
+              'type' => 'text_small',
+        ),
+        
         array(
               'id' => 'doorTime',
               'name' => __( 'Door Time', 'snhotel' ),
@@ -973,95 +980,6 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         ),
     );
     
-    $facility_features = array(
-      array(
-            'id' => 'featurestitlename',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Features"', 'snhotel'),
-      ),
-      array(
-            'id' => 'featuresdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Eg: Alarm clock, minibar...', 'snhotel'),
-            'repeatable' => true,
-      ),
-    );
-    $facility_amenities = array(
-      array(
-            'id' => 'amenitiestitlename',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Amenities"', 'snhotel'),
-      ),
-      array(
-            'id' => 'amenitiesdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Eg: Turn-Down Service, Club Lounge Access...', 'snhotel'),
-            'repeatable' => true,
-      ),
-    );
-    $facility_security = array(
-      array(
-            'id' => 'securitytitlename',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Security"', 'snhotel'),
-      ),
-      array(
-            'id' => 'securitydisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Eg: Figer-Print Access, Sprinkler System, ...', 'snhotel'),
-            'repeatable' => true,
-      ),
-    );
-    $facility_communication = array(
-      array(
-            'id' => 'communicationtitlename',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Communication"', 'snhotel'),
-      ),
-      array(
-            'id' => 'communicationdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Eg: Wired Internet, Wireless Internet, ...', 'snhotel'),
-            'repeatable' => true,
-      ),
-    );
-    $facility_entertainment = array(
-      array(
-            'id' => 'entertainmenttitlename',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Entertainment"', 'snhotel'),
-      ),
-      array(
-            'id' => 'entertainmentdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Eg: iPhone Dock, 40" OLED TV...', 'snhotel'),
-            'repeatable' => true,
-      ),
-    );
-    $facility_openinghour = array(
-      array(
-            'id' => 'openinghourtitlename',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Opening Hours"', 'snhotel'),
-      ),
-      array(
-            'id' => 'openinghourdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
-            'type' => 'time',
-            'repeatable' => true,
-      ),
-    );
 
     $meta_boxes[] = array(
         'title' => __( 'Event Details', 'snhotel' ),
@@ -1102,37 +1020,6 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'title' => __( 'Terms & Conditions', 'snhotel' ),
         'pages' => 'snhotel_offer',
         'fields' => $offer_termsCondition
-    );
-    
-    $meta_boxes[] = array(
-        'title' => __( 'Features', 'snhotel' ),
-        'pages' => 'snhotel_facility',
-        'fields' => $facility_features
-    );
-    $meta_boxes[] = array(
-        'title' => __( 'Amenities', 'snhotel' ),
-        'pages' => 'snhotel_facility',
-        'fields' => $facility_amenities
-    );
-    $meta_boxes[] = array(
-        'title' => __( 'Security', 'snhotel' ),
-        'pages' => 'snhotel_facility',
-        'fields' => $facility_security
-    );
-    $meta_boxes[] = array(
-        'title' => __( 'Communication', 'snhotel' ),
-        'pages' => 'snhotel_facility',
-        'fields' => $facility_communication
-    );
-    $meta_boxes[] = array(
-        'title' => __( 'Entertainment', 'snhotel' ),
-        'pages' => 'snhotel_facility',
-        'fields' => $facility_entertainment
-    );
-    $meta_boxes[] = array(
-        'title' => __( 'Opening Hours', 'snhotel' ),
-        'pages' => 'snhotel_facility',
-        'fields' => $facility_openinghour
     );
     
     return $meta_boxes;
