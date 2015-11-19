@@ -638,6 +638,166 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'repeatable' => true,
       ),
     );
+    $facility_features = array(
+      array(
+            'id' => 'featurestitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Features"', 'snhotel'),
+      ),
+      array(
+            'id' => 'featuresdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Alarm clock, minibar...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_amenities = array(
+      array(
+            'id' => 'amenitiestitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Amenities"', 'snhotel'),
+      ),
+      array(
+            'id' => 'amenitiesdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Turn-Down Service, Club Lounge Access...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_security = array(
+      array(
+            'id' => 'securitytitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Security"', 'snhotel'),
+      ),
+      array(
+            'id' => 'securitydisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Figer-Print Access, Sprinkler System, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_communication = array(
+      array(
+            'id' => 'communicationtitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Communication"', 'snhotel'),
+      ),
+      array(
+            'id' => 'communicationdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: Wired Internet, Wireless Internet, ...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_entertainment = array(
+      array(
+            'id' => 'entertainmenttitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Entertainment"', 'snhotel'),
+      ),
+      array(
+            'id' => 'entertainmentdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Eg: iPhone Dock, 40" OLED TV...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+    $facility_openinghour = array(
+      array(
+            'id' => 'openinghourtitlename',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Opening Hours"', 'snhotel'),
+      ),
+      array(
+            'id' => 'openinghourfrom',
+            'name' => __( 'From', 'snhotel' ),
+            'type' => 'time',
+            'repeatable' => true,
+      ),
+	  array(
+            'id' => 'openinghourto',
+            'name' => __( 'To', 'snhotel' ),
+            'type' => 'time',
+            'repeatable' => true,
+      ),
+    );
+    $facility_connectedoffers = array(
+      array(
+            'id' => 'connectedoffers',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'taxonomy_select',
+      ),
+      
+      
+    );
+    $facility_setting = array(
+      array(
+            'id' => 'setting',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+    $facility_type = array(
+      array(
+            'id' => 'type',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+    $facility_location = array(
+      array(
+            'id' => 'location',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+    $facility_additionalimage = array(
+      array(
+          'id'   => 'additionalimage',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+	$facility_floorplan = array(
+      array(
+          'id'   => 'floorplan',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+	$facility_downloads = array(
+      array(
+          'id'   => 'download',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+    $facility_contactlink = array(
+      array(
+            'id' => 'contactlink',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+    $facility_contactphone = array(
+      array(
+            'id' => 'contactphone',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
 
     $meta_boxes[] = array(
       'title' => __( 'Size', 'snhotel' ),
@@ -1020,6 +1180,90 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'title' => __( 'Terms & Conditions', 'snhotel' ),
         'pages' => 'snhotel_offer',
         'fields' => $offer_termsCondition
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Features', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_features
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Amenities', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_amenities
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Security', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_security
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Communication', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_communication
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Entertainment', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_entertainment
+    );
+    $meta_boxes[] = array(
+        'title' => __( 'Opening Hours', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+        'fields' => $facility_openinghour
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Setting', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_setting,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Type', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_setting,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Location', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_setting,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Additional Images', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_additionalimage,
+      'context' => 'side',
+    );
+	$meta_boxes[] = array(
+      'title' => __( 'Floor Plan', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_floorplan,
+      'context' => 'side',
+    );
+	$meta_boxes[] = array(
+      'title' => __( 'Downloads', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_downloads,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Connected Offer(s)', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_connectedoffers,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Contact Link', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_contactlink,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Contact Phone', 'snhotel' ),
+      'pages' => 'snhotel_facility',
+      'fields' => $facility_contactphone,
+      'context' => 'side',
     );
     
     return $meta_boxes;
