@@ -195,7 +195,7 @@ class Sn_hotel {
                 'parent'             => __( 'Parent Offer', 'snhotel' ),
             ),
         ) );
-		
+
 		register_post_type( 'snhotel_event', array(
             'label'           => __( 'Events', 'snhotel' ),
             'public'          => true,
@@ -283,26 +283,27 @@ class Sn_hotel {
         ) );
 
         //taxonomies
+        /*
         register_taxonomy( 'snhotel_hotel_offers', array( 'snhotel_offer' ),
-            array(
-                'hierarchical'   => false,
-                'label'          => __( 'Hotel Offers', 'snhotel' ),
-                'show_ui'        => true,
-                'query_var'      => true,
-                'rewrite'        => array('slug' => 'hotel-offers'),
-                'singular_label' => __( 'Offers', 'snhotel' )
-            )
+          array(
+              'hierarchical'   => false,
+              'label'          => __( 'Hotel Offers', 'snhotel' ),
+              'show_ui'        => true,
+              'query_var'      => true,
+              'rewrite'        => array('slug' => 'hotel-offers'),
+              'singular_label' => __( 'Offers', 'snhotel' )
+          )
         );
-		
-		register_taxonomy( 'snhotel_event', array( 'snhotel_event' ),
-            array(
-                'hierarchical'   => false,
-                'label'          => __( 'Event Taxonomy', 'snhotel' ),
-                'show_ui'        => true,
-                'query_var'      => true,
-                'rewrite'        => array('slug' => 'snhotel_event'),
-                'singular_label' => __( 'Events', 'snhotel' )
-            )
+
+        register_taxonomy( 'snhotel_event', array( 'snhotel_event' ),
+          array(
+              'hierarchical'   => false,
+              'label'          => __( 'Event Taxonomy', 'snhotel' ),
+              'show_ui'        => true,
+              'query_var'      => true,
+              'rewrite'        => array('slug' => 'snhotel_event'),
+              'singular_label' => __( 'Events', 'snhotel' )
+          )
         );
 
         register_taxonomy( 'snhotel_room', array( 'snhotel_room' ),
@@ -325,6 +326,7 @@ class Sn_hotel {
                 'singular_label' => __( 'Facilities', 'snhotel' )
             )
         );
+*/
 }
     /**
      * Show error nag in admin area if required plugins are not
@@ -343,6 +345,11 @@ class Sn_hotel {
                 'function' => 'cmb_init',
                 'name'     => 'Custom Meta Boxes',
                 'url'      => 'https://github.com/humanmade/Custom-Meta-Boxes'
+            ),
+            array(
+                'function' => 'custom_post_type_onomies_load_textdomain',
+                'name'     => 'CPT-onomies',
+                'url'      => 'https://wordpress.org/plugins/cpt-onomies/'
             )
         );
 
@@ -431,13 +438,13 @@ class Sn_hotel {
             $find[] = $this->theme_dir_path. $file;
 
         }
-		
+
 		if ( is_single() && get_post_type() == 'snhotel_event' ) {
             $file   = 'single-snhotel_event.php';
             $find[] = $file;
             $find[] = $this->theme_dir_path. $file;
 
-        } 
+        }
 
         else if ( is_post_type_archive('snhotel_event')) {
             $file   = 'archive-snhotel_event.php';
