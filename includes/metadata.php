@@ -455,6 +455,289 @@ function snhotel_x_meta_repeat( $slug, $field, $object_type, $object_id, $value 
 
 function snhotel_cmb_fields( $meta_boxes = array() ) {
     $user_dropdown = snhotel_users_dropdown( 'delete_others_pages' );
+	
+	  $offer_termsCondition = array(
+      array(
+            'id' => 'termsCondition',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __( 'Add all additonal limitations that are not covered through the above offer restrictions', 'snhotel' ),
+			'repeatable' => true,
+      ),
+    ); 
+	$offer_tax = array(
+      array(
+            'id' => 'taxonomy_acc',
+            'name' => __( '' ),
+            'type' => 'post_select',
+            'use_ajax' => true,
+            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_room' ),
+            'repeatable' => true,
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Accomodation</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_room' ) ),    
+		),
+	);
+	$offer_tax_eve = array(
+	  array(
+            'id' => 'taxonomy_eve',
+            'name' => __( '' ),
+            'type' => 'post_select',
+            'use_ajax' => true,
+            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_event' ),
+            'repeatable' => true,
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Events</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_event' ) ),    
+		),
+	);
+	$offer_tax_faci = array(
+	  array(
+            'id' => 'taxonomy_faci',
+            'name' => __( '' ),
+            'type' => 'post_select',
+            'use_ajax' => true,
+            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_facility' ),
+            'repeatable' => true,
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Facilities</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),    
+		),
+      
+    );
+
+    $offer_validity = array(
+      array(
+            'id' => 'validFrom',
+            'name' => __( 'Valid From', 'snhotel' ),
+            'type' => 'datetime_unix',
+      ),
+      array(
+        'id' => 'validThrough',
+        'name' => __( 'Valid Through', 'snhotel' ),
+        'type' => 'datetime_unix',
+
+      ),
+      array(
+        'id' => 'availability_From',
+        'name' => __( 'Offer availabilty from', 'snhotel' ),
+        'type' => 'datetime_unix',
+
+      ),
+      array(
+        'id' => 'availability_to',
+        'name' => __( 'Offer availabilty to', 'snhotel' ),
+        'type' => 'datetime_unix',
+
+      ),
+      array(
+        'id' => 'price',
+        'name' => __( 'How many days/hours in advance do you need to buy/book?(DD:HH)', 'snhotel' ),
+        'type' => 'text',
+
+      ),
+      array(
+            'id' => 'ineligibleRegion(e.g. Delhi)',
+            'name' => __( 'Ineligible Region', 'snhotel' ),
+            'type' => 'text',
+            'repeatable' => true,
+      ),
+      array(
+            'id' => 'eligibleRegion(e.g. Bangalore)',
+            'name' => __( 'Eligible Region', 'snhotel' ),
+            'type' => 'text',
+            'repeatable' => true,
+      ),
+      array(
+            'id' => 'eligibleCustomer',
+            'name' => __( 'Eligible Customer Type', 'snhotel' ),
+            'type' => 'text',
+            'repeatable' => true,
+      ),
+      array(
+            'id' => 'eligibleTransaction',
+            'name' => __( 'Eligible Transaction Volume', 'snhotel' ),
+            'type' => 'text',
+
+      ),
+      array(
+            'id' => 'limitationMust',
+            'name' => __( 'Is there a limitation how many items must be bought?', 'snhotel' ),
+            'type' => 'text',
+
+      ),
+      array(
+            'id' => 'limitationCan',
+            'name' => __( 'Is there a limitation how many items can be bought?', 'snhotel' ),
+            'type' => 'text',
+
+      ),
+    );
+
+    $offer_fields = array(
+       /*  array(
+              'id' => 'url',
+              'name' => __( 'URL', 'snhotel' ),
+              'type' => 'url',
+              'desc' => __( 'Please enter the URL of where the Offer will be bookable (e.g. link to booking engine)', 'snhotel' ),
+        ), */
+		
+
+        array(
+              'id' => 'availability',
+              'name' => __( 'Availability', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
+        ),
+        array(
+              'id' => 'leadTime',
+              'name' => __( 'Lead Time', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the time required prior to the offer being able to be delivered', 'snhotel' ),
+
+        ),
+		array(
+              'id' => 'offerPrice',
+              'name' => __( 'Offer Price(Price)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
+
+        ),
+		array(
+              'id' => 'currency',
+              'name' => __( 'Currency', 'snhotel' ),
+              'type' => 'select',
+              'desc' => __( 'Please select the currency', 'snhotel' ),
+              'options' => snhotel_get_currencies()
+        ),
+        array(
+              'id' => 'benefit',
+              'name' => __( 'Price Details', 'snhotel' ),
+              'type' => 'text',
+			  'desc' => __( 'Provide any clarification on price', 'snhotel' ),
+
+        ),
+		array(
+              'id' => 'benefit',
+              'name' => __( 'Original Price', 'snhotel' ),
+              'type' => 'text',
+			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
+              
+        ),
+		array(
+              'id' => 'availabilityStarts',
+              'name' => __( 'Availability Starts', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        array(
+              'id' => 'availability_End',
+              'name' => __( 'Availability Ends', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+		array(
+              'id' => 'offerEnds',
+              'name' => __( 'Does the offer expire?', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+    );
+    
+    $event_fields = array(
+		array(
+              'id' => 'url',
+              'name' => __( 'Location', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Select custom post type that provides location information for this event', 'snhotel' ),
+              'repeatable' => true,
+        ),
+
+		array(
+              'id' => 'startDate',
+              'name' => __( 'Start Date/Time', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        array(
+              'id' => 'endDate',
+              'name' => __( 'End Date/Time', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        
+        array(
+              'id' => 'duration',
+              'name' => __( 'Duration', 'snhotel' ),
+              'type' => 'text_small',
+        ),
+        
+        array(
+              'id' => 'doorTime',
+              'name' => __( 'Door Time', 'snhotel' ),
+              'type' => 'datetime_unix',
+              'desc' => __( 'Enter the time when participants should show up', 'snhotel' ),
+
+        ),
+        array(
+              'id' => 'occurance',
+              'name' => __( 'Occurance', 'snhotel' ),
+              'type' => 'select',
+              'desc' => __( 'select daily, weekly, monthly, yearly or custom', 'snhotel' ),
+              'options' => snhotel_get_occurances()
+        ),
+        array(
+              'id' => 'custom',
+              'name' => __( 'Enter value for Custom', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'e.g. every other Monday', 'snhotel' ),
+              'repeatable' => true,
+        ),
+    );
+    $offer_details = array(
+		array(
+              'id' => 'url',
+              'name' => __( 'Product Offered(itemOffered)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Select the item for which this offer is valid(e.g. room and/or restaurant)', 'snhotel' ),
+              'repeatable' => true,
+        ),
+
+        array(
+              'id' => 'availability',
+              'name' => __( 'Availability (availability)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
+        ),
+		array(
+              'id' => 'offerPrice',
+              'name' => __( 'Offer Price(Price)', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
+              
+        ),
+		array(
+              'id' => 'currency',
+              'name' => __( 'Currency', 'snhotel' ),
+              'type' => 'select',
+              'desc' => __( 'Please select the currency', 'snhotel' ),
+              'options' => snhotel_get_currencies()
+        ),
+        
+		array(
+              'id' => 'availabilityStarts',
+              'name' => __( 'Availability Starts', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+        array(
+              'id' => 'availability_End',
+              'name' => __( 'Availability Ends', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+		array(
+              'id' => 'offerEnds',
+              'name' => __( 'Does the offer expire?', 'snhotel' ),
+              'desc' => __( 'Price ValidUntil', 'snhotel' ),
+              'type' => 'datetime_unix',
+
+        ),
+    );
 
     $accommodation_features = array(
       array(
@@ -724,13 +1007,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'id' => 'openinghourfrom',
             'name' => __( 'From', 'snhotel' ),
             'type' => 'time',
-            'repeatable' => true,
+            
       ),
 	  array(
             'id' => 'openinghourto',
             'name' => __( 'To', 'snhotel' ),
             'type' => 'time',
-            'repeatable' => true,
+            
       ),
     );
     $facility_connectedoffers = array(
@@ -884,263 +1167,25 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_room',
         'fields' => $accommodation_entertainment
     );
-
-    $offer_termsCondition = array(
-      array(
-            'id' => 'termsCondition',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'text',
-            'desc' => __( 'Add all additonal limitations that are not covered through the above offer restrictions', 'snhotel' ),
-			'repeatable' => true,
-      ),
-    );
-
-    $offer_validity = array(
-      array(
-            'id' => 'validFrom',
-            'name' => __( 'Valid From', 'snhotel' ),
-            'type' => 'datetime_unix',
-      ),
-      array(
-        'id' => 'validThrough',
-        'name' => __( 'Valid Through', 'snhotel' ),
-        'type' => 'datetime_unix',
-
-      ),
-      array(
-        'id' => 'availability_From',
-        'name' => __( 'Offer availabilty from', 'snhotel' ),
-        'type' => 'datetime_unix',
-
-      ),
-      array(
-        'id' => 'availability_to',
-        'name' => __( 'Offer availabilty to', 'snhotel' ),
-        'type' => 'datetime_unix',
-
-      ),
-      array(
-        'id' => 'price',
-        'name' => __( 'How many days/hours in advance do you need to buy/book?(DD:HH)', 'snhotel' ),
-        'type' => 'text',
-
-      ),
-      array(
-            'id' => 'ineligibleRegion(e.g. Delhi)',
-            'name' => __( 'Ineligible Region', 'snhotel' ),
-            'type' => 'text',
-            'repeatable' => true,
-      ),
-      array(
-            'id' => 'eligibleRegion(e.g. Bangalore)',
-            'name' => __( 'Eligible Region', 'snhotel' ),
-            'type' => 'text',
-            'repeatable' => true,
-      ),
-      array(
-            'id' => 'eligibleCustomer',
-            'name' => __( 'Eligible Customer Type', 'snhotel' ),
-            'type' => 'text',
-            'repeatable' => true,
-      ),
-      array(
-            'id' => 'eligibleTransaction',
-            'name' => __( 'Eligible Transaction Volume', 'snhotel' ),
-            'type' => 'text',
-
-      ),
-      array(
-            'id' => 'limitationMust',
-            'name' => __( 'Is there a limitation how many items must be bought?', 'snhotel' ),
-            'type' => 'text',
-
-      ),
-      array(
-            'id' => 'limitationCan',
-            'name' => __( 'Is there a limitation how many items can be bought?', 'snhotel' ),
-            'type' => 'text',
-
-      ),
-    );
-
-    $offer_fields = array(
-       /*  array(
-              'id' => 'url',
-              'name' => __( 'URL', 'snhotel' ),
-              'type' => 'url',
-              'desc' => __( 'Please enter the URL of where the Offer will be bookable (e.g. link to booking engine)', 'snhotel' ),
-        ), */
-		array(
-              'id' => 'url',
-              'name' => __( 'Product Offered', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Select the item for which this offer is valid(e.g. room and/or restaurant)', 'snhotel' ),
-              'repeatable' => true,
-        ),
-
-        array(
-              'id' => 'availability',
-              'name' => __( 'Availability', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
-        ),
-        array(
-              'id' => 'leadTime',
-              'name' => __( 'Lead Time', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Enter the time required prior to the offer being able to delivered', 'snhotel' ),
-
-        ),
-		array(
-              'id' => 'offerPrice',
-              'name' => __( 'Offer Price(Price)', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
-
-        ),
-		array(
-              'id' => 'currency',
-              'name' => __( 'Currency', 'snhotel' ),
-              'type' => 'select',
-              'desc' => __( 'Please select the currency', 'snhotel' ),
-              'options' => snhotel_get_currencies()
-        ),
-        array(
-              'id' => 'benefit',
-              'name' => __( 'Price Details', 'snhotel' ),
-              'type' => 'text',
-			  'desc' => __( 'Provide any clarification on price', 'snhotel' ),
-
-        ),
-		array(
-              'id' => 'benefit',
-              'name' => __( 'Original Price', 'snhotel' ),
-              'type' => 'text',
-			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
-              
-        ),
-		array(
-              'id' => 'availabilityStarts',
-              'name' => __( 'Availability Starts', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-        array(
-              'id' => 'availability_End',
-              'name' => __( 'Availability Ends', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-		array(
-              'id' => 'offerEnds',
-              'name' => __( 'Does the offer expire?', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-    );
     
-    $event_fields = array(
-		array(
-              'id' => 'url',
-              'name' => __( 'Location', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Select custom post type that provides location information for this event', 'snhotel' ),
-              'repeatable' => true,
-        ),
-
-		array(
-              'id' => 'startDate',
-              'name' => __( 'Start Date/Time', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-        array(
-              'id' => 'endDate',
-              'name' => __( 'End Date/Time', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-        
-        array(
-              'id' => 'duration',
-              'name' => __( 'Duration', 'snhotel' ),
-              'type' => 'text_small',
-        ),
-        
-        array(
-              'id' => 'doorTime',
-              'name' => __( 'Door Time', 'snhotel' ),
-              'type' => 'datetime_unix',
-              'desc' => __( 'Enter the time when participants should show up', 'snhotel' ),
-
-        ),
-        array(
-              'id' => 'occurance',
-              'name' => __( 'Occurance', 'snhotel' ),
-              'type' => 'select',
-              'desc' => __( 'select daily, weekly, monthly, yearly or custom', 'snhotel' ),
-              'options' => snhotel_get_occurances()
-        ),
-        array(
-              'id' => 'custom',
-              'name' => __( 'Enter value for Custom', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'e.g. every other Monday', 'snhotel' ),
-              'repeatable' => true,
-        ),
+	$meta_boxes[] = array(
+        'title' => __( 'Connected Accomodation(s)', 'snhotel' ),
+        'pages' => 'snhotel_offer',
+		'context' => 'side',
+        'fields' => $offer_tax
     );
-    $offer_details = array(
-		array(
-              'id' => 'url',
-              'name' => __( 'Product Offered(itemOffered)', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Select the item for which this offer is valid(e.g. room and/or restaurant)', 'snhotel' ),
-              'repeatable' => true,
-        ),
-
-        array(
-              'id' => 'availability',
-              'name' => __( 'Availability (availability)', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
-        ),
-		array(
-              'id' => 'offerPrice',
-              'name' => __( 'Offer Price(Price)', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
-              
-        ),
-		array(
-              'id' => 'currency',
-              'name' => __( 'Currency', 'snhotel' ),
-              'type' => 'select',
-              'desc' => __( 'Please select the currency', 'snhotel' ),
-              'options' => snhotel_get_currencies()
-        ),
-        
-		array(
-              'id' => 'availabilityStarts',
-              'name' => __( 'Availability Starts', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-        array(
-              'id' => 'availability_End',
-              'name' => __( 'Availability Ends', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
-		array(
-              'id' => 'offerEnds',
-              'name' => __( 'Does the offer expire?', 'snhotel' ),
-              'desc' => __( 'Price ValidUntil', 'snhotel' ),
-              'type' => 'datetime_unix',
-
-        ),
+	$meta_boxes[] = array(
+        'title' => __( 'Connected Event(s)', 'snhotel' ),
+        'pages' => 'snhotel_offer',
+		'context' => 'side',
+        'fields' => $offer_tax_eve
     );
-    
-
+	$meta_boxes[] = array(
+        'title' => __( 'Connected Facility/ Facilities', 'snhotel' ),
+        'pages' => 'snhotel_offer',
+		'context' => 'side',
+        'fields' => $offer_tax_faci
+    );
     $meta_boxes[] = array(
         'title' => __( 'Event Details', 'snhotel' ),
         'pages' => 'snhotel_event',
@@ -1220,13 +1265,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $meta_boxes[] = array(
       'title' => __( 'Type', 'snhotel' ),
       'pages' => 'snhotel_facility',
-      'fields' => $facility_setting,
+      'fields' => $facility_type,
       'context' => 'side',
     );
     $meta_boxes[] = array(
       'title' => __( 'Location', 'snhotel' ),
       'pages' => 'snhotel_facility',
-      'fields' => $facility_setting,
+      'fields' => $facility_location,
       'context' => 'side',
     );
     $meta_boxes[] = array(
