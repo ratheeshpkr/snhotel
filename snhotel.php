@@ -465,6 +465,20 @@ class Sn_hotel {
             $find[] = $this->theme_dir_path. $file;
 
         }
+        
+        if ( is_single() && get_post_type() == 'snhotel_accommodation' ) {
+            $file   = 'single-snhotel_accommodation.php';
+            $find[] = $file;
+            $find[] = $this->theme_dir_path. $file;
+
+        } 
+
+        else if ( is_post_type_archive('snhotel_accommodation')) {
+            $file   = 'archive-snhotel_accommodation.php';
+            $find[] = $file;
+            $find[] = $this->theme_dir_path. $file;
+
+        }
 
         if ( $file ) {
             $template = locate_template( $find );
