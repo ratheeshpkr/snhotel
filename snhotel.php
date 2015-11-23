@@ -232,7 +232,7 @@ class Sn_hotel {
             'show_in_menu'    => $show_in_menu,
             'capability_type' => 'post',
             'hierarchical'    => false,
-            'rewrite'         => array('slug' => 'Accommodation'),
+            'rewrite'         => array('slug' => 'accommodation'),
             'query_var'       => true,
             'has_archive'     => true,
             'supports'        => array('title', 'editor', 'thumbnail'),
@@ -283,7 +283,7 @@ class Sn_hotel {
         ) );
 
         //taxonomies
-        /*
+        
         register_taxonomy( 'snhotel_hotel_offers', array( 'snhotel_offer' ),
           array(
               'hierarchical'   => false,
@@ -291,42 +291,44 @@ class Sn_hotel {
               'show_ui'        => true,
               'query_var'      => true,
               'rewrite'        => array('slug' => 'hotel-offers'),
+			  'taxonomies' => array('post_tag'),
+			  'type' => 'taxonomy_select',
               'singular_label' => __( 'Offers', 'snhotel' )
           )
         );
 
-        register_taxonomy( 'snhotel_event', array( 'snhotel_event' ),
+        register_taxonomy( 'snhotel_hotel_event', array( 'snhotel_event' ),
           array(
               'hierarchical'   => false,
               'label'          => __( 'Event Taxonomy', 'snhotel' ),
               'show_ui'        => true,
               'query_var'      => true,
-              'rewrite'        => array('slug' => 'snhotel_event'),
+              'rewrite'        => array('slug' => 'hotel-event'),
               'singular_label' => __( 'Events', 'snhotel' )
           )
         );
 
-        register_taxonomy( 'snhotel_room', array( 'snhotel_room' ),
+        register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
             array(
                 'hierarchical'   => false,
                 'label'          => __( 'Accommodation Taxonomy', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
-                'rewrite'        => array('slug' => 'Accommodation'),
+                'rewrite'        => array('slug' => 'accommodation'),
                 'singular_label' => __( 'Accommodation', 'snhotel' )
             )
         );
-        register_taxonomy( 'snhotel_facility', array( 'snhotel_facility' ),
+        register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,
                 'label'          => __( 'Facility Taxonomy', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
-                'rewrite'        => array('slug' => 'snhotel_facility'),
+                'rewrite'        => array('slug' => 'snhotel-facility'),
                 'singular_label' => __( 'Facilities', 'snhotel' )
             )
         );
-*/
+
 }
     /**
      * Show error nag in admin area if required plugins are not
@@ -461,20 +463,6 @@ class Sn_hotel {
 
         else if ( is_post_type_archive('snhotel_facility')) {
             $file   = 'archive-snhotel_facility.php';
-            $find[] = $file;
-            $find[] = $this->theme_dir_path. $file;
-
-        }
-        
-        if ( is_single() && get_post_type() == 'snhotel_accommodation' ) {
-            $file   = 'single-snhotel_accommodation.php';
-            $find[] = $file;
-            $find[] = $this->theme_dir_path. $file;
-
-        } 
-
-        else if ( is_post_type_archive('snhotel_accommodation')) {
-            $file   = 'archive-snhotel_accommodation.php';
             $find[] = $file;
             $find[] = $this->theme_dir_path. $file;
 
