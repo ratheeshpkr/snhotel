@@ -18,6 +18,7 @@ add_action( 'snhotel_before_single_event', 'snhotel_template_featured_image', 10
 add_action( 'snhotel_before_single_event', 'snhotel_template_post_title', 15 );
 
 add_action( 'snhotel_before_single_event_summary', 'snhotel_template_time', 15 );
+add_action( 'snhotel_before_single_event_summary', 'snhotel_template_events_event', 15 );
 add_action( 'snhotel_before_single_event_summary', 'snhotel_template_join_button', 20 );
 add_action( 'snhotel_before_single_event_summary', 'snhotel_template_event_schema', 25 );
 
@@ -33,6 +34,7 @@ add_action( 'snhotel_before_single_facility', 'snhotel_template_featured_image',
 add_action( 'snhotel_before_single_facility', 'snhotel_template_post_title', 15 );
 
 add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_time', 15 );
+add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_facility_facility', 15 );
 add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_join_button', 20 );
 add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_facility_schema', 25 );
 
@@ -49,6 +51,7 @@ add_action( 'snhotel_before_single_accommodation', 'snhotel_template_post_title'
 
 add_action( 'snhotel_before_single_accommodation_summary', 'snhotel_template_time', 15 );
 add_action( 'snhotel_before_single_accommodation_summary', 'snhotel_template_join_button', 20 );
+add_action( 'snhotel_before_single_accommodation_summary', 'snhotel_template_accommodation_offer', 20 );
 add_action( 'snhotel_before_single_accommodation_summary', 'snhotel_template_accommodation_schema', 25 );
 
 add_action( 'snhotel_single_accommodation_summary', 'snhotel_template_post_content', 10 );
@@ -183,23 +186,31 @@ function snhotel_template_book_button() {
 :: Single Event functions
 -------------------------------------------------- */
 
+function snhotel_template_events_event() {
+    snhotel_get_template( 'events/event.php' );
+}
+
 function snhotel_template_event_schema() {
-    snhotel_get_template( 'event/schema.php' );
+    snhotel_get_template( 'events/schema.php' );
 }
 
 function snhotel_template_event_tab() {
-    snhotel_get_template( 'event/tab-event.php' );
+    snhotel_get_template( 'events/tab-event.php' );
 }
 /*  --------------------------------------------------
 :: Single Facility functions
 -------------------------------------------------- */
 
+function snhotel_template_facility_facility() {
+    snhotel_get_template( 'facilities/facility.php' );
+}
+
 function snhotel_template_facility_schema() {
-    snhotel_get_template( 'facility/schema.php' );
+    snhotel_get_template( 'facilities/schema.php' );
 }
 
 function snhotel_template_facility_tab() {
-    snhotel_get_template( 'facility/tab-facility.php' );
+    snhotel_get_template( 'facilities/tab-facility.php' );
 }
 
 /*  --------------------------------------------------
@@ -302,6 +313,7 @@ add_action( 'snhotel_before_archive_event', 'snhotel_template_featured_image', 1
 add_action( 'snhotel_before_archive_event', 'snhotel_template_post_title', 15 );
 
 add_action( 'snhotel_before_archive_event_summary', 'snhotel_template_time', 15 );
+add_action( 'snhotel_before_single_event_summary', 'snhotel_template_events_event', 15 );
 add_action( 'snhotel_before_archive_event_summary', 'snhotel_template_join_button', 20 );
 add_action( 'snhotel_before_archive_event_summary', 'snhotel_template_event_schema', 25 );
 
@@ -310,13 +322,14 @@ add_action( 'snhotel_archive_event_summary', 'snhotel_template_post_content', 10
 //add_action( 'snhotel_after_archive_event_summary', 'snhotel_template_event_tab', 10 );
 
 /*  --------------------------------------------------
-:: Archive Event template Hooks
+:: Archive Accommodation template Hooks
 -------------------------------------------------- */
 
 add_action( 'snhotel_before_archive_accommodation', 'snhotel_template_featured_image', 10 );
 add_action( 'snhotel_before_archive_accommodation', 'snhotel_template_post_title', 15 );
 
 add_action( 'snhotel_before_archive_accommodation_summary', 'snhotel_template_time', 15 );
+add_action( 'snhotel_before_single_accommodation_summary', 'snhotel_template_accommodation_offer', 20 );
 add_action( 'snhotel_before_archive_accommodation_summary', 'snhotel_template_join_button', 20 );
 add_action( 'snhotel_before_archive_accommodation_summary', 'snhotel_template_accommodation_schema', 25 );
 
@@ -324,6 +337,23 @@ add_action( 'snhotel_archive_accommodation_summary', 'snhotel_template_post_cont
 
 //add_action( 'snhotel_after_archive_event_summary', 'snhotel_template_event_tab', 10 );
 
+
+
+/*  --------------------------------------------------
+:: Archive Facility template Hooks
+-------------------------------------------------- */
+
+add_action( 'snhotel_before_archive_facility', 'snhotel_template_featured_image', 10 );
+add_action( 'snhotel_before_archive_facility', 'snhotel_template_post_title', 15 );
+
+add_action( 'snhotel_before_archive_facility_summary', 'snhotel_template_time', 15 );
+add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_facility_facility', 15 );
+add_action( 'snhotel_before_archive_facility_summary', 'snhotel_template_join_button', 20 );
+add_action( 'snhotel_before_archive_facility_summary', 'snhotel_template_facility_schema', 25 );
+
+add_action( 'snhotel_archive_facility_summary', 'snhotel_template_post_content', 10 );
+
+//add_action( 'snhotel_after_archive_event_summary', 'snhotel_template_event_tab', 10 );
 
 
 /*  --------------------------------------------------
