@@ -14,7 +14,7 @@ class Sn_Hotel_Settings {
 
         add_submenu_page( 'snhotel', __( 'Offers', 'snhotel' ), __( 'Offers', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_offer' );
 
-        add_submenu_page( 'snhotel', __( 'Roomss', 'snhotel' ), __( 'Rooms', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_room' );  
+        add_submenu_page( 'snhotel', __( 'Accommodations', 'snhotel' ), __( 'Accommodations', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_room' );  
 		
 		add_submenu_page( 'snhotel', __( 'Events', 'snhotel' ), __( 'Events', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_event' );
 		
