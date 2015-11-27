@@ -226,31 +226,31 @@ class Sn_hotel {
         ) );
 
         register_post_type( 'snhotel_room', array(
-            'label'           => __( 'Accommodation', 'snhotel' ),
+            'label'           => __( 'Room', 'snhotel' ),
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
             'capability_type' => 'post',
             'hierarchical'    => false,
-            'rewrite'         => array('slug' => 'accommodation'),
+            'rewrite'         => array('slug' => 'rooms'),
             'query_var'       => true,
             'has_archive'     => true,
             'supports'        => array('title', 'editor', 'thumbnail'),
             'labels'          => array(
-                'name'               => __( 'Accommodations', 'snhotel' ),
-                'singular_name'      => __( 'Accommodation', 'snhotel' ),
-                'menu_name'          => __( 'Accommodation', 'snhotel' ),
-                'add_new'            => __( 'Add Accommodation', 'snhotel' ),
-                'add_new_item'       => __( 'Add New Accommodation', 'snhotel' ),
+                'name'               => __( 'Rooms', 'snhotel' ),
+                'singular_name'      => __( 'Room', 'snhotel' ),
+                'menu_name'          => __( 'Room', 'snhotel' ),
+                'add_new'            => __( 'Add Room', 'snhotel' ),
+                'add_new_item'       => __( 'Add New Room', 'snhotel' ),
                 'edit'               => __( 'Edit', 'snhotel' ),
-                'edit_item'          => __( 'Edit Accommodation', 'snhotel' ),
-                'new_item'           => __( 'New Accommodation', 'snhotel' ),
-                'view'               => __( 'View Accommodation', 'snhotel' ),
-                'view_item'          => __( 'View Accommodation', 'snhotel' ),
-                'search_items'       => __( 'Search Accommodations', 'snhotel' ),
-                'not_found'          => __( 'No Accommodations Found', 'snhotel' ),
-                'not_found_in_trash' => __( 'No Accommodations Found in Trash', 'snhotel' ),
-                'parent'             => __( 'Parent Accommodation', 'snhotel' ),
+                'edit_item'          => __( 'Edit Room', 'snhotel' ),
+                'new_item'           => __( 'New Room', 'snhotel' ),
+                'view'               => __( 'View Room', 'snhotel' ),
+                'view_item'          => __( 'View Room', 'snhotel' ),
+                'search_items'       => __( 'Search Rooms', 'snhotel' ),
+                'not_found'          => __( 'No Rooms Found', 'snhotel' ),
+                'not_found_in_trash' => __( 'No Rooms Found in Trash', 'snhotel' ),
+                'parent'             => __( 'Parent Room', 'snhotel' ),
             ),
         ) );
         register_post_type( 'snhotel_facility', array(
@@ -311,11 +311,11 @@ class Sn_hotel {
         register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
             array(
                 'hierarchical'   => false,
-                'label'          => __( 'Accommodation Taxonomy', 'snhotel' ),
+                'label'          => __( 'Room Taxonomy', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
-                'rewrite'        => array('slug' => 'accommodation'),
-                'singular_label' => __( 'Accommodation', 'snhotel' )
+                'rewrite'        => array('slug' => 'hotel-room'),
+                'singular_label' => __( 'Room', 'snhotel' )
             )
         );
         register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),

@@ -5,10 +5,10 @@ $availability = get_post_meta( $post->ID, 'availability', true );
 ?>
 
 <div id="snhotel-accordion">
-	<h3><?php _e( 'Benefits', 'snhotel' ); ?></h3>
+	<h3><?php //_e( 'Benefits', 'snhotel' ); ?></h3>
 		<div>
-			<p><?php printf( __( 'Guests booking the %s can enjoy the following benefits:', 'snhotel' ), get_the_title() ); ?></p>
-            <p><?php snhotel_display_multi_meta( 'benefit', $post->ID, '', 'itemOffered' ); ?></p>
+			<p><?php// printf( __( 'Guests booking the %s can enjoy the following benefits:', 'snhotel' ), get_the_title() ); ?></p>
+            <p><?php //snhotel_display_multi_meta( 'benefit', $post->ID, '', 'itemOffered' ); ?></p>
 		</div>
 	<h3><?php _e( 'Conditions', 'snhotel' ); ?></h3>
 	<div>

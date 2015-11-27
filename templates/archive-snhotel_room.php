@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying all archive accommodation.
+ * The Template for displaying all archive room.
  *
- * Override this template by copying it to yourtheme/snhotel/archive-accommodation.php
+ * Override this template by copying it to yourtheme/snhotel/archive-room.php
  *
  * @author      Sakha
  * @package     Snhotel/Templates
@@ -17,7 +17,7 @@ get_header( 'snhotel' ); ?>
 
         <?php while ( have_posts() ) : the_post(); ?>
 
-            <?php snhotel_get_template_part( 'content', 'archive-accommodation' ); ?>
+            <?php snhotel_get_template_part( 'content', 'archive-room' ); ?>
 
         <?php endwhile; // end of the loop. ?>
 

@@ -4,7 +4,7 @@
  *
  * Override this template by copying it to yourtheme/snhotel/archive-offer.php
  *
- * @author      Tareq Hasan
+ * @author      Sakha
  * @package     Snhotel/Templates
  * @version     0.1
  */

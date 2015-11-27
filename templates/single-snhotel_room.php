@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying all single accommodation.
+ * The Template for displaying all single room.
  *
- * Override this template by copying it to yourtheme/snhotel/single-accommodation.php
+ * Override this template by copying it to yourtheme/snhotel/single-room.php
  *
  * @author      Sakha
  * @package     Snhotel/Templates
@@ -17,7 +17,7 @@ get_header( 'snhotel' ); ?>
 
         <?php while ( have_posts() ) : the_post(); ?>
                
-            <?php snhotel_get_template_part( 'content', 'single-accommodation' );
+            <?php snhotel_get_template_part( 'content', 'single-room' );
             
             //echo get_the_title();
             
@@ -25,11 +25,11 @@ get_header( 'snhotel' ); ?>
 
         <?php endwhile; // end of the loop. ?>
         <div class="snhotel-col-3 sidebar">
-
+<!-- 
            <aside class="room-nav-widget">
                <?php
                    $current_room = get_the_ID();
-                   $rooms = new WP_Query('post_type=snhotel_accommodation&posts_per_page=-1');
+                   $rooms = new WP_Query('post_type=snhotel_event&posts_per_page=-1');
                ?>
                <ul class="room-nav">
 
@@ -41,7 +41,7 @@ get_header( 'snhotel' ); ?>
                    <?php endwhile; wp_reset_postdata(); ?>
                </ul>
            </aside>
-
+-->
            <?php dynamic_sidebar( 'room-sidebar' ); ?>
 
        </div> <!-- .snhotel-col-3 .sidebar -->

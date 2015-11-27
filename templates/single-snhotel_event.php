@@ -25,7 +25,7 @@ get_header( 'snhotel' ); ?>
 
         <?php endwhile; // end of the loop. ?>
         <div class="snhotel-col-3 sidebar">
-
+<!-- 
            <aside class="room-nav-widget">
                <?php
                    $current_room = get_the_ID();
@@ -41,7 +41,7 @@ get_header( 'snhotel' ); ?>
                    <?php endwhile; wp_reset_postdata(); ?>
                </ul>
            </aside>
-
+-->
            <?php dynamic_sidebar( 'room-sidebar' ); ?>
 
        </div> <!-- .snhotel-col-3 .sidebar -->

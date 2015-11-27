@@ -499,7 +499,32 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 		),
       
     );
-
+    
+    $accommodation_tax_off = array(
+	  array(
+            'id' => 'taxonomy_off',
+            'name' => __( '' ),
+            'type' => 'post_select',
+            'use_ajax' => true,
+            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
+            'repeatable' => true,
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),    
+		),
+      
+    );
+    $facility_tax_off = array(
+	  array(
+            'id' => 'taxonomy_off',
+            'name' => __( '' ),
+            'type' => 'post_select',
+            'use_ajax' => true,
+            'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
+            'repeatable' => true,
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),    
+		),
+      
+    );
+    
     $offer_validity = array(
       array(
             'id' => 'validFrom',
@@ -778,6 +803,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'id'   => 'occupancyadults',
           'name' => 'Adults',
           'type' => 'checkbox',
+          
       ),
       array(
           'id'   => 'occupancykids',
@@ -817,6 +843,36 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'type' => 'text',
       ),
     );
+    
+    $accommodation_location = array(
+      array(
+            'id' => 'location',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+    $accommodation_bookinglink = array(
+      array(
+            'id' => 'bookinglink',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+    );
+    $accommodation_bookfrom = array(
+      array(
+            'id' => 'bookfrom',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'text',
+      ),
+      array(
+              'id' => 'currency',
+              'name' => __( 'Currency', 'snhotel' ),
+              'type' => 'select',
+              'desc' => __( 'Please select the currency', 'snhotel' ),
+              'options' => snhotel_get_currencies()
+        ),
+      
+    );
 
     $accommodation_bedroomimage = array(
       array(
@@ -840,8 +896,31 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'name' => '',
           'type' => 'image',
       ),
-    ); 
-
+    );
+    $accommodation_additionalimage = array(
+      array(
+          'id'   => 'additionalimage',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+    $accommodation_floorplan = array(
+      array(
+          'id'   => 'floorplan',
+          'name' => '',
+          'type' => 'image',
+      ),
+    );
+    
+    $accommodation_connectedoffers = array(
+      array(
+            'id' => 'connectedoffers',
+            'name' => __( '', 'snhotel' ),
+            'type' => 'taxonomy_select',
+      ),
+      
+    );
+    
     $accommodation_amenities = array(
       array(
             'id' => 'amenitiestitlename',
@@ -1088,7 +1167,34 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $accommodation_size,
       'context' => 'side',
     );
+    $meta_boxes[] = array(
+      'title' => __( 'Default Occupancy', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_defaultoccupancy,
+      'context' => 'side',
+    );
 
+    $meta_boxes[] = array(
+      'title' => __( 'Additional Occupancy (Extra Beds)', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_additionaloccupancy,
+      'context' => 'side',
+    );
+    
+    $meta_boxes[] = array(
+      'title' => __( 'View', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_view,
+      'context' => 'side',
+    );
+    
+    $meta_boxes[] = array(
+      'title' => __( 'Location', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_location,
+      'context' => 'side',
+    );
+    
     $meta_boxes[] = array(
       'title' => __( 'Bedroom Image', 'snhotel' ),
       'pages' => 'snhotel_room',
@@ -1109,26 +1215,45 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $accommodation_viewfromaccommodationimages,
       'context' => 'side',
     );
-
-
+    
     $meta_boxes[] = array(
-      'title' => __( 'View', 'snhotel' ),
+      'title' => __( 'Additional Images', 'snhotel' ),
       'pages' => 'snhotel_room',
-      'fields' => $accommodation_view,
+      'fields' => $accommodation_additionalimage,
       'context' => 'side',
     );
-
+    
     $meta_boxes[] = array(
-      'title' => __( 'Default Occupancy', 'snhotel' ),
+      'title' => __( 'Floor Plan', 'snhotel' ),
       'pages' => 'snhotel_room',
-      'fields' => $accommodation_defaultoccupancy,
+      'fields' => $accommodation_floorplan,
       'context' => 'side',
     );
-
+    
+    //$meta_boxes[] = array(
+    //  'title' => __( 'Connected Offer(s)', 'snhotel' ),
+    //  'pages' => 'snhotel_room',
+    //  'fields' => $accommodation_connectedoffers,
+    //  'context' => 'side',
+    //);
+    //
     $meta_boxes[] = array(
-      'title' => __( 'Additional Occupancy (Extra Beds)', 'snhotel' ),
+        'title' => __( 'Connected Offer(s)', 'snhotel' ),
+        'pages' => 'snhotel_room',
+		'context' => 'side',
+        'fields' => $accommodation_tax_off,
+    );
+    
+    $meta_boxes[] = array(
+      'title' => __( 'Booking Link', 'snhotel' ),
       'pages' => 'snhotel_room',
-      'fields' => $accommodation_additionaloccupancy,
+      'fields' => $accommodation_bookinglink,
+      'context' => 'side',
+    );
+    $meta_boxes[] = array(
+      'title' => __( 'Book From', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_bookfrom,
       'context' => 'side',
     );
 
@@ -1292,11 +1417,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $facility_downloads,
       'context' => 'side',
     );
+
     $meta_boxes[] = array(
-      'title' => __( 'Connected Offer(s)', 'snhotel' ),
-      'pages' => 'snhotel_facility',
-      'fields' => $facility_connectedoffers,
-      'context' => 'side',
+        'title' => __( 'Connected Offer(s)', 'snhotel' ),
+        'pages' => 'snhotel_facility',
+		'context' => 'side',
+        'fields' => $facility_tax_off,
     );
     $meta_boxes[] = array(
       'title' => __( 'Contact Link', 'snhotel' ),
