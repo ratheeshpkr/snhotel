@@ -783,7 +783,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $accommodation_size = array(
       array(
             'id' => 'size',
-            'name' => __( 'Size', 'snhotel' ),
+            'name' => __( '', 'snhotel' ),
             'type' => 'text',
       ),
       array(
