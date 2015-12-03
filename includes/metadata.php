@@ -556,13 +556,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 
       ),
       array(
-            'id' => 'ineligibleRegion(e.g. Delhi)',
+            'id' => 'ineligibleRegion',
             'name' => __( 'Ineligible Region', 'snhotel' ),
             'type' => 'text',
             'repeatable' => true,
       ),
       array(
-            'id' => 'eligibleRegion(e.g. Bangalore)',
+            'id' => 'eligibleRegion',
             'name' => __( 'Eligible Region', 'snhotel' ),
             'type' => 'text',
             'repeatable' => true,
