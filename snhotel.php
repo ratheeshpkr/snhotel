@@ -522,6 +522,218 @@ class Sn_hotel {
     }
 
 } // Sn_hotel
+/****
+			Show Listings Offer in admin Page
+	
+	*/
+	
+	add_action("manage_snhotel_offer_posts_custom_column",  "offer_custom_columns");
+	add_filter("manage_snhotel_offer_posts_columns", "offer_edit_columns");
+	 
+	function offer_edit_columns($columns){
+	  $columns = array(
+		"cb" => "<input type='checkbox' />",
+		"title" => "Offer Title",
+		"availability" => "Availability",
+		"taxonomy" => "Taxonomy",
+		"currency" => "Currency",
+		"date" => "Date",	
+	  );
+	 
+	  return $columns;
+	}
+	function offer_custom_columns($column){
+	  global $post;
+	 
+	  switch ($column) {
+		case "availability":
+		  $custom = get_post_custom( $post_id, 'availability', true );
+		  //foreach ($custom as $val){
+			echo  $custom['availability'][0];
+			//print_r($val['rating']);
+		  //}
+		  
+		  break;
+		case "currency":
+		  $custom = get_post_custom($post_id, 'currency', true);
+		  echo $custom["currency"][0];
+		  break;
+		case "taxonomy":
+		  echo get_the_term_list($post->ID, 'snhotel_hotel_offers', '', ', ','');
+		  /* $custom = get_post_custom();
+		  echo $custom["triptype"][0]; */
+		  break;
+		case "date":
+		  $custom = get_post_custom($post_id, 'date', true);
+		  echo $custom["date"][0];
+		  break;
+		/* case "":
+		  //echo get_the_term_list($post->ID, 'Skills', '', ', ','');
+		  $custom = get_post_custom();
+		  echo $custom["triptype"][0];
+		  break; */
+	  }
+	}
 
+	/****
+			Show Listings Events in admin Page
+	
+	*/
+	
+	add_action("manage_snhotel_event_posts_custom_column",  "event_custom_columns");
+	add_filter("manage_snhotel_event_posts_columns", "event_edit_columns");
+	 
+	function event_edit_columns($columns){
+	  $columns = array(
+		"cb" => "<input type='checkbox' />",
+		"title" => "Event Title",
+		"url" => "Location",
+		"duration" => "Duration",
+		"date" => "Date",	
+	  );
+	 
+	  return $columns;
+	}
+	function event_custom_columns($column){
+	  global $post;
+	 
+	  switch ($column) {
+		case "url":
+		  $custom = get_post_custom( $post_id, 'url', true );
+		  //foreach ($custom as $val){
+			echo  $custom['url'][0];
+			//print_r($val['rating']);
+		  //}
+		  
+		  break;
+		case "duration":
+		  $custom = get_post_custom($post_id, 'duration', true);
+		  echo $custom["duration"][0];
+		  break;
+		case "date":
+		  $custom = get_post_custom($post_id, 'date', true);
+		  echo $custom["date"][0];
+		  break;
+		/* case "":
+		  //echo get_the_term_list($post->ID, 'Skills', '', ', ','');
+		  $custom = get_post_custom();
+		  echo $custom["triptype"][0];
+		  break; */
+	  }
+      
+	}
+    
+    /****
+			Show Listings Facility in admin Page
+	
+	*/
+	
+	add_action("manage_snhotel_facility_posts_custom_column",  "facility_custom_columns");
+	add_filter("manage_snhotel_facility_posts_columns", "facility_edit_columns");
+	 
+	function facility_edit_columns($columns){
+	  $columns = array(
+		"cb" => "<input type='checkbox' />",
+		"title" => "Facility Title",
+		"amenitiesdisplayname" => "Amenity Name",
+		"entertainmenttitlename" => "entertainment Name",
+		"communicationdisplayname" => "Communication Name",
+		"date" => "Date",	
+	  );
+	 
+	  return $columns;
+	}
+	function facility_custom_columns($column){
+	  global $post;
+	 
+	  switch ($column) {
+		case "amenitiesdisplayname":
+		  $custom = get_post_custom( $post_id, 'amenitiesdisplayname', true );
+		  //foreach ($custom as $val){
+			echo  $custom['amenitiesdisplayname'][0];
+			//print_r($val['rating']);
+		  //}
+		  
+		  break;
+		case "communicationdisplayname":
+		  $custom = get_post_custom($post_id, 'communicationdisplayname', true);
+		  echo $custom["communicationdisplayname"][0];
+		  break;
+        
+		case "entertainmenttitlename":
+            $custom = get_post_custom($post_id, 'entertainmenttitlename', true);
+		  echo $custom["entertainmenttitlename"][0];
+		 // echo get_the_term_list($post->ID, 'entertainmenttitlename', '', ', ','');
+		  /* $custom = get_post_custom();
+		  echo $custom["triptype"][0]; */
+		  break;
+		case "date":
+		  $custom = get_post_custom($post_id, 'date', true);
+		  echo $custom["date"][0];
+		  break;
+		/* case "":
+		  //echo get_the_term_list($post->ID, 'Skills', '', ', ','');
+		  $custom = get_post_custom();
+		  echo $custom["triptype"][0];
+		  break; */
+	  }
+      
+       
+	}
+     /****
+			Show Listings Accommodation in admin Page
+	
+	*/
+	
+	add_action("manage_snhotel_room_posts_custom_column",  "accommodation_custom_columns");
+	add_filter("manage_snhotel_room_posts_columns", "accommodation_edit_columns");
+	 
+	function accommodation_edit_columns($columns){
+	  $columns = array(
+		"cb" => "<input type='checkbox' />",
+		"title" => "Accommodation Title",
+		"amenitiesdisplayname" => "Amenity Name",
+		"entertainmenttitlename" => "Entertainment Name",
+		"communicationdisplayname" => "Communication Name",
+		"date" => "Date",	
+	  );
+	 
+	  return $columns;
+	}
+	function accommodation_custom_columns($column){
+	  global $post;
+	 
+	  switch ($column) {
+		case "amenitiesdisplayname":
+		  $custom = get_post_custom( $post_id, 'amenitiesdisplayname', true );
+		  //foreach ($custom as $val){
+			echo  $custom['amenitiesdisplayname'][0];
+			//print_r($val['rating']);
+		  //}
+		  
+		  break;
+		case "communicationdisplayname":
+		  $custom = get_post_custom($post_id, 'communicationdisplayname', true);
+		  echo $custom["communicationdisplayname"][0];
+		  break;
+        
+		case "entertainmenttitlename":
+            $custom = get_post_custom($post_id, 'entertainmenttitlename', true);
+		  echo $custom["entertainmenttitlename"][0];
+		 // echo get_the_term_list($post->ID, 'entertainmenttitlename', '', ', ','');
+		  /* $custom = get_post_custom();
+		  echo $custom["triptype"][0]; */
+		  break;
+		case "date":
+		  $custom = get_post_custom($post_id, 'date', true);
+		  echo $custom["date"][0];
+		  break;
+		/* case "":
+		  //echo get_the_term_list($post->ID, 'Skills', '', ', ','');
+		  $custom = get_post_custom();
+		  echo $custom["triptype"][0];
+		  break; */
+	  }
+	}
 global $snhotel;
 $snhotel = Sn_hotel::get_instance();
