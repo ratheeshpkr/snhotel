@@ -5,8 +5,14 @@
 		<?php
 		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
 		$meta_url = $post_meta_data_url['url'];
+		
 		echo '</br>';
-		echo '<strong>Location:</strong>'.$meta_avail = get_post_meta($post->ID,'url', true);
+		echo '<strong>Location:</strong>';
+		$meta_location = get_post_meta($post->ID,'url', false);
+		if($meta_location!=''){
+				echo implode(", ", $meta_location);
+		}
+		
 		echo '</br>';
 		$meta_startDate = get_post_meta($post->ID,'startDate', true); 
 		echo '<strong>Start Date Time:</strong>'.gmdate("d-m-y\ H:i", $meta_startDate);
@@ -22,8 +28,13 @@
 		echo '<strong>Occurance:</strong>'.$meta_avail = get_post_meta($post->ID,'occurance', true);
 		echo '</br>';
 		
+		
 		echo '</br>';
-		echo '<strong>Product Offered:</strong>'.$meta_avail = get_post_meta($post->ID,'url', true);
+		echo '<strong>Product Offered:</strong>';
+		$meta_product = get_post_meta($post->ID,'url', false);
+		if($meta_product!=''){
+				echo implode(", ", $meta_product);
+		}
 		echo '</br>';
 		echo '<strong>Availability:</strong>'.$meta_avail = get_post_meta($post->ID,'availability', true);
 		echo '</br>';
@@ -55,40 +66,38 @@
 		echo '<strong>Offer availability to(eligibility duration):</strong>'.gmdate("d-m-y\ H:i", $meta_availability_to);
 		echo '</br>';
 		
-		$post_meta_data_inr = get_post_custom($post->ID,'ineligibleRegion', true); 
-		$meta_ineligibleRegion = $post_meta_data_inr['ineligibleRegion'];
-		if($meta_ineligibleRegion!=''){
-			foreach ($meta_ineligibleRegion as $string) {
-				echo '<strong>Ineligible Region:</strong>'.$string.'</br>';
-			}
-		}
-		$post_meta_data_reg = get_post_custom($post->ID,'eligibleRegion', true); 
-		$meta_eligibleRegion = $post_meta_data_reg['eligibleRegion'];
+		
+		echo '</br>';
+		echo '<strong>Eligible Region:</strong>';
+		$meta_eligibleRegion = get_post_meta($post->ID,'eligibleRegion', false);
 		if($meta_eligibleRegion!=''){
-			foreach ($meta_eligibleRegion as $string) {
-				echo '<strong>Eligible Region:</strong>'.$string.'</br>';
-			}
+				echo implode(", ", $meta_eligibleRegion);
+		}
+		echo '</br>';
+		echo '<strong>Ineligible Region:</strong>';
+		$meta_ineligibleRegion = get_post_meta($post->ID,'ineligibleRegion', false);
+		if($meta_ineligibleRegion!=''){
+				echo implode(", ", $meta_ineligibleRegion);
 		}
 		
-		$post_meta_data_cust = get_post_custom($post->ID,'eligibleCustomer', true); 
-		$meta_eligibleCustomer = $post_meta_data_cust['eligibleCustomer'];
+		echo '</br>';
+		echo '<strong>Eligible Customer Type:</strong>';
+		$meta_eligibleCustomer = get_post_meta($post->ID,'eligibleCustomer', false);
 		if($meta_eligibleCustomer!=''){
-			foreach ($meta_eligibleCustomer as $string) {
-				echo '<strong>Eligible Customer Type:</strong>'.$string.'</br>';
-			}
+				echo implode(", ", $meta_eligibleCustomer);
 		}
+		
+		echo '</br>';
 		echo '<strong>Eligible Transaction Volume:</strong>'.$meta_eligibleTransaction = get_post_meta($post->ID,'eligibleTransaction', true); 
 		echo '</br>';
 		echo '<strong>Is there a limitation how many items must be bought:</strong>'.$meta_limitationMust = get_post_meta($post->ID,'limitationMust', true); 
 		echo '</br>';
 		echo '<strong>Is there a limitation how many items can be bought::</strong>'.$meta_limitationCan = get_post_meta($post->ID,'limitationCan', true); 
 		echo '</br>';
-		$post_meta_data = get_post_custom($post->ID,'termsCondition', true);
-		$meta_termsCondition = $post_meta_data['termsCondition'];
+		echo '<strong>Terms and Conditions:</strong>';
+		$meta_termsCondition = get_post_meta($post->ID,'termsCondition', false);
 		if($meta_termsCondition!=''){
-			foreach ($meta_termsCondition as $string) {
-				echo '<strong>Terms and Conditions:</strong>'.$string.'</br>';
-			}
+				echo implode(", ", $meta_termsCondition);
 		}
 		
 		?>
