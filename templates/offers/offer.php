@@ -5,11 +5,11 @@
 		<?php
 		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
 		$meta_url = $post_meta_data_url['url'];
-		if($meta_url!=''){
-			foreach ($meta_url as $string) {
-				echo '<strong>Product Offered:</strong>'.$string.'</br>';
-			}
-		}
+		//if($meta_url!=''){
+		//	foreach ($meta_url as $string) {
+		//		echo '<strong>Product Offered:</strong>'.$string.'</br>';
+		//	}
+		//}
 		echo '</br>';
 		echo '<strong>Availability:</strong>'.$meta_avail = get_post_meta($post->ID,'availability', true); 
 		echo '</br>';
@@ -45,6 +45,12 @@
 		echo '<strong>Offer availabilty to(eligibility duration):</strong>'.gmdate("d-m-y\ H:i", $meta_availability_to);
 		echo '</br>';
 		
+		//echo '<strong>Ineligible Region:</strong>';
+		//$meta_ineligibleRegion = get_post_meta($post->ID,'ineligibleRegion', false);
+		//if($meta_ineligibleRegion!=''){
+		//		echo implode(", ", $meta_ineligibleRegion);
+		//}
+		
 		$post_meta_data_inr = get_post_custom($post->ID,'ineligibleRegion', true); 
 		$meta_ineligibleRegion = $post_meta_data_inr['ineligibleRegion'];
 		if($meta_ineligibleRegion!=''){
@@ -67,6 +73,14 @@
 				echo '<strong>Eligible Customer Type:</strong>'.$string.'</br>';
 			}
 		}
+		
+		echo '</br>';
+		echo '<strong>Eligible Customer Type:</strong>';
+		$meta_location = get_post_meta($post->ID,'eligibleCustomer', false);
+		if($meta_location!=''){
+				echo implode(", ", $meta_location);
+		}
+		echo '</br>';
 		echo '<strong>Eligible Transaction Volume:</strong>'.$meta_eligibleTransaction = get_post_meta($post->ID,'eligibleTransaction', true); 
 		echo '</br>';
 		echo '<strong>Is there a limitation how many items must be bought:</strong>'.$meta_limitationMust = get_post_meta($post->ID,'limitationMust', true); 
