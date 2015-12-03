@@ -10,7 +10,7 @@ class Sn_Hotel_Settings {
         $menu_position = apply_filters( 'snhotel_menu_position', 16 );
         $capability = apply_filters( 'snhotel_menu_capability', 'activate_plugins' );
 
-        add_menu_page( __( 'snhotel', 'wpuf' ), __( 'snhotel', 'wpuf' ), $capability, 'snhotel', array($this, 'plugin_settings'), null, $menu_position );
+        add_menu_page( __( 'snhotel', 'wpuf' ), __( 'Sn Hotel', 'wpuf' ), $capability, 'snhotel', array($this, 'plugin_settings'), null, $menu_position );
 
         add_submenu_page( 'snhotel', __( 'Offers', 'snhotel' ), __( 'Offers', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_offer' );
 
@@ -20,10 +20,9 @@ class Sn_Hotel_Settings {
 		
 		 add_submenu_page( 'snhotel', __( 'Facilities', 'snhotel' ), __( 'Facilities', 'snhotel' ), $capability, 'edit.php?post_type=snhotel_facility' );
     }
-
     function plugin_settings() {
         echo '<div class="wrap">';
-            echo '<h2>snhotel Services</h2';
+            echo '<h2>Snhotel Services</h2';
         echo '</div>';
     }
 }
