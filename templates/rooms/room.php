@@ -6,25 +6,48 @@
 		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
 		$meta_url = $post_meta_data_url['url'];
 		echo '</br>';
-		echo '<strong>Features Display Name:</strong>'.$meta_avail = get_post_meta($post->ID,'featurestitlename', true);
+		echo '<strong>Features Display Name:</strong>';
+		$meta_featuresdisplayname = get_post_meta($post->ID,'featuresdisplayname', false);
+		if($meta_featuresdisplayname!=''){
+				echo implode(", ", $meta_featuresdisplayname);
+		}
 		echo '</br>';
-		echo '<strong>Amenities Display Name:</strong>'.$meta_avail = get_post_meta($post->ID,'amenitiestitlename', true);
+		echo '<strong>Amenities Display Name:</strong>';
+		$meta_amenitiesdisplayname = get_post_meta($post->ID,'amenitiesdisplayname', false);
+		if($meta_amenitiesdisplayname!=''){
+				echo implode(", ", $meta_amenitiesdisplayname);
+		}
 		echo '</br>';
-		echo '<strong>Security Display Name:</strong>'.$meta_avail = get_post_meta($post->ID,'securitytitlename', true);
+		echo '<strong>Security Display Name:</strong>';
+		$meta_securitydisplayname = get_post_meta($post->ID,'securitydisplayname', false);
+		if($meta_securitydisplayname!=''){
+				echo implode(", ", $meta_securitydisplayname);
+		}
 		echo '</br>';
-		echo '<strong>Communication Display Name:</strong>'.$meta_avail = get_post_meta($post->ID,'communicationtitlename', true);
+		echo '<strong>Communication Display Name:</strong>';
+		$meta_communicationdisplayname = get_post_meta($post->ID,'communicationdisplayname', false);
+		if($meta_communicationdisplayname!=''){
+				echo implode(", ", $meta_communicationdisplayname);
+		}
 		echo '</br>';
-		echo '<strong>Bed Display Name:</strong>'.$meta_avail = get_post_meta($post->ID,'bedtitlename', true);
+		echo '<strong>Bed Display Name:</strong>';
+		$meta_beddisplayname = get_post_meta($post->ID,'beddisplayname', false);
+		if($meta_beddisplayname!=''){
+				echo implode(", ", $meta_beddisplayname);
+		}
 		echo '</br>';
-		echo '<strong>Entertainment Display Name:</strong>'.$meta_avail = get_post_meta($post->ID,'entertainmenttitlename', true);
+		echo '<strong>Entertainment Display Name:</strong>';
+		$meta_entertainmentdisplayname = get_post_meta($post->ID,'entertainmentdisplayname', false);
+		if($meta_entertainmentdisplayname!=''){
+				echo implode(", ", $meta_entertainmentdisplayname);
+		}
+
 		echo '</br>';
 		echo '<strong>Size:</strong>'.$meta_avail = get_post_meta($post->ID,'size', true);
 		echo '</br>';
 		echo '<strong>Size Unit:</strong>'.$meta_avail = get_post_meta($post->ID,'sizeunit', true);
 		echo '</br>';
 		echo '<strong>Default Occupancy:</strong>'.$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
-		
-		
 		$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
 		
 		//$occupancy = get_post_meta($post->ID, "occupancyadults", true);
