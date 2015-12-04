@@ -6,6 +6,7 @@
 		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
 		$meta_url = $post_meta_data_url['url'];
 		echo '</br>';
+		echo the_content();
 		echo '<strong>Features Display Name:</strong>';
 		$meta_featuresdisplayname = get_post_meta($post->ID,'featuresdisplayname', false);
 		if($meta_featuresdisplayname!=''){
@@ -61,6 +62,15 @@
 		echo '</br>';
 		echo '<strong>Downloads:</strong>'.$meta_avail = get_post_meta($post->ID,'download', true);
 
+		echo '</br>';
 		
+		echo '<strong>Connected Offers:</strong>';
+		$p2p_meta_data_faci = get_post_custom($post->ID,'taxonomy_facility_off', true);
+		$meta_taxfaci = $p2p_meta_data_faci['taxonomy_facility_off'];
+		if($meta_taxfaci!=''){
+		foreach ($meta_taxfaci as $string) {
+		echo ''.get_the_title( $string ).','.'';
+		}
+		}
 		?>
 	</div>
