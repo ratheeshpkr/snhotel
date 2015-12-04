@@ -7,6 +7,7 @@
 		$meta_url = $post_meta_data_url['url'];
 		
 		echo '</br>';
+		echo the_content();
 		echo '<strong>Location:</strong>';
 		$meta_location = get_post_meta($post->ID,'url', false);
 		if($meta_location!=''){
@@ -31,7 +32,7 @@
 		
 		echo '</br>';
 		echo '<strong>Product Offered:</strong>';
-		$meta_product = get_post_meta($post->ID,'url', false);
+		$meta_product = get_post_meta($post->ID,'product', false);
 		if($meta_product!=''){
 				echo implode(", ", $meta_product);
 		}
