@@ -16,15 +16,17 @@ $availability = get_post_meta( $post->ID, 'availability', true );
 
             <?php
             // Find connected pages
-            $connected = new WP_Query( array('connected_type' => 'room_to_offer', 'connected_items' => get_queried_object(), 'nopaging' => true) );
-
+            $connected = new WP_Query( array('post_type' => 'snhotel_event','connected_type' => 'event_to_offer', 'connected_items' => get_queried_object(), 'nopaging' => true) );
+				//print_r(get_queried_object());
             // Display connected pages
             $rooms = array();
+			
             if ( $connected->have_posts() ) {
                 while ($connected->have_posts()) {
                     $connected->the_post();
-
+					
                     $rooms[] = sprintf( '<a href="%s">%s</a>', get_permalink(), the_title( '', '', false ) );
+					print_r($rooms);
                 }
 
                 wp_reset_postdata();

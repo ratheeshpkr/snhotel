@@ -11,6 +11,7 @@
 		//	}
 		//}
 		echo '</br>';
+		echo the_content();
 		echo '<strong>Availability:</strong>'.$meta_avail = get_post_meta($post->ID,'availability', true); 
 		echo '</br>';
 		echo '<strong>Lead Time:</strong>'.$meta_leadTime = get_post_meta($post->ID,'leadTime', true); 
@@ -19,9 +20,9 @@
 		echo '</br>';
 		echo '<strong>Currency:</strong>'.$meta_currency = get_post_meta($post->ID,'currency', true); 
 		echo '</br>';
-		echo '<strong>Price Details:</strong>'.$meta_priceDetail = get_post_meta($post->ID,'priceDetail', true); 
+		echo '<strong>Price Details:</strong>'.$meta_pricedetails = get_post_meta($post->ID,'pricedetails', true); 
 		echo '</br>';
-		echo '<strong>Original Price:</strong>'.$meta_originalPrice = get_post_meta($post->ID,'originalPrice', true); 
+		echo '<strong>Original Price:</strong>'.$meta_originalprice = get_post_meta($post->ID,'originalprice', true); 
 		echo '</br>';
 		$meta_availabilityStarts = get_post_meta($post->ID,'availabilityStarts', true); 
 		echo '<strong>Availability Starts:</strong>'.gmdate("d-m-y\ H:i", $meta_availabilityStarts);
@@ -45,54 +46,70 @@
 		echo '<strong>Offer availabilty to(eligibility duration):</strong>'.gmdate("d-m-y\ H:i", $meta_availability_to);
 		echo '</br>';
 		
-		//echo '<strong>Ineligible Region:</strong>';
-		//$meta_ineligibleRegion = get_post_meta($post->ID,'ineligibleRegion', false);
-		//if($meta_ineligibleRegion!=''){
-		//		echo implode(", ", $meta_ineligibleRegion);
-		//}
-		
-		$post_meta_data_inr = get_post_custom($post->ID,'ineligibleRegion', true); 
-		$meta_ineligibleRegion = $post_meta_data_inr['ineligibleRegion'];
+		echo '<strong>Ineligible Region:</strong>';
+		$meta_ineligibleRegion = get_post_meta($post->ID,'ineligibleRegion', false);
 		if($meta_ineligibleRegion!=''){
-			foreach ($meta_ineligibleRegion as $string) {
-				echo '<strong>Ineligible Region:</strong>'.$string.'</br>';
-			}
+				echo implode(", ", $meta_ineligibleRegion);
 		}
-		$post_meta_data_reg = get_post_custom($post->ID,'eligibleRegion', true); 
-		$meta_eligibleRegion = $post_meta_data_reg['eligibleRegion'];
+		echo '</br>';
+		
+		echo '<strong>Eligible Region:</strong>';
+		$meta_eligibleRegion = get_post_meta($post->ID,'eligibleRegion', false);
 		if($meta_eligibleRegion!=''){
-			foreach ($meta_eligibleRegion as $string) {
-				echo '<strong>Eligible Region:</strong>'.$string.'</br>';
-			}
+				echo implode(", ", $meta_eligibleRegion);
 		}
 		
-		$post_meta_data_cust = get_post_custom($post->ID,'eligibleCustomer', true); 
-		$meta_eligibleCustomer = $post_meta_data_cust['eligibleCustomer'];
-		if($meta_eligibleCustomer!=''){
-			foreach ($meta_eligibleCustomer as $string) {
-				echo '<strong>Eligible Customer Type:</strong>'.$string.'</br>';
-			}
-		}
-		
+
 		echo '</br>';
 		echo '<strong>Eligible Customer Type:</strong>';
-		$meta_location = get_post_meta($post->ID,'eligibleCustomer', false);
-		if($meta_location!=''){
-				echo implode(", ", $meta_location);
+		$meta_cust = get_post_meta($post->ID,'eligibleCustomer', false);
+		if($meta_cust!=''){
+				echo implode(", ", $meta_cust);
 		}
 		echo '</br>';
 		echo '<strong>Eligible Transaction Volume:</strong>'.$meta_eligibleTransaction = get_post_meta($post->ID,'eligibleTransaction', true); 
 		echo '</br>';
 		echo '<strong>Is there a limitation how many items must be bought:</strong>'.$meta_limitationMust = get_post_meta($post->ID,'limitationMust', true); 
 		echo '</br>';
-		echo '<strong>Is there a limitation how many items can be bought::</strong>'.$meta_limitationCan = get_post_meta($post->ID,'limitationCan', true); 
+		echo '<strong>Is there a limitation how many items can be bought:</strong>'.$meta_limitationCan = get_post_meta($post->ID,'limitationCan', true); 
+		
 		echo '</br>';
-		$post_meta_data = get_post_custom($post->ID,'termsCondition', true);
-		$meta_termsCondition = $post_meta_data['termsCondition'];
-		if($meta_termsCondition!=''){
-			foreach ($meta_termsCondition as $string) {
-				echo '<strong>Terms and Conditions:</strong>'.$string.'</br>';
-			}
+		echo '<strong>Terms and Conditions:</strong>';
+		$meta_terms = get_post_meta($post->ID,'termsCondition', false);
+		if($meta_cust!=''){
+				echo implode(", ", $meta_terms);
 		}
+		echo '</br>';
+		echo '</br>';
+		echo '<strong>Connected Accommodation:</strong>';
+		$p2p_meta_data_acc = get_post_custom($post->ID,'taxonomy_acc', true);
+		$meta_tax_acc = $p2p_meta_data_acc['taxonomy_acc'];
+		if($meta_tax_acc!=''){
+		foreach ($meta_tax_acc as $string) {
+		echo ''.get_the_title( $string ).',';
+		}
+		}
+		echo '</br>';
+		
+		echo '<strong>Connected Events:</strong>';
+		$p2p_meta_data_eve = get_post_custom($post->ID,'taxonomy_eve', true);
+		$meta_taxeve = $p2p_meta_data_eve['taxonomy_eve'];
+		if($meta_taxeve!=''){
+		foreach ($meta_taxeve as $string) {
+		echo ''.get_the_title( $string ).',';
+		}
+		}
+		
+		echo '</br>';
+		
+		echo '<strong>Connected Facilities:</strong>';
+		$p2p_meta_data_faci = get_post_custom($post->ID,'taxonomy_faci', true);
+		$meta_taxfaci = $p2p_meta_data_faci['taxonomy_faci'];
+		if($meta_taxfaci!=''){
+		foreach ($meta_taxfaci as $string) {
+		echo ''.get_the_title( $string ).',';
+		}
+		}
+		
 		?>
 	</div>
