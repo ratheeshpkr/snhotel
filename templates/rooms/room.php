@@ -6,6 +6,7 @@
 		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
 		$meta_url = $post_meta_data_url['url'];
 		echo '</br>';
+		echo the_content();
 		echo '<strong>Features Display Name:</strong>';
 		$meta_featuresdisplayname = get_post_meta($post->ID,'featuresdisplayname', false);
 		if($meta_featuresdisplayname!=''){
@@ -48,33 +49,7 @@
 		echo '<strong>Size Unit:</strong>'.$meta_avail = get_post_meta($post->ID,'sizeunit', true);
 		echo '</br>';
 		echo '<strong>Default Occupancy:</strong>'.$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
-		$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
-		
-		//$occupancy = get_post_meta($post->ID, "occupancyadults", true);
-		//
-		//if ($occupancy == 'Checked')
-		//{
-		//
-		//		echo '<strong>Default Occupancy:</strong>Adults';
-		//}
-		//
-		
-		
-		//$meta = get_post_meta( get_the_ID(), 'occupancyadults', true );
-		//if( checked( $meta, 1, false ) )
-		//{
-		//		echo '<strong>Default Occupancy:</strong>Adults';
-		//}
-		//$meta = get_post_meta( get_the_ID(), 'occupancykids', true );
-		//if( checked( $meta, 1, false ) )
-		//{
-		//		echo '<strong>Default Occupancy:</strong>Kids';
-		//}
-		//$meta = get_post_meta( get_the_ID(), 'occupancypets', true );
-		//if( checked( $meta, 1, false ) )
-		//{
-		//		echo '<strong>Default Occupancy:</strong>Pets';
-		//}
+		//$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
 				
 		echo '</br>';
 		echo '<strong>Additional Occupancy:</strong>'.$meta_avail = get_post_meta($post->ID,'additionaloccupancyadults', true);
@@ -101,6 +76,16 @@
 		echo '</br>';
 		echo '<strong>Currency:</strong>'.$meta_avail = get_post_meta($post->ID,'currency', true);
 		echo '</br>';
+		
+		echo '<strong>Connected Offers:</strong>';
+		$p2p_meta_data_off = get_post_custom($post->ID,'taxonomy_acc_off', true);
+		$meta_taxoff = $p2p_meta_data_off['taxonomy_acc_off'];
+		if($meta_taxoff!=''){
+		foreach ($meta_taxoff as $string) {
+		echo ''.get_the_title( $string ).',';
+		}
+		}
+		
 		
 		?>
 	</div>

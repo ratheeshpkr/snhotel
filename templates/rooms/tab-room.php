@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$availability = get_post_meta( $post->ID, 'availability', true );
+//$availability = get_post_meta( $post->ID, 'availability', true );
 ?>
 
 <div id="snhotel-accordion">
@@ -33,7 +33,7 @@ $availability = get_post_meta( $post->ID, 'availability', true );
 
 
             <?php
-            printf( __( 'This hotel deal is bookable in %s from %s until %s for stays %s until %s with the following conditions:', 'snhotel' ), implode( ', ', $rooms ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'price_valid_from', true ) ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'price_valid_to', true ) ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'stay_from', true ) ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'stay_until', true ) ) );
+            //printf( __( 'This hotel deal is bookable in %s from %s until %s for stays %s until %s with the following conditions:', 'snhotel' ), implode( ', ', $rooms ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'price_valid_from', true ) ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'price_valid_to', true ) ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'stay_from', true ) ), date_i18n( 'j F, Y', (int) get_post_meta( $post->ID, 'stay_until', true ) ) );
             ?>
         </p>
 	</div>
