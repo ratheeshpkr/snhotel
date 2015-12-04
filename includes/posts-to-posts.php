@@ -85,6 +85,11 @@ function snhotel_p2p_register_connection() {
         'from' => 'snhotel_offer',
         'to' => 'snhotel_leisure'
     ) );
+    p2p_register_connection_type( array(
+        'name' => 'room_to_offer',
+        'from' => 'snhotel_offer',
+        'to' => 'snhotel_room'
+    ) );
 }
 
 add_action( 'wp_loaded', 'snhotel_p2p_register_connection' );

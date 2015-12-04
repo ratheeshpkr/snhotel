@@ -16,12 +16,9 @@
 
 add_action( 'snhotel_before_single_event', 'snhotel_template_featured_image', 10 );
 add_action( 'snhotel_before_single_event', 'snhotel_template_post_title' );
-//add_action( 'snhotel_single_event_summary', 'snhotel_template_post_content', 10 );
 add_action( 'snhotel_before_single_event_summary', 'snhotel_template_time', 15 );
 add_action( 'snhotel_before_single_event_summary', 'snhotel_template_events_event', 15 );
-//add_action( 'snhotel_before_single_event_summary', 'snhotel_template_join_button', 20 );
 add_action( 'snhotel_before_single_event_summary', 'snhotel_template_event_schema', 25 );
-//add_action( 'snhotel_after_single_event_summary', 'snhotel_template_event_tab', 10 );
 
 /*  --------------------------------------------------
 :: Single Facility template Hooks
@@ -29,12 +26,8 @@ add_action( 'snhotel_before_single_event_summary', 'snhotel_template_event_schem
 
 add_action( 'snhotel_before_single_facility', 'snhotel_template_featured_image', 10 );
 add_action( 'snhotel_before_single_facility', 'snhotel_template_post_title', 15 );
-//add_action( 'snhotel_single_facility_summary', 'snhotel_template_post_content', 10 );
-add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_time', 15 );
 add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_facility_facility', 15 );
-//add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_join_button', 20 );
 add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_facility_schema', 25 );
-//add_action( 'snhotel_after_single_facility_summary', 'snhotel_template_facility_tab', 10 );
 
 /*  --------------------------------------------------
 :: Single Room template Hooks
@@ -42,16 +35,7 @@ add_action( 'snhotel_before_single_facility_summary', 'snhotel_template_facility
 
 add_action( 'snhotel_before_single_room', 'snhotel_template_featured_image', 10 );
 add_action( 'snhotel_before_single_room', 'snhotel_template_post_title', 15 );
-
-add_action( 'snhotel_before_single_room_summary', 'snhotel_template_time', 15 );
-add_action( 'snhotel_before_single_room_summary', 'snhotel_template_join_button', 20 );
-add_action( 'snhotel_before_single_room_summary', 'snhotel_template_room_room', 20 );
 add_action( 'snhotel_before_single_room_summary', 'snhotel_template_room_schema', 25 );
-
-//add_action( 'snhotel_single_room_summary', 'snhotel_template_post_content', 10 );
-
-//add_action( 'snhotel_after_single_room_summary', 'snhotel_template_room_tab', 10 );
-
 
 
 /*  --------------------------------------------------
@@ -65,11 +49,7 @@ add_action( 'snhotel_before_single_offer', 'snhotel_template_post_title', 15 );
 add_action( 'snhotel_before_single_offer_summary', 'snhotel_template_offer_offer', 15 );
 add_action( 'snhotel_before_single_offer_summary', 'snhotel_template_book_button', 20 );
 
-add_action( 'snhotel_single_offer_summary', 'snhotel_template_post_content', 10 );
 add_action( 'snhotel_single_offer_summary', 'snhotel_template_offer_schema', 15 );
-
-add_action( 'snhotel_after_single_offer_summary', 'snhotel_template_offer_tab', 15 );
-
 
 
 /*  --------------------------------------------------

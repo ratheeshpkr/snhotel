@@ -502,7 +502,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     
     $accommodation_tax_off = array(
 	  array(
-            'id' => 'taxonomy_off',
+            'id' => 'taxonomy_acc_off',
             'name' => __( '' ),
             'type' => 'post_select',
             'use_ajax' => true,
@@ -514,13 +514,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     );
     $facility_tax_off = array(
 	  array(
-            'id' => 'taxonomy_off',
+            'id' => 'taxonomy_facility_off',
             'name' => __( '' ),
             'type' => 'post_select',
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),    
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),    
 		),
       
     );
@@ -630,14 +630,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'options' => snhotel_get_currencies()
         ),
         array(
-              'id' => 'benefit',
+              'id' => 'pricedetails',
               'name' => __( 'Price Details', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Provide any clarification on price', 'snhotel' ),
 
         ),
 		array(
-              'id' => 'benefit',
+              'id' => 'originalprice',
               'name' => __( 'Original Price', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
@@ -715,7 +715,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     );
     $offer_details = array(
 		array(
-              'id' => 'url',
+              'id' => 'product',
               'name' => __( 'Product Offered(itemOffered)', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Select the item for which this offer is valid(e.g. room and/or restaurant)', 'snhotel' ),
@@ -1095,15 +1095,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             
       ),
     );
-    $facility_connectedoffers = array(
-      array(
-            'id' => 'connectedoffers',
-            'name' => __( '', 'snhotel' ),
-            'type' => 'taxonomy_select',
-      ),
-      
-      
-    );
+   
     $facility_setting = array(
       array(
             'id' => 'setting',
