@@ -86,8 +86,9 @@
 		$meta_tax_acc = $p2p_meta_data_acc['taxonomy_acc'];
 		if($meta_tax_acc!=''){
 		foreach ($meta_tax_acc as $string) {
-		echo ''.get_the_title( $string ).',';
+		$val_acc .=  get_the_title( $string ).',';
 		}
+		echo rtrim($val_acc,",");
 		}
 		echo '</br>';
 		
@@ -96,19 +97,23 @@
 		$meta_taxeve = $p2p_meta_data_eve['taxonomy_eve'];
 		if($meta_taxeve!=''){
 		foreach ($meta_taxeve as $string) {
-		echo ''.get_the_title( $string ).',';
+		$val_eve .= get_the_title( $string ).',';
 		}
+		echo rtrim($val_eve,",");
 		}
 		
 		echo '</br>';
 		
 		echo '<strong>Connected Facilities:</strong>';
 		$p2p_meta_data_faci = get_post_custom($post->ID,'taxonomy_faci', true);
+		//print_r($p2p_meta_data_faci);exit;
+		$val ='';
 		$meta_taxfaci = $p2p_meta_data_faci['taxonomy_faci'];
 		if($meta_taxfaci!=''){
 		foreach ($meta_taxfaci as $string) {
-		echo ''.get_the_title( $string ).',';
+				$val_faci .= get_the_title( $string ).",";
 		}
+		echo rtrim($val_faci,",");
 		}
 		
 		?>
