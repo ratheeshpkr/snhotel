@@ -48,11 +48,55 @@
 		echo '</br>';
 		echo '<strong>Size Unit:</strong>'.$meta_avail = get_post_meta($post->ID,'sizeunit', true);
 		echo '</br>';
-		echo '<strong>Default Occupancy:</strong>'.$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
+		//echo '<strong>Default Occupancy:</strong>';
 		//$meta_avail = get_post_meta($post->ID,'occupancyadults', true);
-				
+		//if($meta_avail == 1)
+		//{
+		//		
+		//		echo 'Adults';
+		//}
+		
+		echo '<strong>Default Occupancy:</strong>';
+		$meta_adults = get_post_meta($post->ID,'occupancyadults', true);
+		$meta_kids = get_post_meta( $post->ID, 'occupancykids', true );
+		$meta_pets = get_post_meta( $post->ID, 'occupancykids', true );
+		$default_valu = '';
+		if ($meta_adults == 1)
+		{
+				$default_valu .= 'Adults  ,';
+		}
+		if($meta_kids  == 1 ) 
+		{
+				$default_valu .= ' Kids ,';
+		}  
+		if($meta_pets  == 1 ) 
+		{
+				$default_valu .= ' Pets ,';
+		}
+		echo rtrim($default_valu,",");
+		
 		echo '</br>';
-		echo '<strong>Additional Occupancy:</strong>'.$meta_avail = get_post_meta($post->ID,'additionaloccupancyadults', true);
+		//echo '<strong>Additional Occupancy:</strong>'.$meta_avail = get_post_meta($post->ID,'additionaloccupancyadults', true);
+		
+		echo '<strong>Additional Occupancy:</strong>';
+		$meta_additionaloccupancyadults = get_post_meta($post->ID,'additionaloccupancyadults', true);
+		$meta_additionaloccupancykids = get_post_meta( $post->ID, 'additionaloccupancykids', true );
+		$meta_additionaloccupancypets = get_post_meta( $post->ID, 'additionaloccupancypets', true );
+		$additional_valu = '';
+		if ($meta_additionaloccupancyadults == 1)
+		{
+				$additional_valu .= 'Adults , ';
+		}
+		if($meta_additionaloccupancykids  == 1 ) 
+		{
+				$additional_valu .= 'Kids , ';
+		}
+		if($meta_additionaloccupancypets  == 1 ) 
+		{
+				$additional_valu .= ' Pets ,';
+		}
+		echo rtrim($additional_valu,",");
+		
 		echo '</br>';
 		echo '<strong>View:</strong>'.$meta_avail = get_post_meta($post->ID,'view', true);
 		echo '</br>';
@@ -82,8 +126,9 @@
 		$meta_taxoff = $p2p_meta_data_off['taxonomy_acc_off'];
 		if($meta_taxoff!=''){
 		foreach ($meta_taxoff as $string) {
-		echo ''.get_the_title( $string ).',';
+		$val_off .= get_the_title( $string ).',';
 		}
+		echo rtrim($val_off,",");
 		}
 		
 		
