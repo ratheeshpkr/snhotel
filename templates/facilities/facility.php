@@ -69,8 +69,10 @@
 		$meta_taxfaci = $p2p_meta_data_faci['taxonomy_facility_off'];
 		if($meta_taxfaci!=''){
 		foreach ($meta_taxfaci as $string) {
-		echo ''.get_the_title( $string ).','.'';
+		$val_faci .= get_the_title( $string ).','.'';
 		}
+		echo rtrim($val_faci,",");
 		}
+
 		?>
 	</div>
