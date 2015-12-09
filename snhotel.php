@@ -132,19 +132,19 @@ class Sn_hotel {
         /**
          * All styles goes here
          */
-        wp_enqueue_style( 'snhotel-styles', plugins_url( 'assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
+       /*  wp_enqueue_style( 'snhotel-styles', plugins_url( 'assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
         wp_enqueue_style( 'ui-styles', plugins_url( 'assets/css/ui.css', __FILE__ ), false, date( 'Ymd' ) );
-        wp_enqueue_style( 'flexslider', plugins_url( 'assets/css/flexslider.css', __FILE__ ), false, date( 'Ymd' ) );
+        wp_enqueue_style( 'flexslider', plugins_url( 'assets/css/flexslider.css', __FILE__ ), false, date( 'Ymd' ) ); */
 
         /**
          * All scripts goes here
          */
-        wp_enqueue_script( 'jquery' );
+       /*  wp_enqueue_script( 'jquery' );
         wp_enqueue_script( 'jquery-ui-core' );
         wp_enqueue_script( 'jquery-ui-accordion' );
         wp_enqueue_script( 'jquery-ui-tabs' );
         wp_enqueue_script( 'flexslider', plugins_url( 'assets/js/jquery.flexslider.js', __FILE__ ), array( 'jquery' ), false, true );
-        wp_enqueue_script( 'snhotel-scripts', plugins_url( 'assets/js/script.js', __FILE__ ), array( 'jquery' ), false, true );
+        wp_enqueue_script( 'snhotel-scripts', plugins_url( 'assets/js/script.js', __FILE__ ), array( 'jquery' ), false, true ); */
 
 
         /**
