@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: snHotel
+Plugin Name: Sn Hotel
 Plugin URI: http://www.sakhatech.com/
-Description:
+Description: Custom posttypes for Responsive hotel websites
 Version: 1.0
-Author: Sakha
+Author: Sakhatech
 Author URI: http://www.sakhatech.com/
 License: GPL2
 */
@@ -284,7 +284,7 @@ class Sn_hotel {
         ) );
 
         //taxonomies
-        
+
         register_taxonomy( 'snhotel_hotel_offers', array( 'snhotel_offer' ),
           array(
               'hierarchical'   => false,
@@ -460,7 +460,7 @@ class Sn_hotel {
             $find[] = $file;
             $find[] = $this->theme_dir_path. $file;
 
-        } 
+        }
 
         else if ( is_post_type_archive('snhotel_facility')) {
             $file   = 'archive-snhotel_facility.php';
@@ -473,7 +473,7 @@ class Sn_hotel {
             $find[] = $file;
             $find[] = $this->theme_dir_path. $file;
 
-        } 
+        }
 
         else if ( is_post_type_archive('snhotel_room')) {
             $file   = 'archive-snhotel_room.php';
@@ -525,12 +525,12 @@ class Sn_hotel {
 } // Sn_hotel
 /****
 			Show Listings Offer in admin Page
-	
+
 	*/
-	
+
 	add_action("manage_snhotel_offer_posts_custom_column",  "offer_custom_columns");
 	add_filter("manage_snhotel_offer_posts_columns", "offer_edit_columns");
-	 
+
 	function offer_edit_columns($columns){
 	  $columns = array(
 		"cb" => "<input type='checkbox' />",
@@ -538,14 +538,14 @@ class Sn_hotel {
 		"availability" => "Availability",
 		"taxonomy" => "Taxonomy",
 		"currency" => "Currency",
-		"date" => "Date",	
+		"date" => "Date",
 	  );
-	 
+
 	  return $columns;
 	}
 	function offer_custom_columns($column){
 	  global $post;
-	 
+
 	  switch ($column) {
 		case "availability":
 		  $custom = get_post_custom( $post_id, 'availability', true );
@@ -553,7 +553,7 @@ class Sn_hotel {
 			echo  $custom['availability'][0];
 			//print_r($val['rating']);
 		  //}
-		  
+
 		  break;
 		case "currency":
 		  $custom = get_post_custom($post_id, 'currency', true);
@@ -578,26 +578,26 @@ class Sn_hotel {
 
 	/****
 			Show Listings Events in admin Page
-	
+
 	*/
-	
+
 	add_action("manage_snhotel_event_posts_custom_column",  "event_custom_columns");
 	add_filter("manage_snhotel_event_posts_columns", "event_edit_columns");
-	 
+
 	function event_edit_columns($columns){
 	  $columns = array(
 		"cb" => "<input type='checkbox' />",
 		"title" => "Event Title",
 		"url" => "Location",
 		"duration" => "Duration",
-		"date" => "Date",	
+		"date" => "Date",
 	  );
-	 
+
 	  return $columns;
 	}
 	function event_custom_columns($column){
 	  global $post;
-	 
+
 	  switch ($column) {
 		case "url":
 		  $custom = get_post_custom( $post_id, 'url', true );
@@ -605,7 +605,7 @@ class Sn_hotel {
 			echo  $custom['url'][0];
 			//print_r($val['rating']);
 		  //}
-		  
+
 		  break;
 		case "duration":
 		  $custom = get_post_custom($post_id, 'duration', true);
@@ -621,17 +621,17 @@ class Sn_hotel {
 		  echo $custom["triptype"][0];
 		  break; */
 	  }
-      
+
 	}
-    
+
     /****
 			Show Listings Facility in admin Page
-	
+
 	*/
-	
+
 	add_action("manage_snhotel_facility_posts_custom_column",  "facility_custom_columns");
 	add_filter("manage_snhotel_facility_posts_columns", "facility_edit_columns");
-	 
+
 	function facility_edit_columns($columns){
 	  $columns = array(
 		"cb" => "<input type='checkbox' />",
@@ -639,14 +639,14 @@ class Sn_hotel {
 		"amenitiesdisplayname" => "Amenity Name",
 		"entertainmenttitlename" => "entertainment Name",
 		"communicationdisplayname" => "Communication Name",
-		"date" => "Date",	
+		"date" => "Date",
 	  );
-	 
+
 	  return $columns;
 	}
 	function facility_custom_columns($column){
 	  global $post;
-	 
+
 	  switch ($column) {
 		case "amenitiesdisplayname":
 		  $custom = get_post_custom( $post_id, 'amenitiesdisplayname', true );
@@ -654,13 +654,13 @@ class Sn_hotel {
 			echo  $custom['amenitiesdisplayname'][0];
 			//print_r($val['rating']);
 		  //}
-		  
+
 		  break;
 		case "communicationdisplayname":
 		  $custom = get_post_custom($post_id, 'communicationdisplayname', true);
 		  echo $custom["communicationdisplayname"][0];
 		  break;
-        
+
 		case "entertainmenttitlename":
             $custom = get_post_custom($post_id, 'entertainmenttitlename', true);
 		  echo $custom["entertainmenttitlename"][0];
@@ -678,17 +678,17 @@ class Sn_hotel {
 		  echo $custom["triptype"][0];
 		  break; */
 	  }
-      
-       
+
+
 	}
      /****
 			Show Listings Accommodation in admin Page
-	
+
 	*/
-	
+
 	add_action("manage_snhotel_room_posts_custom_column",  "accommodation_custom_columns");
 	add_filter("manage_snhotel_room_posts_columns", "accommodation_edit_columns");
-	 
+
 	function accommodation_edit_columns($columns){
 	  $columns = array(
 		"cb" => "<input type='checkbox' />",
@@ -696,14 +696,14 @@ class Sn_hotel {
 		"amenitiesdisplayname" => "Amenity Name",
 		"entertainmenttitlename" => "Entertainment Name",
 		"communicationdisplayname" => "Communication Name",
-		"date" => "Date",	
+		"date" => "Date",
 	  );
-	 
+
 	  return $columns;
 	}
 	function accommodation_custom_columns($column){
 	  global $post;
-	 
+
 	  switch ($column) {
 		case "amenitiesdisplayname":
 		  $custom = get_post_custom( $post_id, 'amenitiesdisplayname', true );
@@ -711,13 +711,13 @@ class Sn_hotel {
 			echo  $custom['amenitiesdisplayname'][0];
 			//print_r($val['rating']);
 		  //}
-		  
+
 		  break;
 		case "communicationdisplayname":
 		  $custom = get_post_custom($post_id, 'communicationdisplayname', true);
 		  echo $custom["communicationdisplayname"][0];
 		  break;
-        
+
 		case "entertainmenttitlename":
             $custom = get_post_custom($post_id, 'entertainmenttitlename', true);
 		  echo $custom["entertainmenttitlename"][0];
