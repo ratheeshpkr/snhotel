@@ -3,7 +3,7 @@
 Plugin Name: snHotel
 Plugin URI: http://www.sakhatech.com/
 Description:
-Version: 0.1
+Version: 1.0
 Author: Sakha
 Author URI: http://www.sakhatech.com/
 License: GPL2
@@ -174,7 +174,8 @@ class Sn_hotel {
             'show_in_menu'    => $show_in_menu,
             'capability_type' => 'post',
             'hierarchical'    => false,
-            'rewrite'         => array('slug' => 'offers'),
+            'rewrite'         => false,
+            'rewrite'         => array('slug' => 'deals','with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => true,
             'supports'        => array('title', 'editor', 'thumbnail'),
@@ -328,7 +329,7 @@ class Sn_hotel {
                 'singular_label' => __( 'Facilities', 'snhotel' )
             )
         );
-
+    flush_rewrite_rules();
 }
     /**
      * Show error nag in admin area if required plugins are not
