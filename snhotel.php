@@ -204,7 +204,7 @@ class Sn_hotel {
             'show_in_menu'    => $show_in_menu,
             'capability_type' => 'post',
             'hierarchical'    => false,
-            'rewrite'         => array('slug' => 'events'),
+            'rewrite'         => array('slug' => 'events', 'with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => true,
             'supports'        => array('title', 'editor', 'thumbnail'),
@@ -233,7 +233,7 @@ class Sn_hotel {
             'show_in_menu'    => $show_in_menu,
             'capability_type' => 'post',
             'hierarchical'    => false,
-            'rewrite'         => array('slug' => 'accommodation'),
+            'rewrite'         => array('slug' => 'accommodation', 'with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => true,
             'supports'        => array('title', 'editor', 'thumbnail'),
@@ -261,7 +261,7 @@ class Sn_hotel {
             'show_in_menu'    => $show_in_menu,
             'capability_type' => 'post',
             'hierarchical'    => false,
-            'rewrite'         => array('slug' => 'facilities'),
+            'rewrite'         => array('slug' => 'facilities', 'with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => true,
             'supports'        => array('title', 'editor', 'thumbnail'),
@@ -291,7 +291,7 @@ class Sn_hotel {
               'label'          => __( 'Hotel Offers', 'snhotel' ),
               'show_ui'        => true,
               'query_var'      => true,
-              'rewrite'        => array('slug' => 'hotel-offers'),
+              'rewrite'        => array('slug' => 'hotel-offers', 'with_front' => FALSE),
 			  'taxonomies' => array('post_tag'),
 			  'type' => 'taxonomy_select',
               'singular_label' => __( 'Offers', 'snhotel' )
@@ -304,7 +304,7 @@ class Sn_hotel {
               'label'          => __( 'Event Taxonomy', 'snhotel' ),
               'show_ui'        => true,
               'query_var'      => true,
-              'rewrite'        => array('slug' => 'hotel-event'),
+              'rewrite'        => array('slug' => 'hotel-event', 'with_front' => FALSE),
               'singular_label' => __( 'Events', 'snhotel' )
           )
         );
@@ -315,7 +315,7 @@ class Sn_hotel {
                 'label'          => __( 'Accommodation Taxonomy', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
-                'rewrite'        => array('slug' => 'accommodation'),
+                'rewrite'        => array('slug' => 'hotel-accommodation', 'with_front' => FALSE),
                 'singular_label' => __( 'Accommodation', 'snhotel' )
             )
         );
@@ -325,7 +325,7 @@ class Sn_hotel {
                 'label'          => __( 'Facility Taxonomy', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
-                'rewrite'        => array('slug' => 'snhotel-facility'),
+                'rewrite'        => array('slug' => 'hotel-facility', 'with_front' => FALSE),
                 'singular_label' => __( 'Facilities', 'snhotel' )
             )
         );
