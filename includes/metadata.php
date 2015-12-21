@@ -455,7 +455,7 @@ function snhotel_x_meta_repeat( $slug, $field, $object_type, $object_id, $value 
 
 function snhotel_cmb_fields( $meta_boxes = array() ) {
     $user_dropdown = snhotel_users_dropdown( 'delete_others_pages' );
-	
+
 	  $offer_termsCondition = array(
       array(
             'id' => 'termsCondition',
@@ -464,7 +464,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'desc' => __( 'Add all additonal limitations that are not covered through the above offer restrictions', 'snhotel' ),
 			'repeatable' => true,
       ),
-    ); 
+    );
 	$offer_tax = array(
       array(
             'id' => 'taxonomy_acc',
@@ -473,7 +473,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_room' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Accomodation</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_room' ) ),    
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Accomodation</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_room' ) ),
 		),
 	);
 	$offer_tax_eve = array(
@@ -484,7 +484,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_event' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Events</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_event' ) ),    
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Events</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_event' ) ),
 		),
 	);
 	$offer_tax_faci = array(
@@ -495,11 +495,11 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_facility' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Facilities</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),    
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Facilities</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),
 		),
-      
+
     );
-    
+
     $accommodation_tax_off = array(
 	  array(
             'id' => 'taxonomy_acc_off',
@@ -508,9 +508,9 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),    
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),
 		),
-      
+
     );
     $facility_tax_off = array(
 	  array(
@@ -520,11 +520,11 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),    
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),
 		),
-      
+
     );
-    
+
     $offer_validity = array(
       array(
             'id' => 'validFrom',
@@ -600,7 +600,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'url',
               'desc' => __( 'Please enter the URL of where the Offer will be bookable (e.g. link to booking engine)', 'snhotel' ),
         ), */
-		
+
 
         array(
               'id' => 'availability',
@@ -641,7 +641,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Original Price', 'snhotel' ),
               'type' => 'text',
 			  'desc' => __( 'Enter the value of the regular/original price', 'snhotel' ),
-              
+
         ),
 		array(
               'id' => 'availabilityStarts',
@@ -662,7 +662,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 
         ),
     );
-    
+
     $event_fields = array(
 		array(
               'id' => 'url',
@@ -684,13 +684,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'datetime_unix',
 
         ),
-        
+
         array(
               'id' => 'duration',
               'name' => __( 'Duration', 'snhotel' ),
               'type' => 'text_small',
         ),
-        
+
         array(
               'id' => 'doorTime',
               'name' => __( 'Door Time', 'snhotel' ),
@@ -733,7 +733,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Offer Price(Price)', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Enter the value of the offer price', 'snhotel' ),
-              
+
         ),
 		array(
               'id' => 'currency',
@@ -742,7 +742,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'desc' => __( 'Please select the currency', 'snhotel' ),
               'options' => snhotel_get_currencies()
         ),
-        
+
 		array(
               'id' => 'availabilityStarts',
               'name' => __( 'Availability Starts', 'snhotel' ),
@@ -767,13 +767,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $accommodation_features = array(
       array(
             'id' => 'featurestitlename',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Display Name', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Enter Text that overwrites "Room Features"', 'snhotel'),
       ),
       array(
             'id' => 'featuresdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'name' => __( 'Features', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Eg: Alarm clock, minibar...', 'snhotel'),
             'repeatable' => true,
@@ -803,7 +803,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'id'   => 'occupancyadults',
           'name' => 'Adults',
           'type' => 'checkbox',
-          
+
       ),
       array(
           'id'   => 'occupancykids',
@@ -843,7 +843,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'type' => 'text',
       ),
     );
-    
+
     $accommodation_location = array(
       array(
             'id' => 'location',
@@ -871,7 +871,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'desc' => __( 'Please select the currency', 'snhotel' ),
               'options' => snhotel_get_currencies()
         ),
-      
+
     );
 
     $accommodation_bedroomimage = array(
@@ -911,26 +911,26 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'type' => 'image',
       ),
     );
-    
+
     $accommodation_connectedoffers = array(
       array(
             'id' => 'connectedoffers',
             'name' => __( '', 'snhotel' ),
             'type' => 'taxonomy_select',
       ),
-      
+
     );
-    
+
     $accommodation_amenities = array(
       array(
             'id' => 'amenitiestitlename',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Display Name', 'snhotel' ),
             'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Room Amenities"', 'snhotel'),
+            'desc' => __('Enter Text that overwrites "Amenities"', 'snhotel'),
       ),
       array(
             'id' => 'amenitiesdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'name' => __( 'Amenities', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Eg: Turn-Down Service, Club Lounge Access...', 'snhotel'),
             'repeatable' => true,
@@ -940,13 +940,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $accommodation_security = array(
       array(
             'id' => 'securitytitlename',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Display Name', 'snhotel' ),
             'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Room Security"', 'snhotel'),
+            'desc' => __('Enter Text that overwrites "Security"', 'snhotel'),
       ),
       array(
             'id' => 'securitydisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'name' => __( 'Security', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Eg: Figer-Print Access, Sprinkler System, ...', 'snhotel'),
             'repeatable' => true,
@@ -956,13 +956,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $accommodation_communication = array(
       array(
             'id' => 'communicationtitlename',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Display Name', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Enter Text that overwrites "Room Communication"', 'snhotel'),
       ),
       array(
             'id' => 'communicationdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'name' => __( 'Communication', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Eg: Wired Internet, Wireless Internet, ...', 'snhotel'),
             'repeatable' => true,
@@ -972,13 +972,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $accommodation_bed = array(
       array(
             'id' => 'bedtitlename',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Display Name', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Enter Text that overwrites "Bed"', 'snhotel'),
       ),
       array(
             'id' => 'beddisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'name' => __( 'Bed', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Eg: King Size Bed,400 thread count bed sheets, ...', 'snhotel'),
             'repeatable' => true,
@@ -988,13 +988,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $accommodation_entertainment = array(
       array(
             'id' => 'entertainmenttitlename',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Display Name', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Enter Text that overwrites "Room Entertainment"', 'snhotel'),
       ),
       array(
             'id' => 'entertainmentdisplayname',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'name' => __( 'Entertainment', 'snhotel' ),
             'type' => 'text',
             'desc' => __('Eg: iPhone Dock, 40" OLED TV...', 'snhotel'),
             'repeatable' => true,
@@ -1086,16 +1086,16 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'id' => 'openinghourfrom',
             'name' => __( 'From', 'snhotel' ),
             'type' => 'time',
-            
+
       ),
 	  array(
             'id' => 'openinghourto',
             'name' => __( 'To', 'snhotel' ),
             'type' => 'time',
-            
+
       ),
     );
-   
+
     $facility_setting = array(
       array(
             'id' => 'setting',
@@ -1172,21 +1172,21 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $accommodation_additionaloccupancy,
       'context' => 'side',
     );
-    
+
     $meta_boxes[] = array(
       'title' => __( 'View', 'snhotel' ),
       'pages' => 'snhotel_room',
       'fields' => $accommodation_view,
       'context' => 'side',
     );
-    
+
     $meta_boxes[] = array(
       'title' => __( 'Location', 'snhotel' ),
       'pages' => 'snhotel_room',
       'fields' => $accommodation_location,
       'context' => 'side',
     );
-    
+
     $meta_boxes[] = array(
       'title' => __( 'Bedroom Image', 'snhotel' ),
       'pages' => 'snhotel_room',
@@ -1207,21 +1207,21 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $accommodation_viewfromaccommodationimages,
       'context' => 'side',
     );
-    
+
     $meta_boxes[] = array(
       'title' => __( 'Additional Images', 'snhotel' ),
       'pages' => 'snhotel_room',
       'fields' => $accommodation_additionalimage,
       'context' => 'side',
     );
-    
+
     $meta_boxes[] = array(
       'title' => __( 'Floor Plan', 'snhotel' ),
       'pages' => 'snhotel_room',
       'fields' => $accommodation_floorplan,
       'context' => 'side',
     );
-    
+
     //$meta_boxes[] = array(
     //  'title' => __( 'Connected Offer(s)', 'snhotel' ),
     //  'pages' => 'snhotel_room',
@@ -1235,7 +1235,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 		'context' => 'side',
         'fields' => $accommodation_tax_off,
     );
-    
+
     $meta_boxes[] = array(
       'title' => __( 'Booking Link', 'snhotel' ),
       'pages' => 'snhotel_room',
@@ -1284,7 +1284,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_room',
         'fields' => $accommodation_entertainment
     );
-    
+
 	$meta_boxes[] = array(
         'title' => __( 'Connected Accomodation(s)', 'snhotel' ),
         'pages' => 'snhotel_offer',
@@ -1308,13 +1308,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_event',
         'fields' => $event_fields
     );
-    
+
     $meta_boxes[] = array(
         'title' => __( 'Offer Details', 'snhotel' ),
         'pages' => 'snhotel_event',
         'fields' => $offer_details
     );
-    
+
     $meta_boxes[] = array(
         'title' => __( 'Offer Restriction', 'snhotel' ),
         'pages' => 'snhotel_event',
@@ -1325,7 +1325,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_event',
         'fields' => $offer_termsCondition
     );
-    
+
     $meta_boxes[] = array(
         'title' => __( 'Offer Details', 'snhotel' ),
         'pages' => 'snhotel_offer',
@@ -1428,7 +1428,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $facility_contactphone,
       'context' => 'side',
     );
-    
+
     return $meta_boxes;
 }
 
