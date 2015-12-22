@@ -780,6 +780,22 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
 
+    $accommodation_bathroom = array(
+      array(
+            'id' => 'bathroomtitlename',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Bathroom"', 'snhotel'),
+      ),
+      array(
+            'id' => 'bathroomdisplayname',
+            'name' => __( 'Bathroom', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('E.g. Rain Shower, Jacuzzi...', 'snhotel'),
+            'repeatable' => true,
+      ),
+    );
+
     $accommodation_size = array(
       array(
             'id' => 'size',
@@ -1253,6 +1269,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'title' => __( 'Room Features', 'snhotel' ),
         'pages' => 'snhotel_room',
         'fields' => $accommodation_features
+    );
+
+    $meta_boxes[] = array(
+        'title' => __( 'Bathroom', 'snhotel' ),
+        'pages' => 'snhotel_room',
+        'fields' => $accommodation_bathroom
     );
 
     $meta_boxes[] = array(
