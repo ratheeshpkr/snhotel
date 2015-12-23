@@ -100,6 +100,17 @@
 		if($meta_termsCondition!=''){
 				echo implode(", ", $meta_termsCondition);
 		}
+		echo '</br>';
+		
+		echo '<strong>Connected Offers:</strong>';
+		$p2p_meta_data_off = get_post_custom($post->ID,'taxonomy_event_off', true);
+		$meta_taxoff = $p2p_meta_data_off['taxonomy_event_off'];
+		if($meta_taxoff!=''){
+		foreach ($meta_taxoff as $string) {
+		$val_off .= get_the_title( $string ).',';
+		}
+		echo rtrim($val_off,",");
+		}
 		
 		?>
 	</div>
