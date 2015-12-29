@@ -1143,6 +1143,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'id' => 'location',
             'name' => __( '', 'snhotel' ),
             'type' => 'text',
+			'repeatable' => true,
       ),
     );
     $facility_additionalimage = array(
@@ -1163,7 +1164,8 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       array(
           'id'   => 'download',
           'name' => '',
-          'type' => 'image',
+          'type' => 'file',
+		  'repeatable' => true,
       ),
     );
     $facility_contactlink = array(
@@ -1178,6 +1180,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'id' => 'contactphone',
             'name' => __( '', 'snhotel' ),
             'type' => 'text',
+			'repeatable' => true,
       ),
     );
 
