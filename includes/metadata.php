@@ -845,6 +845,15 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
 
+    $accommodation_bedding = array(
+      array(
+          'id'   => 'bedding',
+          'name' => '',
+          'type' => 'text',
+
+      ),
+    );
+
 
     $accommodation_additionaloccupancy = array(
       array(
@@ -1195,6 +1204,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'title' => __( 'Default Occupancy', 'snhotel' ),
       'pages' => 'snhotel_room',
       'fields' => $accommodation_defaultoccupancy,
+      'context' => 'side',
+    );
+
+    $meta_boxes[] = array(
+      'title' => __( 'Bedding', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_bedding,
       'context' => 'side',
     );
 
