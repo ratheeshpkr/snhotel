@@ -830,18 +830,18 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       array(
           'id'   => 'occupancyadults',
           'name' => 'Adults',
-          'type' => 'checkbox',
+          'type' => 'text',
 
       ),
       array(
           'id'   => 'occupancykids',
           'name' => 'Kid(s)',
-          'type' => 'checkbox',
+          'type' => 'text',
       ),
       array(
           'id'   => 'occupancypets',
           'name' => 'Pet(s)',
-          'type' => 'checkbox',
+          'type' => 'text',
       ),
     );
 
@@ -850,17 +850,17 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       array(
           'id'   => 'additionaloccupancyadults',
           'name' => 'Adults',
-          'type' => 'checkbox',
+          'type' => 'text',
       ),
       array(
           'id'   => 'additionaloccupancykids',
           'name' => 'Kid(s)',
-          'type' => 'checkbox',
+          'type' => 'text',
       ),
       array(
           'id'   => 'additionaloccupancypets',
           'name' => 'Pet(s)',
-          'type' => 'checkbox',
+          'type' => 'text',
       ),
     );
 
@@ -1151,6 +1151,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'id'   => 'additionalimage',
           'name' => '',
           'type' => 'image',
+          'repeatable' => true,
       ),
     );
 	$facility_floorplan = array(
