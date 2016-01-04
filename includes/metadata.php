@@ -615,7 +615,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 		
 		array(
               'id' => 'product',
-              'name' => __( 'Product Offered(itemOffered)', 'snhotel' ),
+              'name' => __( 'Product Offered', 'snhotel' ),
               'type' => 'text',
               'desc' => __( 'Select the item for which this offer is valid(e.g. room and/or restaurant)', 'snhotel' ),
               'repeatable' => true,
