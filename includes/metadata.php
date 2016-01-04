@@ -612,6 +612,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'url',
               'desc' => __( 'Please enter the URL of where the Offer will be bookable (e.g. link to booking engine)', 'snhotel' ),
         ), */
+		
 		array(
               'id' => 'product',
               'name' => __( 'Product Offered(itemOffered)', 'snhotel' ),
@@ -678,6 +679,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'name' => __( 'Does the offer expire?', 'snhotel' ),
               'type' => 'datetime_unix',
 
+        ),
+		array(
+              'id' => 'bookingLink',
+              'name' => __( 'Booking Link', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the Link to Book Hotel' ),
         ),
     );
 
@@ -780,12 +787,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'datetime_unix',
 
         ),
-		array(
-              'id' => 'bookingLink',
-              'name' => __( 'Booking Link', 'snhotel' ),
-              'type' => 'text',
-              'desc' => __( 'Enter the Link to Book Hotel' ),
-        ),
+		
     );
 
     $accommodation_features = array(
