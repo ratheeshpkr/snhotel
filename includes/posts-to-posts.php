@@ -34,7 +34,13 @@ function snhotel_p2p_register_connection() {
         'from' => 'snhotel_offer',
         'to' => 'snhotel_room'
     ) );
-
+	
+	p2p_register_connection_type( array(
+        'name' => 'facility_to_offer',
+        'from' => 'snhotel_offer',
+        'to' => 'snhotel_facility'
+    ) );
+	
     //activity
     p2p_register_connection_type( array(
         'name' => 'outlet_to_activity',
@@ -53,11 +59,7 @@ function snhotel_p2p_register_connection() {
         'from' => 'snhotel_facility',
         'to' => 'snhotel_activity'
     ) );
-	p2p_register_connection_type( array(
-        'name' => 'facility_to_offer',
-        'from' => 'snhotel_facility',
-        'to' => 'snhotel_offer'
-    ) );
+	
 
     
 
