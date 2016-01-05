@@ -627,6 +627,20 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'text',
               'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
         ),
+		array(
+              'id' => 'conditions',
+              'name' => __( 'Conditions', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Please enter all conditions that apply)', 'snhotel' ),
+              'repeatable' => true,
+        ),
+		array(
+              'id' => 'inclusions',
+              'name' => __( 'Inclusions', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( '', 'snhotel' ),
+              'repeatable' => true,
+        ),
         array(
               'id' => 'leadTime',
               'name' => __( 'Lead Time', 'snhotel' ),
@@ -753,6 +767,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'text',
               'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
         ),
+		
 		array(
               'id' => 'offerPrice',
               'name' => __( 'Offer Price(Price)', 'snhotel' ),
