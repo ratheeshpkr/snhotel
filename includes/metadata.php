@@ -520,7 +520,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'use_ajax' => true,
             'query' => array( 'posts_per_page' => 8, 'post_type' => 'snhotel_offer' ),
             'repeatable' => true,
-            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_facility' ) ),
+            'desc' => sprintf( __( 'You have to <a href="%s" target="_blank">create some Offers</a> first!', 'snhotel' ), admin_url( 'post-new.php?post_type=snhotel_offer' ) ),
 		),
 
     );
