@@ -612,7 +612,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'url',
               'desc' => __( 'Please enter the URL of where the Offer will be bookable (e.g. link to booking engine)', 'snhotel' ),
         ), */
-		
+
 		array(
               'id' => 'product',
               'name' => __( 'Product Offered', 'snhotel' ),
@@ -767,7 +767,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'text',
               'desc' => __( 'Enter the availability of the offer, eg 10 items or until sold out', 'snhotel' ),
         ),
-		
+
 		array(
               'id' => 'offerPrice',
               'name' => __( 'Offer Price(Price)', 'snhotel' ),
@@ -802,7 +802,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'datetime_unix',
 
         ),
-		
+
     );
 
     $accommodation_features = array(
@@ -1066,8 +1066,8 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'repeatable' => true,
       ),
     );
-	
-	
+
+
     $facility_features = array(
       array(
             'id' => 'featurestitlename',
@@ -1144,14 +1144,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
     $facility_openinghour = array(
-      
+
       array(
             'id' => 'openingshortcode',
             'name' => __( 'Outlet Specific Shortcode', 'snhotel' ),
             'type' => 'text',
 
       ),
-	  
+
     );
 
     $facility_setting = array(
@@ -1196,7 +1196,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
           'id'   => 'download',
           'name' => '',
           'type' => 'file',
-		  'repeatable' => true,
+		      'repeatable' => true,
       ),
     );
     $facility_contactlink = array(
@@ -1211,7 +1211,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'id' => 'contactphone',
             'name' => __( '', 'snhotel' ),
             'type' => 'text',
-			'repeatable' => true,
+			      'repeatable' => true,
       ),
     );
 
@@ -1494,7 +1494,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $meta_boxes[] = array(
         'title' => __( 'Connected Offer(s)', 'snhotel' ),
         'pages' => 'snhotel_facility',
-		'context' => 'side',
+		    'context' => 'side',
         'fields' => $facility_tax_off,
     );
     $meta_boxes[] = array(
