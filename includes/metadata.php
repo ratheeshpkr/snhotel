@@ -1144,24 +1144,14 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
     $facility_openinghour = array(
+      
       array(
-            'id' => 'openinghourtitlename',
-            'name' => __( 'Display Name', 'snhotel' ),
+            'id' => 'openingshortcode',
+            'name' => __( 'Outlet Specific Shortcode', 'snhotel' ),
             'type' => 'text',
-            'desc' => __('Enter Text that overwrites "Opening Hours"', 'snhotel'),
-      ),
-      array(
-            'id' => 'openinghourfrom',
-            'name' => __( 'From', 'snhotel' ),
-            'type' => 'time',
 
       ),
-	  array(
-            'id' => 'openinghourto',
-            'name' => __( 'To', 'snhotel' ),
-            'type' => 'time',
-
-      ),
+	  
     );
 
     $facility_setting = array(
