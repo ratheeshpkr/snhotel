@@ -465,7 +465,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 			'repeatable' => true,
       ),
     );
-	$offer_tax = array(
+	/* $offer_tax = array(
       array(
             'id' => 'taxonomy_acc',
             'name' => __( '' ),
@@ -536,7 +536,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 		),
 
     );
-
+ */
     $offer_validity = array(
       array(
             'id' => 'validFrom',
@@ -1298,12 +1298,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     //  'context' => 'side',
     //);
     //
-    $meta_boxes[] = array(
+    /* $meta_boxes[] = array(
         'title' => __( 'Connected Offer(s)', 'snhotel' ),
         'pages' => 'snhotel_room',
 		'context' => 'side',
         'fields' => $accommodation_tax_off,
-    );
+    ); */
 
     $meta_boxes[] = array(
       'title' => __( 'Booking Link', 'snhotel' ),
@@ -1360,7 +1360,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'fields' => $accommodation_entertainment
     );
 
-	$meta_boxes[] = array(
+	/* $meta_boxes[] = array(
         'title' => __( 'Connected Accomodation(s)', 'snhotel' ),
         'pages' => 'snhotel_offer',
 		'context' => 'side',
@@ -1377,7 +1377,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_offer',
 		'context' => 'side',
         'fields' => $offer_tax_faci
-    );
+    ); */
     $meta_boxes[] = array(
         'title' => __( 'Event Details', 'snhotel' ),
         'pages' => 'snhotel_event',
@@ -1400,12 +1400,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_event',
         'fields' => $offer_termsCondition
     );
-	$meta_boxes[] = array(
+	/* $meta_boxes[] = array(
         'title' => __( 'Connected Offer(s)', 'snhotel' ),
         'pages' => 'snhotel_event',
 		'context' => 'side',
         'fields' => $event_tax_off,
-    );
+    ); */
 
     $meta_boxes[] = array(
         'title' => __( 'Offer Details', 'snhotel' ),
@@ -1491,12 +1491,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'context' => 'side',
     );
 
-    $meta_boxes[] = array(
+   /*  $meta_boxes[] = array(
         'title' => __( 'Connected Offer(s)', 'snhotel' ),
         'pages' => 'snhotel_facility',
 		'context' => 'side',
         'fields' => $facility_tax_off,
-    );
+    ); */
     $meta_boxes[] = array(
       'title' => __( 'Contact Link', 'snhotel' ),
       'pages' => 'snhotel_facility',
