@@ -1206,10 +1206,16 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'type' => 'text',
       ),
     );
-    $facility_contactphone = array(
+    $facility_contact = array(
       array(
             'id' => 'contactphone',
-            'name' => __( '', 'snhotel' ),
+            'name' => __( 'Phon Number(s)', 'snhotel' ),
+            'type' => 'text',
+			      'repeatable' => true,
+      ),
+      array(
+            'id' => 'contactemail',
+            'name' => __( 'Email ID(s)', 'snhotel' ),
             'type' => 'text',
 			      'repeatable' => true,
       ),
@@ -1504,9 +1510,9 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'context' => 'side',
     );
     $meta_boxes[] = array(
-      'title' => __( 'Contact Phone', 'snhotel' ),
+      'title' => __( 'Contact', 'snhotel' ),
       'pages' => 'snhotel_facility',
-      'fields' => $facility_contactphone,
+      'fields' => $facility_contact,
       'context' => 'side',
     );
 
