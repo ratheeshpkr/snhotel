@@ -301,7 +301,7 @@ class Sn_hotel {
         register_taxonomy( 'snhotel_hotel_event', array( 'snhotel_event' ),
           array(
               'hierarchical'   => false,
-              'label'          => __( 'Event Taxonomy', 'snhotel' ),
+              'label'          => __( 'Events', 'snhotel' ),
               'show_ui'        => true,
               'query_var'      => true,
               'rewrite'        => array('slug' => 'events', 'with_front' => FALSE),
@@ -312,7 +312,7 @@ class Sn_hotel {
         register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
             array(
                 'hierarchical'   => false,
-                'label'          => __( 'Accommodation Taxonomy', 'snhotel' ),
+                'label'          => __( 'Accommodation Type', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
                 'rewrite'        => array('slug' => 'accommodation', 'with_front' => FALSE),
@@ -322,7 +322,7 @@ class Sn_hotel {
         register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,
-                'label'          => __( 'Facility Taxonomy', 'snhotel' ),
+                'label'          => __( 'Facilities', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
                 'rewrite'        => array('slug' => 'facilities', 'with_front' => FALSE),
