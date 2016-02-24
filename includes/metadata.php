@@ -1069,6 +1069,24 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 
 
     $facility_features = array(
+	  array(
+			'id' => 'featuresshortdescription',
+			'name' => __( 'Short Description', 'snhotel' ),
+			'type' => 'text',
+			
+	  ),
+	  array(
+			'id' => 'featureshomepagetitle',
+			'name' => __( 'Home Page Title', 'snhotel' ),
+			'type' => 'text',
+			
+      ),
+	  array(
+            'id' => 'featureshomepagelink',
+            'name' => __( 'Home Page Button Link', 'snhotel' ),
+            'type' => 'text',
+            
+      ),
       array(
             'id' => 'featuresdisplayname',
             'name' => __( 'Display Name', 'snhotel' ),

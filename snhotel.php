@@ -264,7 +264,7 @@ class Sn_hotel {
             'rewrite'         => array('slug' => 'facility', 'with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => 'facilities',
-            'supports'        => array('title', 'editor', 'thumbnail'),
+            'supports'        => array('title', 'editor', 'thumbnail','excerpt'),
             'labels'          => array(
                 'name'               => __( 'Facilities', 'snhotel' ),
                 'singular_name'      => __( 'Facility', 'snhotel' ),
@@ -304,7 +304,7 @@ class Sn_hotel {
               'label'          => __( 'Events', 'snhotel' ),
               'show_ui'        => true,
               'query_var'      => true,
-              'rewrite'        => array('slug' => 'events', 'with_front' => FALSE),
+              'rewrite'        => array('slug' => 'snhotel-events', 'with_front' => FALSE),
               'singular_label' => __( 'Event', 'snhotel' )
           )
         );
@@ -514,11 +514,11 @@ class Sn_hotel {
         $post_types = array(
             'snhotel_room', 'snhotel_offer','snhotel_event','snhotel_facility'
         );
-
+		
         if ( in_array( $current_screen->post_type, $post_types ) ) {
             $parent_file = 'snhotel';
         }
-
+		
         return $parent_file;
     }
 
