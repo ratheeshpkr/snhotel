@@ -695,6 +695,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 
         ),
 		array(
+              'id' => 'bookingLinkText',
+              'name' => __( 'Booking Link Button Text', 'snhotel' ),
+              'type' => 'text',
+              'desc' => __( 'Enter the text to show on the Link Button' ),
+        ),
+		array(
               'id' => 'bookingLink',
               'name' => __( 'Booking Link', 'snhotel' ),
               'type' => 'text',

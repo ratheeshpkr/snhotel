@@ -20,8 +20,8 @@ function snhotel_p2p_register_connection() {
 
     p2p_register_connection_type( array(
         'name' => 'room_to_offer',
-        'from' => 'snhotel_offer',
-        'to' => 'snhotel_room'
+        'from' => 'snhotel_room',
+        'to' => 'snhotel_offer'
     ) );
 	
 	/* p2p_register_connection_type( array(

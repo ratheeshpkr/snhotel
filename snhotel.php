@@ -172,13 +172,15 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
+			'map_meta_cap'	  => true,
             'hierarchical'    => false,
             'rewrite'         => false,
             'rewrite'         => array('slug' => 'deal','with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => 'deals',
-            'supports'        => array('title', 'editor', 'thumbnail'),
+            'supports'        => array('title', 'editor', 'thumbnail','excerpt'),
             'labels'          => array(
                 'name'               => __( 'Offers', 'snhotel' ),
                 'singular_name'      => __( 'Offer', 'snhotel' ),
@@ -202,12 +204,14 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
+			'map_meta_cap'	  => true,
             'hierarchical'    => false,
             'rewrite'         => array('slug' => 'event', 'with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => 'events',
-            'supports'        => array('title', 'editor', 'thumbnail'),
+            'supports'        => array('title', 'editor', 'thumbnail','excerpt'),
             'labels'          => array(
                 'name'               => __( 'Events', 'snhotel' ),
                 'singular_name'      => __( 'Event', 'snhotel' ),
@@ -231,12 +235,14 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
+			'map_meta_cap'	  => true,
             'hierarchical'    => false,
             'rewrite'         => array('slug' => 'accommodation', 'with_front' => FALSE),
             'query_var'       => true,
             'has_archive'     => 'accommodations',
-            'supports'        => array('title', 'editor', 'thumbnail'),
+            'supports'        => array('title', 'editor', 'thumbnail','excerpt'),
             'labels'          => array(
                 'name'               => __( 'Accommodations', 'snhotel' ),
                 'singular_name'      => __( 'Accommodation', 'snhotel' ),
@@ -259,6 +265,7 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
             'hierarchical'    => false,
             'rewrite'         => array('slug' => 'facility', 'with_front' => FALSE),
@@ -294,7 +301,8 @@ class Sn_hotel {
               'rewrite'        => array('slug' => 'deals', 'with_front' => FALSE),
 			  'taxonomies' => array('post_tag'),
 			  'type' => 'taxonomy_select',
-              'singular_label' => __( 'Offers', 'snhotel' )
+              'singular_label' => __( 'Offers', 'snhotel' ),
+			  'capabilities' => array('assign_terms'=>'edit_cards')
           )
         );
 
