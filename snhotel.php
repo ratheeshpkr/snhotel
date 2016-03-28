@@ -1,9 +1,10 @@
 <?php
 /*
-Plugin Name: Sn Hotel
+Plugin Name: SNHotels
 Plugin URI: http://www.sakhatech.com/
 Description: Custom posttypes for Responsive hotel websites
-Version: 1.0
+Version: v1.1
+Github Theme URI: https://github.com/ratheeshpkr/snhotel/
 Author: Sakhatech
 Author URI: http://www.sakhatech.com/
 License: GPL2
@@ -164,7 +165,7 @@ class Sn_hotel {
      */
     function init_post_types() {
 
-        $show_in_menu = false;
+        $show_in_menu = true;
 
 
         register_post_type( 'snhotel_offer', array(
@@ -299,10 +300,10 @@ class Sn_hotel {
               'show_ui'        => true,
               'query_var'      => true,
               'rewrite'        => array('slug' => 'deals', 'with_front' => FALSE),
-			  'taxonomies' => array('post_tag'),
-			  'type' => 'taxonomy_select',
+			  /* 'taxonomies' => array('post_tag'),
+			  'type' => 'taxonomy_select', */
               'singular_label' => __( 'Offers', 'snhotel' ),
-			  'capabilities' => array('assign_terms'=>'edit_cards')
+			  //'capabilities' => array('assign_terms'=>'edit_cards')
           )
         );
 
@@ -375,7 +376,7 @@ class Sn_hotel {
             ?>
             <div class="error">
                 <p>
-                    <?php printf( __( 'Please install %s plugin(s) for <strong>Sn Hotel</strong> to work properly', 'snhotel' ), implode( ', ', $not_installed ) ); ?>
+                    <?php printf( __( 'Please install %s plugin(s) for <strong>SNHotels</strong> to work properly', 'snhotel' ), implode( ', ', $not_installed ) ); ?>
                 </p>
             </div>
             <?php

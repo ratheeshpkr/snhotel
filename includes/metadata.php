@@ -1193,6 +1193,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
     $facility_location = array(
+	  array(
+            'id' => 'locationdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Location"', 'snhotel'),
+      ),
       array(
             'id' => 'location',
             'name' => __( '', 'snhotel' ),
@@ -1216,6 +1222,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
 	$facility_downloads = array(
+	  array(
+            'id' => 'downloadsdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Downloads"', 'snhotel'),
+      ),
       array(
           'id'   => 'download',
           'name' => '',
@@ -1231,6 +1243,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
     $facility_contact = array(
+	 array(
+            'id' => 'contactdisplayname',
+            'name' => __( 'Display Name', 'snhotel' ),
+            'type' => 'text',
+            'desc' => __('Enter Text that overwrites "Contact"', 'snhotel'),
+      ),
       array(
             'id' => 'contactphone',
             'name' => __( 'Phon Number(s)', 'snhotel' ),
