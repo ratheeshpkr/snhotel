@@ -4,10 +4,11 @@ Plugin Name: SNHotels
 Plugin URI: http://www.sakhatech.com/
 Description: Custom posttypes for Responsive hotel websites
 Version: v1.2
-Github Theme URI: https://github.com/ratheeshpkr/snhotel/
+Github Plugin URI: https://github.com/ratheeshpkr/snhotel
 Author: Sakhatech
 Author URI: http://www.sakhatech.com/
 License: GPL2
+GitHub Branch:     master
 */
 
 
@@ -19,6 +20,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @class Sn_hotel The class that holds the entire Sn_hotel plugin
  */
+ 
 class Sn_hotel {
 
     public $plugin_url;
