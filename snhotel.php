@@ -3,7 +3,7 @@
 Plugin Name: SNHotels
 Plugin URI: http://www.sakhatech.com/
 Description: Custom posttypes for Responsive hotel websites
-Version: v1.2
+Version: v1.3
 Github Plugin URI: https://github.com/ratheeshpkr/snhotel
 Author: Sakhatech
 Author URI: http://www.sakhatech.com/
@@ -20,6 +20,17 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @class Sn_hotel The class that holds the entire Sn_hotel plugin
  */
+ 
+ //Checking for Update
+ 
+ require 'plugin-update-checker/plugin-update-checker.php';
+$className = PucFactory::getLatestClassVersion('PucGitHubChecker');
+$myUpdateChecker = new $className(
+    'https://github.com/ratheeshpkr/snhotel/',
+    __FILE__,
+    'master'
+);
+ 
  
 class Sn_hotel {
 
