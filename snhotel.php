@@ -26,9 +26,9 @@ if ( !defined( 'ABSPATH' ) ) exit;
  require 'plugin-update-checker/plugin-update-checker.php';
 $className = PucFactory::getLatestClassVersion('PucGitHubChecker');
 $myUpdateChecker = new $className(
-    'https://github.com/ratheeshpkr/snhotel/',
+    'http://snc.staging.snhotels.com/property/wp-content/metadata.json',
     __FILE__,
-    'master'
+ 
 );
  
  
