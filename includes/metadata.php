@@ -1079,19 +1079,19 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 			'id' => 'featuresshortdescription',
 			'name' => __( 'Short Description', 'snhotel' ),
 			'type' => 'text',
-			
+
 	  ),
 	  array(
 			'id' => 'featureshomepagetitle',
 			'name' => __( 'Home Page Title', 'snhotel' ),
 			'type' => 'text',
-			
+
       ),
 	  array(
             'id' => 'featureshomepagelink',
             'name' => __( 'Home Page Button Link', 'snhotel' ),
             'type' => 'text',
-            
+
       ),
       array(
             'id' => 'featuresdisplayname',
@@ -1263,6 +1263,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
 
+    $accommodation_roomtypecode= array(
+      array(
+        'id' => 'roomtypecode',
+        'type' => 'text',
+      ),
+    );
+
     $meta_boxes[] = array(
       'title' => __( 'Size', 'snhotel' ),
       'pages' => 'snhotel_room',
@@ -1352,6 +1359,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 		'context' => 'side',
         'fields' => $accommodation_tax_off,
     ); */
+
+    $meta_boxes[] = array(
+      'title' => __( 'Accommodation Type Code', 'snhotel' ),
+      'pages' => 'snhotel_room',
+      'fields' => $accommodation_roomtypecode,
+      'context' => 'side',
+  );
 
     $meta_boxes[] = array(
       'title' => __( 'Booking Link', 'snhotel' ),

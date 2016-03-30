@@ -1,9 +1,9 @@
 <?php
 		global $post;
 ?>
-	<div class="container">		
+	<div class="container">
 		<?php
-		$post_meta_data_url = get_post_custom($post->ID,'url', true); 
+		$post_meta_data_url = get_post_custom($post->ID,'url', true);
 		$meta_url = $post_meta_data_url['url'];
 		echo '</br>';
 		echo the_content();
@@ -55,15 +55,18 @@
 		echo '</br>';
 		echo '<strong>Contact Phone:</strong>'.$meta_avail = get_post_meta($post->ID,'contactphone', true);
 		echo '</br>';
-		
+
 		echo '<strong>Additional Image:</strong>'.$meta_avail = get_post_meta($post->ID,'additionalimage', true);
 		echo '</br>';
 		echo '<strong>Floor Plan:</strong>'.$meta_avail = get_post_meta($post->ID,'floorplan', true);
 		echo '</br>';
 		echo '<strong>Downloads:</strong>'.$meta_avail = get_post_meta($post->ID,'download', true);
+		echo '</br>';
+		echo '<strong>Room Type Code:</strong>'.$meta_avail = get_post_meta($post->ID,'roomtypecode', true);
+
 
 		echo '</br>';
-		
+
 		echo '<strong>Connected Offers:</strong>';
 		$p2p_meta_data_faci = get_post_custom($post->ID,'taxonomy_facility_off', true);
 		$meta_taxfaci = $p2p_meta_data_faci['taxonomy_facility_off'];
