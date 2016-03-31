@@ -20,17 +20,25 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @class Sn_hotel The class that holds the entire Sn_hotel plugin
  */
- 
- //Checking for Update
-  require 'plugin-update-checker/plugin-update-checker.php';
-	$MyUpdateChecker = PucFactory::buildUpdateChecker(
-    'http://snc.staging.snhotels.com/property/metadata.json',
-		__FILE__,
-		'snhotel'
-	);
- 
 
- 
+ //Checking for Update
+  // require 'plugin-update-checker/plugin-update-checker.php';
+	// $MyUpdateChecker = PucFactory::buildUpdateChecker(
+  //   'http://snc.staging.snhotels.com/property/metadata.json',
+	// 	__FILE__,
+	// 	'snhotel'
+	// );
+
+  require 'plugin-update-checker/plugin-update-checker.php';
+$className = PucFactory::getLatestClassVersion('PucGitHubChecker');
+$myUpdateChecker = new $className(
+    'https://github.com/ratheeshpkr/snhotel',
+    __FILE__,
+    'master'
+);
+
+
+
 class Sn_hotel {
 
     public $plugin_url;
@@ -535,11 +543,11 @@ class Sn_hotel {
         $post_types = array(
             'snhotel_room', 'snhotel_offer','snhotel_event','snhotel_facility'
         );
-		
+
         if ( in_array( $current_screen->post_type, $post_types ) ) {
             $parent_file = 'snhotel';
         }
-		
+
         return $parent_file;
     }
 
