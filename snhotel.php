@@ -21,24 +21,21 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @class Sn_hotel The class that holds the entire Sn_hotel plugin
  */
 
- //Checking for Update
+//Checking for Update
   // require 'plugin-update-checker/plugin-update-checker.php';
-	// $MyUpdateChecker = PucFactory::buildUpdateChecker(
+ // $MyUpdateChecker = PucFactory::buildUpdateChecker(
   //   'http://snc.staging.snhotels.com/property/metadata.json',
-	// 	__FILE__,
-	// 	'snhotel'
-	// );
+ //  FILE,
+ //  'snhotel'
+ // );
 
   require 'plugin-update-checker/plugin-update-checker.php';
 $className = PucFactory::getLatestClassVersion('PucGitHubChecker');
 $myUpdateChecker = new $className(
     'https://github.com/ratheeshpkr/snhotel',
-    __FILE__,
+    FILE,
     'master'
 );
-
-
-
 class Sn_hotel {
 
     public $plugin_url;
@@ -186,13 +183,14 @@ class Sn_hotel {
     function init_post_types() {
 
         $show_in_menu = true;
-
+		$menu_position = 2;
 
         register_post_type( 'snhotel_offer', array(
             'label'           => __( 'Offers', 'snhotel' ),
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'menu_position'	  => $menu_position,
 			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
 			'map_meta_cap'	  => true,
@@ -205,7 +203,8 @@ class Sn_hotel {
             'labels'          => array(
                 'name'               => __( 'Offers', 'snhotel' ),
                 'singular_name'      => __( 'Offer', 'snhotel' ),
-                'menu_name'          => __( 'All Offers', 'snhotel' ),
+                'menu_name'          => __( 'Offers', 'snhotel' ),
+                'all_items'          => __( 'All Offers', 'snhotel' ),
                 'add_new'            => __( 'Add New', 'snhotel' ),
                 'add_new_item'       => __( 'Add New Offer', 'snhotel' ),
                 'edit'               => __( 'Edit', 'snhotel' ),
@@ -225,6 +224,7 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'menu_position'	  => $menu_position,
 			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
 			'map_meta_cap'	  => true,
@@ -234,9 +234,10 @@ class Sn_hotel {
             'has_archive'     => 'events',
             'supports'        => array('title', 'editor', 'thumbnail','excerpt'),
             'labels'          => array(
-                'name'               => __( 'All Events', 'snhotel' ),
+                'name'               => __( 'Events', 'snhotel' ),
                 'singular_name'      => __( 'Event', 'snhotel' ),
-                'menu_name'          => __( 'All Events', 'snhotel' ),
+                'menu_name'          => __( 'Events', 'snhotel' ),
+				'all_items'          => __( 'All Events', 'snhotel' ),
                 'add_new'            => __( 'Add New', 'snhotel' ),
                 'add_new_item'       => __( 'Add New Event', 'snhotel' ),
                 'edit'               => __( 'Edit', 'snhotel' ),
@@ -256,6 +257,7 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'menu_position'	  => $menu_position,
 			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
 			'map_meta_cap'	  => true,
@@ -267,7 +269,8 @@ class Sn_hotel {
             'labels'          => array(
                 'name'               => __( 'Accommodations', 'snhotel' ),
                 'singular_name'      => __( 'Accommodation', 'snhotel' ),
-                'menu_name'          => __( 'All Accommodations', 'snhotel' ),
+                'menu_name'          => __( 'Accommodations', 'snhotel' ),
+				'all_items'          => __( 'All Accommodations', 'snhotel' ),
                 'add_new'            => __( 'Add New', 'snhotel' ),
                 'add_new_item'       => __( 'Add New Accommodation', 'snhotel' ),
                 'edit'               => __( 'Edit', 'snhotel' ),
@@ -286,6 +289,7 @@ class Sn_hotel {
             'public'          => true,
             'show_ui'         => true,
             'show_in_menu'    => $show_in_menu,
+			'menu_position'	  => $menu_position,
 			'show_in_admin_bar'=> true,
             'capability_type' => 'post',
             'hierarchical'    => false,
@@ -296,7 +300,8 @@ class Sn_hotel {
             'labels'          => array(
                 'name'               => __( 'Facilities', 'snhotel' ),
                 'singular_name'      => __( 'Facility', 'snhotel' ),
-                'menu_name'          => __( 'All Facilities', 'snhotel' ),
+                'menu_name'          => __( 'Facilities', 'snhotel' ),
+				'all_items'          => __( 'All Facilities', 'snhotel' ),
                 'add_new'            => __( 'Add New', 'snhotel' ),
                 'add_new_item'       => __( 'Add New Facility', 'snhotel' ),
                 'edit'               => __( 'Edit', 'snhotel' ),
@@ -322,7 +327,7 @@ class Sn_hotel {
               'rewrite'        => array('slug' => 'deals', 'with_front' => FALSE),
 			  /* 'taxonomies' => array('post_tag'),
 			  'type' => 'taxonomy_select', */
-              'singular_label' => __( 'Offers', 'snhotel' ),
+              'singular_label' => __( 'Offers Type', 'snhotel' ),
 			  //'capabilities' => array('assign_terms'=>'edit_cards')
           )
         );
@@ -330,11 +335,11 @@ class Sn_hotel {
         register_taxonomy( 'snhotel_hotel_event', array( 'snhotel_event' ),
           array(
               'hierarchical'   => false,
-              'label'          => __( 'Events', 'snhotel' ),
+              'label'          => __( 'Events Type', 'snhotel' ),
               'show_ui'        => true,
               'query_var'      => true,
               'rewrite'        => array('slug' => 'snhotel-events', 'with_front' => FALSE),
-              'singular_label' => __( 'Event', 'snhotel' )
+              'singular_label' => __( 'Events Type', 'snhotel' )
           )
         );
 
@@ -345,17 +350,17 @@ class Sn_hotel {
                 'show_ui'        => true,
                 'query_var'      => true,
                 'rewrite'        => array('slug' => 'accommodations', 'with_front' => FALSE),
-                'singular_label' => __( 'Accommodation', 'snhotel' )
+                'singular_label' => __( 'Accommodation Type', 'snhotel' )
             )
         );
         register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,
-                'label'          => __( 'Facilities', 'snhotel' ),
+                'label'          => __( 'Facilities Type', 'snhotel' ),
                 'show_ui'        => true,
                 'query_var'      => true,
                 'rewrite'        => array('slug' => 'facilities', 'with_front' => FALSE),
-                'singular_label' => __( 'Facility', 'snhotel' )
+                'singular_label' => __( 'Facility Type', 'snhotel' )
             )
         );
     flush_rewrite_rules();
