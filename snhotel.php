@@ -434,7 +434,7 @@ class Sn_hotel {
           )
         );
 
-        register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
+        /* register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
             array(
                 'hierarchical'   => false,
                 'label'          => __( 'Accommodation Type', 'snhotel' ),
@@ -443,7 +443,7 @@ class Sn_hotel {
                 'rewrite'        => array('slug' => 'accommodations', 'with_front' => FALSE),
                 'singular_label' => __( 'Accommodation Type', 'snhotel' )
             )
-        );
+        ); */
         /* register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,
@@ -464,7 +464,7 @@ class Sn_hotel {
                 'singular_label' => __( 'Destination Type', 'snhotel' )
             )
         );
-		register_taxonomy( 'snhotel_roomtype', array( 'snhotel_roomtype' ),
+		/* register_taxonomy( 'snhotel_roomtype', array( 'snhotel_roomtype' ),
           array(
               'hierarchical'   => false,
               'label'          => __( 'Room Type', 'snhotel' ),
@@ -473,7 +473,7 @@ class Sn_hotel {
               'rewrite'        => array('slug' => 'snhotel-roomtype', 'with_front' => FALSE),
               'singular_label' => __( 'Room Type', 'snhotel' )
           )
-        );
+        ); */
     flush_rewrite_rules();
 }
     /**
