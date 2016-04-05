@@ -377,7 +377,7 @@ class Sn_hotel {
             ),
         ) );
 		
-		 register_post_type( 'snhotel_roomtype', array(
+		 /* register_post_type( 'snhotel_roomtype', array(
             'label'           => __( 'Room Type', 'snhotel' ),
             'public'          => true,
             'show_ui'         => true,
@@ -405,7 +405,7 @@ class Sn_hotel {
                 'not_found_in_trash' => __( 'No Room Type Found in Trash', 'snhotel' ),
                 'parent'             => __( 'Parent Room Type', 'snhotel' ),
             ),
-        ) );
+        ) ); */
 		
         //taxonomies
 
