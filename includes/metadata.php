@@ -1140,6 +1140,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
             'type' => 'text',
 
       ),
+	     array(
+            'id' => 'featureshomepagetext',
+            'name' => __( 'Home Page Button Text', 'snhotel' ),
+            'type' => 'text',
+
+      ),
       array(
             'id' => 'featuresdisplayname',
             'name' => __( 'Display Name', 'snhotel' ),
