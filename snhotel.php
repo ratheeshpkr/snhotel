@@ -3,7 +3,7 @@
 Plugin Name: SNHotels
 Plugin URI: http://www.sakhatech.com/
 Description: Custom posttypes for Responsive hotel websites
-Version: v1.6
+Version: v1.7
 Github Plugin URI: https://github.com/ratheeshpkr/snhotel
 Author: Sakhatech
 Author URI: http://www.sakhatech.com/
