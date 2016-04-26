@@ -35,7 +35,7 @@ require 'plugin-update-checker/plugin-update-checker.php';
   //     FILE,
   //     'master'
   // );
-  
+
 class Sn_hotel {
 
     public $plugin_url;
@@ -346,7 +346,7 @@ class Sn_hotel {
                 'parent'             => __( 'Parent Destination', 'snhotel' ),
             ),
         ) );
-		
+
 		register_post_type( 'snhotel_archive', array(
             'label'           => __( 'Archive', 'snhotel' ),
             'public'          => true,
@@ -376,7 +376,7 @@ class Sn_hotel {
                 'parent'             => __( 'Parent Archive', 'snhotel' ),
             ),
         ) );
-		
+
 		 /* register_post_type( 'snhotel_roomtype', array(
             'label'           => __( 'Room Type', 'snhotel' ),
             'public'          => true,
@@ -406,7 +406,7 @@ class Sn_hotel {
                 'parent'             => __( 'Parent Room Type', 'snhotel' ),
             ),
         ) ); */
-		
+
         //taxonomies
 
         register_taxonomy( 'snhotel_hotel_offers', array( 'snhotel_offer' ),
@@ -434,7 +434,7 @@ class Sn_hotel {
           )
         );
 
-        /* register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
+        register_taxonomy( 'snhotel_hotel_room', array( 'snhotel_room' ),
             array(
                 'hierarchical'   => false,
                 'label'          => __( 'Accommodation Type', 'snhotel' ),
@@ -443,7 +443,8 @@ class Sn_hotel {
                 'rewrite'        => array('slug' => 'accommodations', 'with_front' => FALSE),
                 'singular_label' => __( 'Accommodation Type', 'snhotel' )
             )
-        ); */
+        );
+        
         /* register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,

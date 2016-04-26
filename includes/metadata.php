@@ -706,15 +706,15 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'type' => 'text',
               'desc' => __( 'Enter the Link to Book Hotel' ),
         ),
-		
+
     );
-	
+
 	$featured_offers = array(
 		array(
               'id' => 'featuredOfferLeft',
               'name' => __( 'Featured Offer Home Left', 'snhotel' ),
               'type' => 'checkbox',
-              
+
         ),
 		array(
               'id' => 'featuredOfferRight',
@@ -726,10 +726,10 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'id' => 'featuredOfferOverview',
               'name' => __( 'Featured Offer Home Overview', 'snhotel' ),
               'type' => 'checkbox',
-              
+
         ),
-	
-	
+
+
 	);
 
     $event_fields = array(
@@ -782,29 +782,29 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
               'repeatable' => true,
         ),
     );
-	
+
 	$featured_events = array(
 		array(
               'id' => 'featuredEventsLeft',
               'name' => __( 'Featured Event Home Left', 'snhotel' ),
               'type' => 'checkbox',
-              
+
         ),
 		array(
               'id' => 'featuredEventsRight',
               'name' => __( 'Featured Event Home Right', 'snhotel' ),
               'type' => 'checkbox',
-              
+
         ),
 		array(
               'id' => 'featuredEventsOverview',
               'name' => __( 'Featured Event Home Overview', 'snhotel' ),
               'type' => 'checkbox',
-             
+
         ),
-	
+
 	);
-	
+
     $offer_details = array(
 		array(
               'id' => 'product',
@@ -1316,13 +1316,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       ),
     );
 
-    $accommodation_roomtypecode= array(
-      array(
-        'id' 	     => 'roomtypecode',
-        'type'		 => 'text',
-      ),
-    );
-	
+    // $accommodation_roomtypecode= array(
+    //   array(
+    //     'id' => 'roomtypecode',
+    //     'type' => 'text',
+    //   ),
+    // );
+
 	$post_types = get_post_types();
     $archive_customtype= array(
       array(
@@ -1338,7 +1338,7 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'fields' => $archive_customtype,
       'context' => 'side',
     );
-	
+
 	$meta_boxes[] = array(
       'title' => __( 'Set as Featured', 'snhotel' ),
       'pages' => 'snhotel_offer',
@@ -1356,8 +1356,8 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
       'pages' => 'snhotel_room',
       'fields' => $accommodation_size,
       'context' => 'side',
-    ); 
-	
+    );
+
     $meta_boxes[] = array(
       'title' => __( 'Default Occupancy', 'snhotel' ),
       'pages' => 'snhotel_room',
@@ -1442,12 +1442,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'fields' => $accommodation_tax_off,
     ); */
 
-    $meta_boxes[] = array(
-      'title' => __( 'Accommodation Type Code', 'snhotel' ),
-      'pages' => 'snhotel_room',
-      'fields' => $accommodation_roomtypecode,
-      'context' => 'side',
-  );
+  //   $meta_boxes[] = array(
+  //     'title' => __( 'Accommodation Type Code', 'snhotel' ),
+  //     'pages' => 'snhotel_room',
+  //     'fields' => $accommodation_roomtypecode,
+  //     'context' => 'side',
+  // );
 
     $meta_boxes[] = array(
       'title' => __( 'Booking Link', 'snhotel' ),
