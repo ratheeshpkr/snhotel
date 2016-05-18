@@ -32,7 +32,8 @@ class Sn_Hotel_Settings {
                   $settings['snc_hotelname']	  = $_POST['snc_hotelname'];
     			        break;
     	        case 'location' :
-    				      $settings['snc_ga']  = $_POST['snc_ga'];
+    				      $settings['snc_lat']  = $_POST['snc_lat'];
+    				      $settings['snc_long']  = $_POST['snc_long'];
     			        break;
     			    case 'social' :
                   $settings['snc_ga']  = $_POST['snc_ga'];
@@ -121,10 +122,15 @@ class Sn_Hotel_Settings {
                 case 'location' :
                   ?>
                   <tr>
-                    <th><label for="snc_ga">Insert tracking code:</label></th>
+                    <th><label for="snc_lat">Latitude:</label></th>
                     <td>
-                      <textarea id="snc_ga" name="snc_ga" cols="60" rows="5"><?php echo esc_html( stripslashes( $settings["snc_ga"] ) ); ?></textarea><br/>
-                      <span class="description">Enter your Google Analytics tracking code:</span>
+                      <input id="snc_lat" name="snc_lat" placeholder="Enter Latitude" value="<?php echo esc_html( stripslashes( $settings["snc_lat"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				  <tr>
+                    <th><label for="snc_long">Longitude:</label></th>
+                    <td>
+                      <input id="snc_long" name="snc_long" placeholder="Enter Longitude" value="<?php echo esc_html( stripslashes( $settings["snc_long"] ) ); ?>"><br/>
                     </td>
                   </tr>
                   <?php
