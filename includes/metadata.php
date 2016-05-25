@@ -540,33 +540,33 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
     $offer_validity = array(
       array(
             'id' => 'validFrom',
-            'name' => __( 'Valid From', 'snhotel' ),
+            'name' => __( 'Bookable From', 'snhotel' ),
             'type' => 'datetime_unix',
       ),
       array(
         'id' => 'validThrough',
-        'name' => __( 'Valid Through', 'snhotel' ),
+        'name' => __( 'Bookable Until', 'snhotel' ),
         'type' => 'datetime_unix',
 
       ),
       array(
         'id' => 'availability_From',
-        'name' => __( 'Offer availabilty from', 'snhotel' ),
+        'name' => __( 'Stay From', 'snhotel' ),
         'type' => 'datetime_unix',
 
       ),
       array(
         'id' => 'availability_to',
-        'name' => __( 'Offer availabilty to', 'snhotel' ),
+        'name' => __( 'Stay Until', 'snhotel' ),
         'type' => 'datetime_unix',
 
       ),
-      array(
+      /* array(
         'id' => 'price',
         'name' => __( 'How many days/hours in advance do you need to buy/book?(DD:HH)', 'snhotel' ),
         'type' => 'text',
 
-      ),
+      ), */
       array(
             'id' => 'ineligibleRegion',
             'name' => __( 'Ineligible Region', 'snhotel' ),
@@ -678,22 +678,22 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         ),
 		array(
               'id' => 'availabilityStarts',
-              'name' => __( 'Availability Starts', 'snhotel' ),
+              'name' => __( 'Publish From', 'snhotel' ),
               'type' => 'datetime_unix',
 
         ),
         array(
               'id' => 'availability_End',
-              'name' => __( 'Availability Ends', 'snhotel' ),
+              'name' => __( 'Publish Until', 'snhotel' ),
               'type' => 'datetime_unix',
 
         ),
-		array(
+		/* array(
               'id' => 'offerEnds',
               'name' => __( 'Does the offer expire?', 'snhotel' ),
               'type' => 'datetime_unix',
 
-        ),
+        ), */
 		array(
               'id' => 'bookingLinkText',
               'name' => __( 'Booking Link Button Text', 'snhotel' ),
@@ -838,13 +838,13 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
 
 		array(
               'id' => 'availabilityStarts',
-              'name' => __( 'Availability Starts', 'snhotel' ),
+              'name' => __( 'Publish From', 'snhotel' ),
               'type' => 'datetime_unix',
 
         ),
         array(
               'id' => 'availability_End',
-              'name' => __( 'Availability Ends', 'snhotel' ),
+              'name' => __( 'Publish Until', 'snhotel' ),
               'type' => 'datetime_unix',
 
         ),
@@ -1539,12 +1539,12 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'pages' => 'snhotel_event',
         'fields' => $offer_validity
     );
-    $meta_boxes[] = array(
+    /*$meta_boxes[] = array(
         'title' => __( 'Terms & Conditions', 'snhotel' ),
         'pages' => 'snhotel_event',
         'fields' => $offer_termsCondition
     );
-	/* $meta_boxes[] = array(
+	 $meta_boxes[] = array(
         'title' => __( 'Connected Offer(s)', 'snhotel' ),
         'pages' => 'snhotel_event',
 		'context' => 'side',
@@ -1563,11 +1563,11 @@ function snhotel_cmb_fields( $meta_boxes = array() ) {
         'fields' => $offer_validity
     );
 
-    $meta_boxes[] = array(
+    /* $meta_boxes[] = array(
         'title' => __( 'Terms & Conditions', 'snhotel' ),
         'pages' => 'snhotel_offer',
         'fields' => $offer_termsCondition
-    );
+    ); */
     $meta_boxes[] = array(
         'title' => __( 'Features', 'snhotel' ),
         'pages' => 'snhotel_facility',
