@@ -32,6 +32,14 @@ class Sn_Hotel_Settings {
                   $settings['snc_hotelname']	  = $_POST['snc_hotelname'];
     			        break;
     	        case 'location' :
+    				      $settings['snc_add1']  = $_POST['snc_add1'];
+    				      $settings['snc_add2']  = $_POST['snc_add2'];
+    				      $settings['snc_city']  = $_POST['snc_city'];
+    				      $settings['snc_state']  = $_POST['snc_state'];
+    				      $settings['snc_pcode']  = $_POST['snc_pcode'];
+    				      $settings['snc_country']  = $_POST['snc_country'];
+    				      $settings['snc_phone']  = $_POST['snc_phone'];
+    				      $settings['snc_fax']  = $_POST['snc_fax'];
     				      $settings['snc_lat']  = $_POST['snc_lat'];
     				      $settings['snc_long']  = $_POST['snc_long'];
     			        break;
@@ -101,10 +109,12 @@ class Sn_Hotel_Settings {
               if ( isset ( $_GET['tab'] ) ) $tab = $_GET['tab'];
               else $tab = 'general';
 
-              echo '<table class="form-table">';
+              
               switch ( $tab ){
                 case 'general' :
+				echo '<table class="form-table">';
                   ?>
+				  
                   <tr>
                     <th><label for="snc_hotelid">Hotel ID:</label></th>
                     <td>
@@ -118,24 +128,105 @@ class Sn_Hotel_Settings {
                     </td>
                   </tr>
                   <?php
+				echo '<table>';
                 break;
                 case 'location' :
+				echo '<table class="form-table">';
                   ?>
                   <tr>
-                    <th><label for="snc_lat">Latitude:</label></th>
+                    <th><label for="snc_add1">Address1:</label></th>
                     <td>
-                      <input id="snc_lat" name="snc_lat" placeholder="Enter Latitude" value="<?php echo esc_html( stripslashes( $settings["snc_lat"] ) ); ?>"><br/>
+                      <input id="snc_add1" name="snc_add1" placeholder="Enter Address1" onkeyup="functionSearch()" value="<?php echo esc_html( stripslashes( $settings["snc_add1"] ) ); ?>"><br/>
+                    </td>
+                  </tr> 
+				  <tr>
+                    <th><label for="snc_add2">Address2:</label></th>
+                    <td>
+                      <input id="snc_add2" name="snc_add2" placeholder="Enter Address2" onkeyup="functionSearch()" value="<?php echo esc_html( stripslashes( $settings["snc_add2"] ) ); ?>"><br/>
                     </td>
                   </tr>
 				  <tr>
-                    <th><label for="snc_long">Longitude:</label></th>
+                    <th><label for="snc_city">City:</label></th>
                     <td>
-                      <input id="snc_long" name="snc_long" placeholder="Enter Longitude" value="<?php echo esc_html( stripslashes( $settings["snc_long"] ) ); ?>"><br/>
+                      <input id="snc_city" name="snc_city" placeholder="Enter City" onkeyup="functionSearch()" value="<?php echo esc_html( stripslashes( $settings["snc_city"] ) ); ?>"><br/>
+                    </td>
+                  </tr> 
+				  <tr>
+                    <th><label for="snc_state">State:</label></th>
+                    <td>
+                      <input id="snc_state" name="snc_state" placeholder="Enter State" onkeyup="functionSearch()" value="<?php echo esc_html( stripslashes( $settings["snc_state"] ) ); ?>"><br/>
                     </td>
                   </tr>
+				  <tr>
+                    <th><label for="snc_pcode">Postal Code:</label></th>
+                    <td>
+                      <input id="snc_pcode" name="snc_pcode" placeholder="Enter Postal Code" onkeyup="functionSearch()" value="<?php echo esc_html( stripslashes( $settings["snc_pcode"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				  <tr>
+                    <th><label for="snc_country">Country:</label></th>
+                    <td>
+                      <input id="snc_country" name="snc_country" placeholder="Enter Country" onkeyup="functionSearch()" value="<?php echo esc_html( stripslashes( $settings["snc_country"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				  <tr>
+                    <th><label for="snc_phone">Phone:</label></th>
+                    <td>
+                      <input id="snc_phone" name="snc_phone" placeholder="Enter Phone Number"  value="<?php echo esc_html( stripslashes( $settings["snc_phone"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				  <tr>
+                    <th><label for="snc_fax">Fax:</label></th>
+                    <td>
+                      <input id="snc_fax" name="snc_fax" placeholder="Enter Fax"  value="<?php echo esc_html( stripslashes( $settings["snc_fax"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+					<?php 
+					echo '<table>';
+						$add1 = esc_html( stripslashes( $settings["snc_add1"] ) );
+						$add2 = esc_html( stripslashes( $settings["snc_add2"] ) );
+						$city = esc_html( stripslashes( $settings["snc_city"] ) );
+						$state = esc_html( stripslashes( $settings["snc_state"] ) );
+						$pcode = esc_html( stripslashes( $settings["snc_pcode"] ) );
+						$country = esc_html( stripslashes( $settings["snc_pcode"] ) );
+						 
+					?>
+						
+						<fieldset class="gllpLatlonPicker">
+							<input type="text" id="gllpSearchField" class="gllpSearchField" value="<?php echo $add1.' '.$add2.' '.$city.' '.$state.' '.$pcode.' '.$country; ?>">
+							<input type="button" id="gllpSearchButton" class="gllpSearchButton" value="search">
+							<br/><br/>
+							<div class="gllpMap">Google Maps</div>
+							<br/>
+								<input type="hidden" id="snc_lat1" name="snc_lat1" class="gllpLatitude" value="<?php echo esc_html( stripslashes( $settings["snc_lat"] ) ); ?>"/>
+							
+								<input type="hidden" id="snc_long1" name="snc_long1" class="gllpLongitude" value="<?php echo esc_html( stripslashes( $settings["snc_long"] ) ); ?>"/>
+							 <input type="hidden" class="gllpZoom" value="11"/>
+							<!--<input type="button" class="gllpUpdateButton" value="update map">
+							<br/>-->
+							
+						</fieldset>
+					<?php 
+						echo '<table class="form-table">';
+					?>
+					
+					<tr>
+						<th><label for="snc_lat">Latitude:</label></th>
+						<td>
+						  <input type="text" id="snc_lat" name="snc_lat" class="gllpLatitude" placeholder="Enter Latitude" value="<?php echo esc_html( stripslashes( $settings["snc_lat"] ) ); ?>"><br/>
+						</td>
+					  </tr>
+					  <tr>
+						<th><label for="snc_long">Longitude:</label></th>
+						<td>
+						  <input type="text" id="snc_long" name="snc_long" class="gllpLongitude" placeholder="Enter Longitude" value="<?php echo esc_html( stripslashes( $settings["snc_long"] ) ); ?>"><br/>
+						</td>
+					</tr>
                   <?php
+					echo '<table>';
                 break;
                 case 'social' :
+					echo '<table class="form-table">';
                   ?>
                   <tr>
                     <th><label for="snc_ga">Insert tracking code:</label></th>
@@ -145,9 +236,10 @@ class Sn_Hotel_Settings {
                     </td>
                   </tr>
                   <?php
+				   echo '</table>';
                 break;
               }
-              echo '</table>';
+             
             }
             ?>
             <p class="submit" style="clear: both;">
@@ -156,7 +248,7 @@ class Sn_Hotel_Settings {
             </p>
           </form>
 
-          <p><?php echo $theme_data['Name'] ?> by <a href="http://sakhatech.com/" target="_blank">Sakhatech.com</a></p>
+          
         </div>
 
       </div>

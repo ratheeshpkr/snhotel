@@ -35,6 +35,10 @@ require 'plugin-update-checker/plugin-update-checker.php';
   //     FILE,
   //     'master'
   // );
+echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
+echo '<script src="'. plugins_url( 'js/jquery-2.1.1.min.js' , __FILE__ ) . '"></script>';
+echo '<script src="'. plugins_url( 'js/jquery-gmaps-latlon-picker.js' , __FILE__ ) . '"></script>';
+echo '<link href="'. plugins_url( 'css/jquery-gmaps-latlon-picker.css' , __FILE__ ) . '" rel="stylesheet" type="text/css" />';
 
 class Sn_hotel {
 
@@ -95,18 +99,25 @@ class Sn_hotel {
     function init() {
         $this->theme_dir_path = apply_filters( 'snhotel_theme_dir_path', 'snhotel/' );
     }
-
+	// register jquery and style on initialization
+	
     function file_includes() {
 
         if ( is_admin() ) {
             require_once dirname( __FILE__ ) . '/includes/metadata.php';
             require_once dirname( __FILE__ ) . '/admin/settings.php';
+            
         } else {
             require_once dirname( __FILE__ ) . '/includes/core-functions.php';
             require_once dirname( __FILE__ ) . '/includes/template-functions.php';
+			/* wp_enqueue_style('latlon-picker-css', plugins_url('jquery-gmaps-latlon-picker.css',__FILE__ ));
+			wp_enqueue_script( 'latlon-picker-js', plugins_url('jquery-gmaps-latlon-picker.js',__FILE__ )); */
+			
         }
 
         require_once dirname( __FILE__ ) . '/includes/posts-to-posts.php';
+		
+		
     }
 
     /**
