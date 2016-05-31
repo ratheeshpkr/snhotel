@@ -35,10 +35,10 @@ require 'plugin-update-checker/plugin-update-checker.php';
   //     FILE,
   //     'master'
   // );
-echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
-echo '<script src="'. plugins_url( 'js/jquery-2.1.1.min.js' , __FILE__ ) . '"></script>';
-echo '<script src="'. plugins_url( 'js/jquery-gmaps-latlon-picker.js' , __FILE__ ) . '"></script>';
-echo '<link href="'. plugins_url( 'css/jquery-gmaps-latlon-picker.css' , __FILE__ ) . '" rel="stylesheet" type="text/css" />';
+// echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
+// echo '<script src="'. plugins_url( 'js/jquery-2.1.1.min.js' , __FILE__ ) . '"></script>';
+// echo '<script src="'. plugins_url( 'js/jquery-gmaps-latlon-picker.js' , __FILE__ ) . '"></script>';
+// echo '<link href="'. plugins_url( 'css/jquery-gmaps-latlon-picker.css' , __FILE__ ) . '" rel="stylesheet" type="text/css" />';
 
 class Sn_hotel {
 
@@ -100,24 +100,24 @@ class Sn_hotel {
         $this->theme_dir_path = apply_filters( 'snhotel_theme_dir_path', 'snhotel/' );
     }
 	// register jquery and style on initialization
-	
+
     function file_includes() {
 
         if ( is_admin() ) {
             require_once dirname( __FILE__ ) . '/includes/metadata.php';
             require_once dirname( __FILE__ ) . '/admin/settings.php';
-            
+
         } else {
             require_once dirname( __FILE__ ) . '/includes/core-functions.php';
             require_once dirname( __FILE__ ) . '/includes/template-functions.php';
 			/* wp_enqueue_style('latlon-picker-css', plugins_url('jquery-gmaps-latlon-picker.css',__FILE__ ));
 			wp_enqueue_script( 'latlon-picker-js', plugins_url('jquery-gmaps-latlon-picker.js',__FILE__ )); */
-			
+
         }
 
         require_once dirname( __FILE__ ) . '/includes/posts-to-posts.php';
-		
-		
+
+
     }
 
     /**
@@ -156,36 +156,15 @@ class Sn_hotel {
      * @uses wp_localize_script()
      * @uses wp_enqueue_style
      */
-    public function enqueue_scripts() {
-
-        /**
-         * All styles goes here
-         */
-       /*  wp_enqueue_style( 'snhotel-styles', plugins_url( 'assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
-        wp_enqueue_style( 'ui-styles', plugins_url( 'assets/css/ui.css', __FILE__ ), false, date( 'Ymd' ) );
-        wp_enqueue_style( 'flexslider', plugins_url( 'assets/css/flexslider.css', __FILE__ ), false, date( 'Ymd' ) ); */
-
-        /**
-         * All scripts goes here
-         */
-       /*  wp_enqueue_script( 'jquery' );
-        wp_enqueue_script( 'jquery-ui-core' );
-        wp_enqueue_script( 'jquery-ui-accordion' );
-        wp_enqueue_script( 'jquery-ui-tabs' );
-        wp_enqueue_script( 'flexslider', plugins_url( 'assets/js/jquery.flexslider.js', __FILE__ ), array( 'jquery' ), false, true );
-        wp_enqueue_script( 'snhotel-scripts', plugins_url( 'assets/js/script.js', __FILE__ ), array( 'jquery' ), false, true ); */
-
-
-        /**
-         * Example for setting up text strings from Javascript files for localization
-         *
-         * Uncomment line below and replace with proper localization variables.
-         */
-        // $translation_array = array( 'some_string' => __( 'Some string to translate', 'snhotel' ), 'a_value' => '10' );
-        // wp_localize_script( 'base-plugin-scripts', 'snhotel', $translation_array ) );
-
-    }
-
+     public function enqueue_scripts() {
+         wp_register_style( 'custom-style', plugins_url( 'css/jquery-gmaps-latlon-picker.css', FILE ), array(), '20120208', 'all' );
+         wp_enqueue_style( 'custom-style' );
+         wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
+         wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', FILE ), array( 'jquery' ) );
+         wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', FILE ), array( 'jquery' ) );
+         wp_enqueue_script( 'custom-script' );
+         wp_enqueue_script( 'custom-script-js' );
+     }
     /**
      * Register necessary post types and custom taxonomies
      *
@@ -455,7 +434,7 @@ class Sn_hotel {
                 'singular_label' => __( 'Accommodation Type', 'snhotel' )
             )
         );
-        
+
         /* register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,
