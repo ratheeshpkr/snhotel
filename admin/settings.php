@@ -28,6 +28,7 @@ class Sn_Hotel_Settings {
 
     	    switch ( $tab ){
     	        case 'general' :
+                  $settings['snc_bookinglink']	  = $_POST['snc_bookinglink'];
                   $settings['snc_hotelid']	  = $_POST['snc_hotelid'];
                   $settings['snc_hotelname']	  = $_POST['snc_hotelname'];
     			        break;
@@ -44,7 +45,13 @@ class Sn_Hotel_Settings {
     				      $settings['snc_long']  = $_POST['snc_long'];
     			        break;
     			    case 'social' :
-                  $settings['snc_ga']  = $_POST['snc_ga'];
+						  $settings['snc_facebook']  = $_POST['snc_facebook'];
+						  $settings['snc_instagram']  = $_POST['snc_instagram'];
+						  $settings['snc_pinterest']  = $_POST['snc_pinterest'];
+						  $settings['snc_youtube']  = $_POST['snc_youtube'];
+						  $settings['snc_sinaweibo']  = $_POST['snc_sinaweibo'];
+						  $settings['snc_tumblr']  = $_POST['snc_tumblr'];
+						  $settings['snc_ga']  = $_POST['snc_ga'];
     			        break;
     	    }
     	}
@@ -116,6 +123,12 @@ class Sn_Hotel_Settings {
                   ?>
 				  
                   <tr>
+                    <th><label for="snc_bookinglink">Booking Link:</label></th>
+                    <td>
+                      <input id="snc_bookinglink" name="snc_bookinglink" placeholder="Enter Booking Link" value="<?php echo esc_html( stripslashes( $settings["snc_bookinglink"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				  <tr>
                     <th><label for="snc_hotelid">Hotel ID:</label></th>
                     <td>
                       <input id="snc_hotelid" name="snc_hotelid" placeholder="Enter Hotel ID" value="<?php echo esc_html( stripslashes( $settings["snc_hotelid"] ) ); ?>"><br/>
@@ -228,13 +241,49 @@ class Sn_Hotel_Settings {
                 case 'social' :
 					echo '<table class="form-table">';
                   ?>
-                  <tr>
-                    <th><label for="snc_ga">Insert tracking code:</label></th>
-                    <td>
-                      <textarea id="snc_ga" name="snc_ga" cols="60" rows="5"><?php echo esc_html( stripslashes( $settings["snc_ga"] ) ); ?></textarea><br/>
-                      <span class="description">Enter your Google Analytics tracking code:</span>
-                    </td>
-                  </tr>
+					<tr>
+						<th><label for="snc_facebook">Facebook:</label></th>
+						<td>
+						  <input type="text" id="snc_facebook" name="snc_facebook" class="snc_facebook" placeholder="Enter Facebook Url" value="<?php echo esc_html( stripslashes( $settings["snc_facebook"] ) ); ?>"><br/>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="snc_instagram">Instagram:</label></th>
+						<td>
+						  <input type="text" id="snc_instagram" name="snc_instagram" class="snc_instagram" placeholder="Enter Instagram Url" value="<?php echo esc_html( stripslashes( $settings["snc_instagram"] ) ); ?>"><br/>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="snc_pinterest">Pinterest:</label></th>
+						<td>
+						  <input type="text" id="snc_pinterest" name="snc_pinterest" class="snc_pinterest" placeholder="Enter Pinterest Url" value="<?php echo esc_html( stripslashes( $settings["snc_pinterest"] ) ); ?>"><br/>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="snc_youtube">Youtube:</label></th>
+						<td>
+						  <input type="text" id="snc_youtube" name="snc_youtube" class="snc_youtube" placeholder="Enter Youtube Url" value="<?php echo esc_html( stripslashes( $settings["snc_youtube"] ) ); ?>"><br/>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="snc_sinaweibo">Sina Weibo:</label></th>
+						<td>
+						  <input type="text" id="snc_sinaweibo" name="snc_sinaweibo" class="snc_sinaweibo" placeholder="Enter Sina Weibo Url" value="<?php echo esc_html( stripslashes( $settings["snc_sinaweibo"] ) ); ?>"><br/>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="snc_tumblr">Tumblr:</label></th>
+						<td>
+						  <input type="text" id="snc_tumblr" name="snc_tumblr" class="snc_tumblr" placeholder="Enter Tumblr Url" value="<?php echo esc_html( stripslashes( $settings["snc_tumblr"] ) ); ?>"><br/>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="snc_ga">Insert tracking code:</label></th>
+						<td>
+						  <textarea id="snc_ga" name="snc_ga" cols="60" rows="5"><?php echo esc_html( stripslashes( $settings["snc_ga"] ) ); ?></textarea><br/>
+						  <span class="description">Enter your Google Analytics tracking code:</span>
+						</td>
+					</tr>
                   <?php
 				   echo '</table>';
                 break;

@@ -35,10 +35,24 @@ require 'plugin-update-checker/plugin-update-checker.php';
   //     FILE,
   //     'master'
   // );
-// echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
-// echo '<script src="'. plugins_url( 'js/jquery-2.1.1.min.js' , __FILE__ ) . '"></script>';
-// echo '<script src="'. plugins_url( 'js/jquery-gmaps-latlon-picker.js' , __FILE__ ) . '"></script>';
-// echo '<link href="'. plugins_url( 'css/jquery-gmaps-latlon-picker.css' , __FILE__ ) . '" rel="stylesheet" type="text/css" />';
+	
+	function load_css_js() {
+		echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
+		wp_register_style( 'custom-style', plugins_url( 'css/jquery-gmaps-latlon-picker.css', __FILE__ ), array(), '20120208', 'all' );
+        wp_enqueue_style( 'custom-style' );
+         
+        /* wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', array(), null, false );
+		wp_register_script( 'jquery', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize', array(), null, false ); */
+		 
+        //wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) ); 
+        wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', __FILE__ ), array( 'jquery' ) );
+        //wp_enqueue_script( 'custom-script' ); 
+        wp_enqueue_script( 'custom-script-js' );
+}
+
+add_action( 'admin_head', 'load_css_js' );
+
+		
 
 class Sn_hotel {
 
@@ -157,13 +171,13 @@ class Sn_hotel {
      * @uses wp_enqueue_style
      */
      public function enqueue_scripts() {
-         wp_register_style( 'custom-style', plugins_url( 'css/jquery-gmaps-latlon-picker.css', FILE ), array(), '20120208', 'all' );
+        /*  wp_register_style( 'custom-style', plugins_url( 'css/jquery-gmaps-latlon-picker.css', __FILE__ ), array(), '20120208', 'all' );
          wp_enqueue_style( 'custom-style' );
          wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', array(), null, false );
-         wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', FILE ), array( 'jquery' ) );
-         wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', FILE ), array( 'jquery' ) );
+         wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) );
+         wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', __FILE__ ), array( 'jquery' ) );
          wp_enqueue_script( 'custom-script' );
-         wp_enqueue_script( 'custom-script-js' );
+         wp_enqueue_script( 'custom-script-js' ); */
      }
     /**
      * Register necessary post types and custom taxonomies
