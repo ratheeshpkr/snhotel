@@ -41,6 +41,7 @@ class Sn_Hotel_Settings {
     				      $settings['snc_country']  = $_POST['snc_country'];
     				      $settings['snc_phone']  = $_POST['snc_phone'];
     				      $settings['snc_fax']  = $_POST['snc_fax'];
+    				      $settings['snc_email']  = $_POST['snc_email'];
     				      $settings['snc_lat']  = $_POST['snc_lat'];
     				      $settings['snc_long']  = $_POST['snc_long'];
     			        break;
@@ -192,6 +193,12 @@ class Sn_Hotel_Settings {
                     <th><label for="snc_fax">Fax:</label></th>
                     <td>
                       <input id="snc_fax" name="snc_fax" placeholder="Enter Fax"  value="<?php echo esc_html( stripslashes( $settings["snc_fax"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				  <tr>
+                    <th><label for="snc_email">Email:</label></th>
+                    <td>
+                      <input id="snc_email" name="snc_email" placeholder="Enter Email Address"  value="<?php echo esc_html( stripslashes( $settings["snc_email"] ) ); ?>"><br/>
                     </td>
                   </tr>
 					<?php 

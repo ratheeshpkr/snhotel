@@ -38,6 +38,7 @@ require 'plugin-update-checker/plugin-update-checker.php';
 	
 	function load_css_js() {
 		echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
+		
 		wp_register_style( 'custom-style', plugins_url( 'css/jquery-gmaps-latlon-picker.css', __FILE__ ), array(), '20120208', 'all' );
         wp_enqueue_style( 'custom-style' );
          
