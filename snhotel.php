@@ -45,9 +45,16 @@ require 'plugin-update-checker/plugin-update-checker.php';
         /* wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', array(), null, false );
 		wp_register_script( 'jquery', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize', array(), null, false ); */
 		 
-        //wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) ); 
+		$current_screen = get_current_screen();
+		//print_r( $current_screen);
+		if( $current_screen ->id === "toplevel_page_snhotel" ) {
+
+			// Run some code, only on the admin widgets page
+			wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) ); 
+			wp_enqueue_script( 'custom-script' ); 
+		}
         wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', __FILE__ ), array( 'jquery' ) );
-        //wp_enqueue_script( 'custom-script' ); 
+        
         wp_enqueue_script( 'custom-script-js' );
 }
 
