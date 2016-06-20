@@ -48,14 +48,13 @@ require 'plugin-update-checker/plugin-update-checker.php';
 		$current_screen = get_current_screen();
 		//print_r( $current_screen);
 		if( $current_screen ->id === "toplevel_page_snhotel" ) {
-
-			// Run some code, only on the admin widgets page
+		
 			wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) ); 
 			wp_enqueue_script( 'custom-script' ); 
+			wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'custom-script-js' );
 		}
-        wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', __FILE__ ), array( 'jquery' ) );
         
-        wp_enqueue_script( 'custom-script-js' );
 }
 
 add_action( 'admin_head', 'load_css_js' );
