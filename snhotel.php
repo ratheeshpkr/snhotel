@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: SNHotels
-Plugin URI: http://www.sakhatech.com/
+Plugin URI: http://www.snhotels.com/
 Description: Custom posttypes for Responsive hotel websites
 Version: v1.7
 Github Plugin URI: https://github.com/ratheeshpkr/snhotel
-Author: Sakhatech
-Author URI: http://www.sakhatech.com/
+Author: SNHotels
+Author URI: http://www.snhotels.com/
 License: GPL2
 GitHub Branch:     master
 */
@@ -35,25 +35,25 @@ require 'plugin-update-checker/plugin-update-checker.php';
   //     FILE,
   //     'master'
   // );
-	
+
 	function load_css_js() {
 		echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
-		
+
 		wp_register_style( 'custom-style', plugins_url( 'css/jquery-gmaps-latlon-picker.css', __FILE__ ), array(), '20120208', 'all' );
         wp_enqueue_style( 'custom-style' );
-         
+
         /* wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js', array(), null, false );
 		wp_register_script( 'jquery', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize', array(), null, false ); */
-		 
-        //wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) ); 
+
+        //wp_register_script( 'custom-script', plugins_url( 'js/jquery-2.1.1.min.js', __FILE__ ), array( 'jquery' ) );
         wp_register_script( 'custom-script-js', plugins_url( 'js/jquery-gmaps-latlon-picker.js', __FILE__ ), array( 'jquery' ) );
-        //wp_enqueue_script( 'custom-script' ); 
+        //wp_enqueue_script( 'custom-script' );
         wp_enqueue_script( 'custom-script-js' );
 }
 
 add_action( 'admin_head', 'load_css_js' );
 
-		
+
 
 class Sn_hotel {
 
