@@ -6,7 +6,7 @@ Description: Custom posttypes for Responsive hotel websites
 Version: v1.7
 Github Plugin URI: https://github.com/ratheeshpkr/snhotel
 Author: SNHotels
-Author URI: http://www.snhotels.com/
+Author URI: https://github.com/ratheeshpkr/snhotel
 License: GPL2
 GitHub Branch:     master
 */
@@ -20,21 +20,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * @class Sn_hotel The class that holds the entire Sn_hotel plugin
  */
-
-require 'plugin-update-checker/plugin-update-checker.php';
- $MyUpdateChecker = PucFactory::buildUpdateChecker(
-    'http://snc.staging.snhotels.com/metadata.json',
-  __FILE__,
-  'snhotel'
- );
-
-  //   require 'plugin-update-checker/plugin-update-checker.php';
-  // $className = PucFactory::getLatestClassVersion('PucGitHubChecker');
-  // $myUpdateChecker = new $className(
-  //     'https://github.com/ratheeshpkr/snhotel',
-  //     FILE,
-  //     'master'
-  // );
 
 	function load_css_js() {
 		echo '<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>';
