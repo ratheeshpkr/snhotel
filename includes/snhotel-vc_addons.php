@@ -79,32 +79,16 @@ function x_shortcode_archive_dest( $atts ) {
   
   
   ));
-if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-?>
-<div class="col-xs-12 col-sm-6 margin-bottom-30 dest_cont">
-	<div class="featured">
-		<?php
-			if (has_post_thumbnail()) { // check if the post has a Post Thumbnail assigned to it.
-			the_post_thumbnail( array( 'width' => 555, 'height' => 250, 'crop' => true ));
-			}
-		?>
-	</div>
-	<div class="col-xs-12 no-padding">
-		<h3 class="post_title"><?php the_title(); ?></h3>
-	</div>
-	<?php the_content();?>
-</div>
-<?php
-  endwhile; 
+include (locate_template('archive-snhotel_destination.php'));
+//get_template_part('archive-snhotel_destination');
+ 
   ?>
   <div class="clear"></div>
   <div class="container">
 	<div class="next-previous"><?php post_pagination();?></div>
   </div>
 <?php
-  else:
-  
-  endif; 
+
  wp_reset_postdata();
  $returnvariable = ob_get_clean();
  return $returnvariable;
@@ -125,398 +109,16 @@ vc_map( array(
 		'params' => array(
 				
 				array(
-					'type' => 'textfield',
-					'value' => '',
-					'heading' => 'Number of Posts',
-					'param_name' => 'post_count',
-					), 
-				
-		   		),
-			)); 
-// SNH Archive Destination
-function x_shortcode_archive_accom( $atts ) {
-	ob_start();
-	extract( shortcode_atts( array(
-        'post_count' => 6,
-		), $atts ));
-	$count = ( $count != '') ? $count : "{$post_count}";
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-	$q = new WP_Query( array(
-	  'orderby'          => 'date',
-	  'post_type'        => 'snhotel_room',
-	  'paged' 			=> $paged,
-	  'post_status'		 => 'publish',
-	  'posts_per_page'   => "{$count}",
-  
-  ));
-if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-get_template_part('archive-snhotel_room');
-endwhile; 
-?>
-  <div class="clear"></div>
-  <div class="container">
-	<div class="next-previous"><?php post_pagination();?></div>
-  </div>
-<?php
-  else:
- endif; 
- wp_reset_postdata();
- $returnvariable = ob_get_clean();
- return $returnvariable;
-} 
-add_shortcode( 'vc_archive_accom', 'x_shortcode_archive_accom' );
-
-
-/*-------------------------------------------------------------------------------
- Custom SNH archive offers
--------------------------------------------------------------------------------*/
-vc_map( array(
-        "name"      => __( "Archive Offers", "__x__" ),
-        "base"      => "vc_archive_offer",  
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-		'params' => array(
-				
-				array(
-					'type' => 'textfield',
-					'value' => '',
-					'heading' => 'Number of Posts',
-					'param_name' => 'post_count',
-					), 
-				
-		   		),
-			)); 
-// SNH Archive Offer
-function x_shortcode_archive_offer( $atts ) {
-	ob_start();
-	extract( shortcode_atts( array(
-        'post_count' => 1,
-		), $atts ));
-	$count = ( $count != '') ? $count : "{$post_count}";
-	 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-	 $q = new WP_Query( array(
-		  'orderby'          => 'date',
-		  'post_type'        => 'snhotel_offer',
-		  'paged' 			=> $paged,
-		  'post_status'		 => 'publish',
-		  'posts_per_page'   => "{$post_count}",
-	  
-	  ));
-if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-get_template_part('archive-snhotel_offer');
-endwhile; 
-?>
-  <div class="clear"></div>
-  <div class="container">
-	<div class="next-previous"><?php post_pagination();?></div>
-  </div>
-<?php
-  else:
- endif; 
- wp_reset_postdata();
- $returnvariable = ob_get_clean();
- return $returnvariable;
-} 
-add_shortcode( 'vc_archive_offer', 'x_shortcode_archive_offer' );
-
-
-/*-------------------------------------------------------------------------------
- Custom SNH archive posts
--------------------------------------------------------------------------------*/
-vc_map( array(
-        "name"      => __( "Archive Posts", "__x__" ),
-        "base"      => "vc_archive_post",  
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-		'params' => array(
-				
-				array(
-					'type' => 'textfield',
-					'value' => '',
-					'heading' => 'Number of Posts',
-					'param_name' => 'post_count',
-					), 
-				
-		   		),
-			)); 
-// SNH Archive Destination
-function x_shortcode_archive_post( $atts ) {
-	ob_start();
-	extract( shortcode_atts( array(
-        'post_count' => 3,
-		), $atts ));
-	$count = ( $count != '') ? $count : "{$post_count}";
-
- ?>
- <div id="content" role="main" class="col-xs-12 col-sm-8 col-md-8">
-					<?php
-					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-						$args = array(
-								'post_type' => 'post',
-								'post_status' => 'publish',
-								'posts_per_page' => "{$post_count}",
-								'paged' => $paged,
-								'caller_get_posts' => 1,
-							);
-						$my_query = new WP_Query($args);
-						if ($my_query->have_posts()) {
-						while ($my_query->have_posts()) : $my_query->the_post();
-						get_template_part('templates/content-common');
-					?>
-
-					<?php
-						endwhile;
-						echo "<script type=\"text/javascript\">";
-						echo "var total_blog_pages = ".$my_query->max_num_pages.";";
-						echo "</script>";
-						/* echo $my_query->found_posts; */
-						if($my_query->max_num_pages > 1){
-					?>
-						<div class="more_blog_post">
-
-						</div>
-						<div class="clearfix"></div>
-						<div class="load-more color-gray">
-							<a href="#" id="more_blogposts"><?php echo __('Load More Posts','snhotel-theme');?></a>
-						</div>
-					<?php
-							}
-						}
-						wp_reset_query();  // Restore global post data stomped by the_post().
-					?>
-				</div><!-- #content -->
-				<div class="right-sidebar col-xs-12 col-sm-4 col-md-4 margin-t30">
-					<div class="col-xs-12" id="right-sidebar"> 
-							<?php get_template_part('templates/sidebar'); ?>
-					</div>
-				</div><!-- /.sidebar -->
-			</div>
- <?php
- get_template_part('archives');
- $returnvariable = ob_get_clean();
- return $returnvariable;
-} 
-add_shortcode( 'vc_archive_post', 'x_shortcode_archive_post' );
-
-
-/* VC element for events */
-vc_map( array(
-        "name"      => __( "Archive Events", "__x__" ),
-        "base"      => "vc_archive_event",  
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-		'params' => array(
-				
-				array(
-					'type' => 'textfield',
-					'value' => '',
-					'heading' => 'Number of Posts',
-					'param_name' => 'post_count',
-					), 
-				
-		   		),
-			)); 
-// SNH Archive Destination
-function x_shortcode_archive_event( $atts ) {
-	ob_start();
-	extract( shortcode_atts( array(
-        'post_count' => 6,
-		), $atts ));
-	$count = ( $count != '') ? $count : "{$post_count}";
-
-	
-	 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-	 $q = new WP_Query( array(
-		  'orderby'          => 'date',
-		  'post_type'        => 'snhotel_event',
-		  'post_status'		 => 'publish',
-		  'paged'			=>   $paged,
-		  'posts_per_page'   => "{$post_count}",
-	  
-	  ));
-if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-?>
-<div class="col-xs-12 col-sm-6 margin-bottom-30">
-	<div class="featured">
-		<?php
-			if (has_post_thumbnail()) { // check if the post has a Post Thumbnail assigned to it.
-			the_post_thumbnail(array( 'width' => 570, 'height' => 320, 'crop' => true ));
-			}
-		?>
-	</div>
-</div>
-<div class="col-xs-12 col-sm-6 margin-bottom-30">
-	<h3 class="post_title"><?php the_title(); ?></h3>
-	<p><?php the_content();?> </p>
-	<a href="<?php the_permalink(); ?>" class="book_but left">See event details</a>
-</div>
-<?php
- endwhile; 
- ?>
-  <div class="clear"></div>
-  <div class="container">
-	<div class="next-previous"><?php post_pagination();?></div>
-  </div>
-<?php
-  else:
- endif; 
- wp_reset_postdata();
- $returnvariable = ob_get_clean();
- return $returnvariable;
-} 
-add_shortcode( 'vc_archive_event', 'x_shortcode_archive_event' );
-
-
-/* VC element for facility */
-vc_map( array(
-        "name"      => __( "Archive Facility", "__x__" ),
-        "base"      => "vc_archive_facility",  
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-		'params' => array(
-				
-				array(
-					'type' => 'textfield',
-					'value' => '',
-					'heading' => 'Number of Posts',
-					'param_name' => 'post_count',
-					), 
-				
-		   		),
-			)); 
-// SNH Archive Facility
-function x_shortcode_archive_facility( $atts ) {
-	ob_start();
-	extract( shortcode_atts( array(
-        'post_count' => 6,
-		), $atts ));
-	$count = ( $count != '') ? $count : "{$post_count}";
-	 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-	 $q = new WP_Query( array(
-		  'orderby'          => 'date',
-		  'post_type'        => 'snhotel_facility',
-		  'post_status'		 => 'publish',
-		  'paged'			 => $paged,
-		  'posts_per_page'   => "{$post_count}",
-  
-    ));
-if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-?>
-<?php get_template_part('archive-snhotel_facility'); ?>
-<?php
- endwhile; 
- ?>
-  <div class="clear"></div>
-  <div class="container">
-	<div class="next-previous"><?php post_pagination();?></div>
-  </div>
-<?php
-  else:
- endif; 
- wp_reset_postdata();
- $returnvariable = ob_get_clean();
- return $returnvariable;
-} 
-add_shortcode( 'vc_archive_facility', 'x_shortcode_archive_facility' );
-
-/*-------------------------------------------------------------------------------
-	Custom Featured Offer Form Config
--------------------------------------------------------------------------------*/
-global $wpdb;
-
- 
-vc_map( array(
-        "name"      => __( "Featured Offer", "__x__" ),
-        "base"      => "vc_featured_offer",
-		
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-        
-    ) );
-	
-	
-	// SNH Featured Offer Shortcode
-// =============================================================================
- 
-function x_shortcode_featured_offers( $atts ) {
-	ob_start();
-	get_template_part('templates/template-featured_offers');
-	$returnvariable = ob_get_clean();
-	return $returnvariable;
-}
- 
-add_shortcode( 'vc_featured_offer', 'x_shortcode_featured_offers' );
-
-
-/*-------------------------------------------------------------------------------
- Custom Banner Config
--------------------------------------------------------------------------------*/
-
-vc_map( array(
-        "name"      => __( "Banner Image", "__x__" ),
-        "base"      => "vc_banner_image",
-  
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-        
-    ) );
- 
- 
- // SNH Map Shortcode
-// =============================================================================
- 
-function x_shortcode_banner_image( $atts ) {
- ob_start(); 
- get_template_part('templates/template-banner');
- $returnvariable = ob_get_clean();
- return $returnvariable;
-}
- 
-add_shortcode( 'vc_banner_image', 'x_shortcode_banner_image' );
-
-/*-------------------------------------------------------------------------------
- Custom SNH Taxonomy 
--------------------------------------------------------------------------------*/
-global $wpdb;
-
- 
-vc_map( array(
-        "name"      => __( "Taxonomy Element", "__x__" ),
-        "base"      => "vc_taxonomy",
-  
-        'icon'        => 'text-output',
-        'description' => __( 'Place a Content Block in your content.', '__x__' ),
-        "wrapper_class" => "clearfix",
-        "category" => "SNHotels Addons",
-  'params' => array(
-            
-   array(
                 'type' => 'loop',
                 'value' => '',
                 'heading' => 'Query for Taxonomy',
                 'param_name' => 'taxonomy_loop',
-            ),
-  ),
-        
-    ) );
- 
- 
- // SNH Taxonomy 
-// =============================================================================
- 
-function x_shortcode_taxonomy( $atts ) {
+            ), 
+				
+		   		),
+			)); 
+// SNH Archive Rooms
+function x_shortcode_archive_accom( $atts ) {
 	ob_start();
  extract( shortcode_atts( array(
         'taxonomy_loop' => 'taxonomy_loop',
@@ -677,39 +279,792 @@ function x_shortcode_taxonomy( $atts ) {
   'orderby'          => $query_orderby,
   'post_type'        => $query_post_type,
   'posts_per_page'   => $query_posts_per_page,
-  'tax_query'=> $query_tax_query   
+  'tax_query' => $query_tax_query   
     ) );
- 
-    if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post();
-  
+
+include (locate_template('archive-snhotel_room.php'));
+/* get_template_part('archive-snhotel_room'); */
+
 ?>
-<div class="col-xs-12 col-sm-6 margin-b30">
-				<div class="featured">
-					<?php
-						if (has_post_thumbnail()) { // check if the post has a Post Thumbnail assigned to it.
-							the_post_thumbnail(array( 'width' => 555, 'height' => 320, 'crop' => true ));
+  <div class="clear"></div>
+  <div class="container">
+	<div class="next-previous"><?php post_pagination();?></div>
+  </div>
+<?php
+ wp_reset_postdata();
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_archive_accom', 'x_shortcode_archive_accom' );
+
+
+/*-------------------------------------------------------------------------------
+ Custom SNH archive offers
+-------------------------------------------------------------------------------*/
+vc_map( array(
+        "name"      => __( "Archive Offers", "__x__" ),
+        "base"      => "vc_archive_offer",  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+				
+				array(
+                'type' => 'loop',
+                'value' => '',
+                'heading' => 'Query for Taxonomy',
+                'param_name' => 'taxonomy_loop',
+            ),
+			))); 
+// SNH Archive Offer
+function x_shortcode_archive_offer( $atts ) {
+	ob_start();
+ extract( shortcode_atts( array(
+        'taxonomy_loop' => 'taxonomy_loop',
+        
+    ), $atts));
+
+ $query=$taxonomy_loop;
+ $query=explode('|',$query);
+ foreach($query as $query_part)
+	{
+		$q_part=explode(':',$query_part);
+		switch($q_part[0])
+		{
+			case 'post_type':
+				$query_post_type=explode(',',$q_part[1]);
+			break;
+			
+			case 'size':
+				$query_posts_per_page=($q_part[1]=='All' ? -1:$q_part[1]);
+			break;
+			
+			case 'order_by':
+				
+				$query_meta_key='';
+				$query_orderby='';
+				
+				$public_orders_array=array('ID','date','author','title','modified','rand','comment_count','menu_order');
+				if(in_array($q_part[1],$public_orders_array))
+				{
+					$query_orderby=$q_part[1];
+				}else
+				{
+					$query_meta_key=$q_part[1];
+					$query_orderby='meta_value_num';
+				}
+				
+			break;
+			
+			case 'order':
+				$query_order=$q_part[1];
+			break;
+			
+			case 'by_id':
+				$query_by_id=explode(',',$q_part[1]);
+				$query_by_id_not_in=array();
+				$query_by_id_in=array();
+				foreach($query_by_id as $ids)
+				{
+					if($ids<0)
+					{
+						$query_by_id_not_in[]=$ids;
+					}else{
+						$query_by_id_in[]=$ids;
+					}
+				}
+			break;
+			
+			case 'categories':
+				$query_categories=explode(',',$q_part[1]);
+				$query_cat_not_in=array();
+				$query_cat_in=array();
+				foreach($query_categories as $cat)
+				{
+					if($cat<0)
+					{
+						$query_cat_not_in[]=$cat;
+					}else
+					{
+						$query_cat_in[]=$cat;
+					}
+				}
+			break;
+			
+			case 'tags':
+				$query_tags=explode(',',$q_part[1]);
+				$query_tags_not_in=array();
+				$query_tags_in=array();
+				foreach($query_tags as $tags)
+				{
+					if($tags<0)
+					{
+						$query_tags_not_in[]=$tags;
+					}else
+					{
+						$query_tags_in[]=$tags;
+					}
+				}
+			break;
+			
+			case 'authors':
+				$query_author=explode(',',$q_part[1]);
+				$query_author_not_in=array();
+				$query_author_in=array();
+				foreach($query_author as $author)
+				{
+					if($tags<0)
+					{
+						$query_author_not_in[]=$author;
+					}else
+					{
+						$query_author_in[]=$author;
+					}
+				}
+				
+			break;
+
+			case 'tax_query':
+				$all_tax=get_object_taxonomies( $query_post_type );
+
+				$tax_query=array();
+				$query_tax_query=array('relation' => 'AND');
+				foreach ( $all_tax as $tax ) {
+					$values=$tax;
+					$query_taxs_in=array();
+					$query_taxs_not_in=array();
+					
+					$query_taxs=explode(',',$q_part[1]);
+					foreach($query_taxs as $taxs)
+					{
+						if(term_exists( absint($taxs), $tax )){
+							if($taxs<0)
+							{
+								$query_taxs_not_in[]=absint($taxs);
+							}else
+							{
+								$query_taxs_in[]=$taxs;
+							}
 						}
+					}
+
+					if(count($query_taxs_not_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_not_in,
+							'operator' => 'NOT IN',
+						);
+					}else if(count($query_taxs_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_in,
+							'operator' => 'IN',
+						);
+					}
+					
+					//break;
+				}
+				
+			break;
+		}
+	}
+
+ 
+ $q = new WP_Query( array(
+  'orderby'          => $query_orderby,
+  'post_type'        => $query_post_type,
+  'posts_per_page'   => $query_posts_per_page,
+  'tax_query' => $query_tax_query,  
+    ));
+ 
+ include (locate_template('archive-snhotel_offer.php'));
+//get_template_part('archive-snhotel_offer');
+?>
+  <div class="clear"></div>
+  <div class="container">
+	<div class="next-previous"><?php post_pagination();?></div>
+  </div>
+<?php
+ wp_reset_postdata();
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_archive_offer', 'x_shortcode_archive_offer' );
+
+
+/*-------------------------------------------------------------------------------
+ Custom SNH archive posts
+-------------------------------------------------------------------------------*/
+vc_map( array(
+        "name"      => __( "Archive Posts", "__x__" ),
+        "base"      => "vc_archive_post",  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+				
+				array(
+					'type' => 'textfield',
+					'value' => '',
+					'heading' => 'Number of Posts',
+					'param_name' => 'post_count',
+					), 
+				
+		   		),
+			)); 
+// SNH Archive Destination
+function x_shortcode_archive_post( $atts ) {
+	ob_start();
+	extract( shortcode_atts( array(
+        'post_count' => 3,
+		), $atts ));
+	$count = ( $count != '') ? $count : "{$post_count}";
+
+ ?>
+ <div id="content" role="main" class="col-xs-12 col-sm-8 col-md-8">
+					<?php
+					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+						$args = array(
+								'post_type' => 'post',
+								'post_status' => 'publish',
+								'posts_per_page' => "{$post_count}",
+								'paged' => $paged,
+								'caller_get_posts' => 1,
+							);
+						$my_query = new WP_Query($args);
+						if ($my_query->have_posts()) {
+						while ($my_query->have_posts()) : $my_query->the_post();
+						get_template_part('templates/content-common');
 					?>
-				</div>
-				<div class="col-xs-12 col-sm-8 no-padding">
-					<h3 class="post_title"><?php the_title(); ?></h3>
-				</div>
-				<div class="col-xs-12 col-sm-4 no-padding">
-					<a href="<?php the_permalink(); ?>" class="book_but right"><?php _e('Read More','snhotel-theme'); ?></a>
-				</div>
-				<?php the_excerpt();?>
+
+					<?php
+						endwhile;
+						echo "<script type=\"text/javascript\">";
+						echo "var total_blog_pages = ".$my_query->max_num_pages.";";
+						echo "</script>";
+						/* echo $my_query->found_posts; */
+						if($my_query->max_num_pages > 1){
+					?>
+						<div class="more_blog_post">
+
+						</div>
+						<div class="clearfix"></div>
+						<div class="load-more color-gray">
+							<a href="#" id="more_blogposts"><?php echo __('Load More Posts','snhotel-theme');?></a>
+						</div>
+					<?php
+							}
+						}
+						wp_reset_query();  // Restore global post data stomped by the_post().
+					?>
+				</div><!-- #content -->
+				<div class="right-sidebar col-xs-12 col-sm-4 col-md-4 margin-t30">
+					<div class="col-xs-12" id="right-sidebar"> 
+							<?php get_template_part('templates/sidebar'); ?>
+					</div>
+				</div><!-- /.sidebar -->
 			</div>
+ <?php
+ get_template_part('archives');
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_archive_post', 'x_shortcode_archive_post' );
+
+
+/* VC element for events */
+vc_map( array(
+        "name"      => __( "Archive Events", "__x__" ),
+        "base"      => "vc_archive_event",  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+				
+				array(
+                'type' => 'loop',
+                'value' => '',
+                'heading' => 'Query for Taxonomy',
+                'param_name' => 'taxonomy_loop',
+            ),
+				
+		   		),
+			)); 
+// SNH Archive Events
+function x_shortcode_archive_event( $atts ) {
+	ob_start();
+ extract( shortcode_atts( array(
+        'taxonomy_loop' => 'taxonomy_loop',
+        
+    ), $atts));
+
+ $query=$taxonomy_loop;
+ $query=explode('|',$query);
+ foreach($query as $query_part)
+	{
+		$q_part=explode(':',$query_part);
+		switch($q_part[0])
+		{
+			case 'post_type':
+				$query_post_type=explode(',',$q_part[1]);
+			break;
+			
+			case 'size':
+				$query_posts_per_page=($q_part[1]=='All' ? -1:$q_part[1]);
+			break;
+			
+			case 'order_by':
+				
+				$query_meta_key='';
+				$query_orderby='';
+				
+				$public_orders_array=array('ID','date','author','title','modified','rand','comment_count','menu_order');
+				if(in_array($q_part[1],$public_orders_array))
+				{
+					$query_orderby=$q_part[1];
+				}else
+				{
+					$query_meta_key=$q_part[1];
+					$query_orderby='meta_value_num';
+				}
+				
+			break;
+			
+			case 'order':
+				$query_order=$q_part[1];
+			break;
+			
+			case 'by_id':
+				$query_by_id=explode(',',$q_part[1]);
+				$query_by_id_not_in=array();
+				$query_by_id_in=array();
+				foreach($query_by_id as $ids)
+				{
+					if($ids<0)
+					{
+						$query_by_id_not_in[]=$ids;
+					}else{
+						$query_by_id_in[]=$ids;
+					}
+				}
+			break;
+			
+			case 'categories':
+				$query_categories=explode(',',$q_part[1]);
+				$query_cat_not_in=array();
+				$query_cat_in=array();
+				foreach($query_categories as $cat)
+				{
+					if($cat<0)
+					{
+						$query_cat_not_in[]=$cat;
+					}else
+					{
+						$query_cat_in[]=$cat;
+					}
+				}
+			break;
+			
+			case 'tags':
+				$query_tags=explode(',',$q_part[1]);
+				$query_tags_not_in=array();
+				$query_tags_in=array();
+				foreach($query_tags as $tags)
+				{
+					if($tags<0)
+					{
+						$query_tags_not_in[]=$tags;
+					}else
+					{
+						$query_tags_in[]=$tags;
+					}
+				}
+			break;
+			
+			case 'authors':
+				$query_author=explode(',',$q_part[1]);
+				$query_author_not_in=array();
+				$query_author_in=array();
+				foreach($query_author as $author)
+				{
+					if($tags<0)
+					{
+						$query_author_not_in[]=$author;
+					}else
+					{
+						$query_author_in[]=$author;
+					}
+				}
+				
+			break;
+
+			case 'tax_query':
+				$all_tax=get_object_taxonomies( $query_post_type );
+
+				$tax_query=array();
+				$query_tax_query=array('relation' => 'AND');
+				foreach ( $all_tax as $tax ) {
+					$values=$tax;
+					$query_taxs_in=array();
+					$query_taxs_not_in=array();
+					
+					$query_taxs=explode(',',$q_part[1]);
+					foreach($query_taxs as $taxs)
+					{
+						if(term_exists( absint($taxs), $tax )){
+							if($taxs<0)
+							{
+								$query_taxs_not_in[]=absint($taxs);
+							}else
+							{
+								$query_taxs_in[]=$taxs;
+							}
+						}
+					}
+
+					if(count($query_taxs_not_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_not_in,
+							'operator' => 'NOT IN',
+						);
+					}else if(count($query_taxs_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_in,
+							'operator' => 'IN',
+						);
+					}
+					
+					//break;
+				}
+				
+			break;
+		}
+	}
+
+ 
+ $q = new WP_Query( array(
+  'orderby'          => $query_orderby,
+  'post_type'        => $query_post_type,
+  'posts_per_page'   => $query_posts_per_page,
+  'tax_query' => $query_tax_query   
+    ) );
+?>
+<?php 
+include (locate_template('archive-snhotel_event.php'));
+?>
+  <div class="clear"></div>
+  <div class="container">
+	<div class="next-previous"><?php post_pagination();?></div>
+  </div>
+<?php
+
+ wp_reset_postdata();
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_archive_event', 'x_shortcode_archive_event' );
+
+
+/* VC element for facility */
+vc_map( array(
+        "name"      => __( "Archive Facility", "__x__" ),
+        "base"      => "vc_archive_facility",  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+				
+				array(
+                'type' => 'loop',
+                'value' => '',
+                'heading' => 'Query for Taxonomy',
+                'param_name' => 'taxonomy_loop',
+            ),
+			))); 
+// SNH Archive Facility
+function x_shortcode_archive_facility( $atts ) {
+	ob_start();
+ extract( shortcode_atts( array(
+        'taxonomy_loop' => 'taxonomy_loop',
+        
+    ), $atts));
+
+ $query=$taxonomy_loop;
+ $query=explode('|',$query);
+ foreach($query as $query_part)
+	{
+		$q_part=explode(':',$query_part);
+		switch($q_part[0])
+		{
+			case 'post_type':
+				$query_post_type=explode(',',$q_part[1]);
+			break;
+			
+			case 'size':
+				$query_posts_per_page=($q_part[1]=='All' ? -1:$q_part[1]);
+			break;
+			
+			case 'order_by':
+				
+				$query_meta_key='';
+				$query_orderby='';
+				
+				$public_orders_array=array('ID','date','author','title','modified','rand','comment_count','menu_order');
+				if(in_array($q_part[1],$public_orders_array))
+				{
+					$query_orderby=$q_part[1];
+				}else
+				{
+					$query_meta_key=$q_part[1];
+					$query_orderby='meta_value_num';
+				}
+				
+			break;
+			
+			case 'order':
+				$query_order=$q_part[1];
+			break;
+			
+			case 'by_id':
+				$query_by_id=explode(',',$q_part[1]);
+				$query_by_id_not_in=array();
+				$query_by_id_in=array();
+				foreach($query_by_id as $ids)
+				{
+					if($ids<0)
+					{
+						$query_by_id_not_in[]=$ids;
+					}else{
+						$query_by_id_in[]=$ids;
+					}
+				}
+			break;
+			
+			case 'categories':
+				$query_categories=explode(',',$q_part[1]);
+				$query_cat_not_in=array();
+				$query_cat_in=array();
+				foreach($query_categories as $cat)
+				{
+					if($cat<0)
+					{
+						$query_cat_not_in[]=$cat;
+					}else
+					{
+						$query_cat_in[]=$cat;
+					}
+				}
+			break;
+			
+			case 'tags':
+				$query_tags=explode(',',$q_part[1]);
+				$query_tags_not_in=array();
+				$query_tags_in=array();
+				foreach($query_tags as $tags)
+				{
+					if($tags<0)
+					{
+						$query_tags_not_in[]=$tags;
+					}else
+					{
+						$query_tags_in[]=$tags;
+					}
+				}
+			break;
+			
+			case 'authors':
+				$query_author=explode(',',$q_part[1]);
+				$query_author_not_in=array();
+				$query_author_in=array();
+				foreach($query_author as $author)
+				{
+					if($tags<0)
+					{
+						$query_author_not_in[]=$author;
+					}else
+					{
+						$query_author_in[]=$author;
+					}
+				}
+				
+			break;
+
+			case 'tax_query':
+				$all_tax=get_object_taxonomies( $query_post_type );
+
+				$tax_query=array();
+				$query_tax_query=array('relation' => 'AND');
+				foreach ( $all_tax as $tax ) {
+					$values=$tax;
+					$query_taxs_in=array();
+					$query_taxs_not_in=array();
+					
+					$query_taxs=explode(',',$q_part[1]);
+					foreach($query_taxs as $taxs)
+					{
+						if(term_exists( absint($taxs), $tax )){
+							if($taxs<0)
+							{
+								$query_taxs_not_in[]=absint($taxs);
+							}else
+							{
+								$query_taxs_in[]=$taxs;
+							}
+						}
+					}
+
+					if(count($query_taxs_not_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_not_in,
+							'operator' => 'NOT IN',
+						);
+					}else if(count($query_taxs_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_in,
+							'operator' => 'IN',
+						);
+					}
+					
+					//break;
+				}
+				
+			break;
+		}
+	}
+
+ 
+ $q = new WP_Query( array(
+  'orderby'          => $query_orderby,
+  'post_type'        => $query_post_type,
+  'posts_per_page'   => $query_posts_per_page,
+  'tax_query' => $query_tax_query   
+    ) );
+
+?>
+<?php 
+include (locate_template('archive-snhotel_facility.php'));
+?>
 <?php
   
-  ?>
+ ?>
+  <div class="clear"></div>
+  <div class="container">
+	<div class="next-previous"><?php post_pagination();?></div>
+  </div>
+<?php
+ wp_reset_postdata();
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_archive_facility', 'x_shortcode_archive_facility' );
+
+/*-------------------------------------------------------------------------------
+	Custom Featured Offer Form Config
+-------------------------------------------------------------------------------*/
+global $wpdb;
+
+ 
+vc_map( array(
+        "name"      => __( "Featured Offer", "__x__" ),
+        "base"      => "vc_featured_offer",
+		
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+        
+    ) );
+	
+	
+	// SNH Featured Offer Shortcode
+// =============================================================================
+ 
+function x_shortcode_featured_offers( $atts ) {
+	ob_start();
+	get_template_part('templates/template-featured_offers');
+	$returnvariable = ob_get_clean();
+	return $returnvariable;
+}
+ 
+add_shortcode( 'vc_featured_offer', 'x_shortcode_featured_offers' );
+
+/*SNH Featured Offer Overview */
+
+vc_map( array(
+        "name"      => __( "Featured Offer Overview", "__x__" ),
+        "base"      => "vc_featured_offer_overview",
+		
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+        
+    ) );
+	
+	
+	// SNH Featured Offer Shortcode
+// =============================================================================
+ 
+function x_shortcode_featured_offers_overview( $atts ) {
+	ob_start();
+	get_template_part('templates/template_featured_offer_overview');
+	$returnvariable = ob_get_clean();
+	return $returnvariable;
+}
+ 
+add_shortcode( 'vc_featured_offer_overview', 'x_shortcode_featured_offers_overview' );
+
+
+
+/*-------------------------------------------------------------------------------
+ Custom Banner Config
+-------------------------------------------------------------------------------*/
+
+vc_map( array(
+        "name"      => __( "Banner Image", "__x__" ),
+        "base"      => "vc_banner_image",
   
-  <?php
- endwhile; endif; wp_reset_postdata();
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+        
+    ) );
+ 
+ 
+ // SNH Map Shortcode
+// =============================================================================
+ 
+function x_shortcode_banner_image( $atts ) {
+ ob_start(); 
+ get_template_part('templates/template-banner');
  $returnvariable = ob_get_clean();
  return $returnvariable;
 }
  
-add_shortcode( 'vc_taxonomy', 'x_shortcode_taxonomy' );
+add_shortcode( 'vc_banner_image', 'x_shortcode_banner_image' );
+
+
 
  //Pagination
 if (  !function_exists( 'post_pagination' ) ) :
@@ -1000,8 +1355,7 @@ vc_map( array(
                 'heading' => 'Offer Code',
                 'param_name' => 'offer_code',
             ), 
-        ),
-        
+        ),        
     ) );
 	
 	
@@ -1432,7 +1786,6 @@ vc_map( array(
 				__( 'Typicons', 'js_composer' ) => 'typicons',
 				__( 'Entypo', 'js_composer' ) => 'entypo',
 				__( 'Linecons', 'js_composer' ) => 'linecons',
-				__( 'Pixel', 'js_composer' ) => 'pixelicons',
 				__( 'Mono Social', 'js_composer' ) => 'monosocial',
 			),
 			'param_name' => 'icon_type',
@@ -1455,8 +1808,100 @@ vc_map( array(
 			),
 			'description' => __( 'Select icon from library.', 'js_composer' ),
 		),
+		array(
+			'type' => 'iconpicker',
+			'heading' => __( 'Icon', 'js_composer' ),
+			'param_name' => 'icon_openiconic',
+			'value' => 'vc-oi vc-oi-dial',
+			'settings' => array(
+				'emptyIcon' => false,
+				'type' => 'openiconic',
+				// default true, display an "EMPTY" icon?
+				'iconsPerPage' => 4000,
+				// default 100, how many icons per/page to display
+			),
+			'dependency' => array(
+				'element' => 'icon_type',
+				'value' => 'openiconic',
+			),
+			'description' => __( 'Select icon from library.', 'js_composer' ),
+		),
+		array(
+			'type' => 'iconpicker',
+			'heading' => __( 'Icon', 'js_composer' ),
+			'param_name' => 'icon_typicons',
+			'value' => 'typcn typcn-adjust-brightness',
+			'settings' => array(
+				'emptyIcon' => false,
+				'type' => 'typicons',
+				// default true, display an "EMPTY" icon?
+				'iconsPerPage' => 4000,
+				// default 100, how many icons per/page to display
+			),
+			'dependency' => array(
+				'element' => 'icon_type',
+				'value' => 'typicons',
+			),
+			'description' => __( 'Select icon from library.', 'js_composer' ),
+		),
+		array(
+			'type' => 'iconpicker',
+			'heading' => __( 'Icon', 'js_composer' ),
+			'param_name' => 'icon_entypo',
+			'value' => 'entypo-icon entypo-icon-note',
+			'settings' => array(
+				'emptyIcon' => false,
+				'type' => 'entypo',
+				// default true, display an "EMPTY" icon?
+				'iconsPerPage' => 4000,
+				// default 100, how many icons per/page to display
+			),
+			'dependency' => array(
+				'element' => 'icon_type',
+				'value' => 'entypo',
+			),
+			'description' => __( 'Select icon from library.', 'js_composer' ),
+		),
+		array(
+			'type' => 'iconpicker',
+			'heading' => __( 'Icon', 'js_composer' ),
+			'param_name' => 'icon_linecons',
+			'value' => 'vc_li vc_li-heart',
+			'settings' => array(
+				'emptyIcon' => false,
+				'type' => 'linecons',
+				// default true, display an "EMPTY" icon?
+				'iconsPerPage' => 4000,
+				// default 100, how many icons per/page to display
+			),
+			'dependency' => array(
+				'element' => 'icon_type',
+				'value' => 'linecons',
+			),
+			'description' => __( 'Select icon from library.', 'js_composer' ),
+		),
+		array(
+			'type' => 'iconpicker',
+			'heading' => __( 'Icon', 'js_composer' ),
+			'param_name' => 'icon_monosocial',
+			'value' => 'vc-mono vc-mono-fivehundredpx',
+			'settings' => array(
+				'emptyIcon' => false,
+				'type' => 'monosocial',
+				// default true, display an "EMPTY" icon?
+				'iconsPerPage' => 4000,
+				// default 100, how many icons per/page to display
+			),
+			'dependency' => array(
+				'element' => 'icon_type',
+				'value' => 'monosocial',
+			),
+			'description' => __( 'Select icon from library.', 'js_composer' ),
+		),
 ) ));
 
+
+/*---------------VC Templates---------------*/
 /*-------------------------------------------------------------------------------
  Custom Template For Homepage
 -------------------------------------------------------------------------------*/
@@ -1465,32 +1910,12 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc' ); // Hook 
  
 function new_template_for_vc() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Homepage', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '1. HomePage', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
     $data['content']    = <<<CONTENT
         [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column width="2/3"][vc_column_text][/vc_column_text][/vc_column][vc_column width="1/3"][vc_review][/vc_column][/vc_row][vc_row full_width="stretch_row" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1470206395550{padding-top: 0px !important;}"][vc_column][vc_custom_heading text="Explore all that we have to offer" font_container="tag:h2|text_align:center" use_theme_fonts="yes" css=".vc_custom_1469770079237{padding-top: 0px !important;padding-bottom: 20px !important;}"][vc_post_order post_homepage="post_type:snhotel_facility|by_id:1084,1083" post_count="3" post_id="1084,"][/vc_column][/vc_row][vc_row seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1469768205521{padding-top: 30px !important;}"][vc_column][vc_featured_offer][/vc_column][/vc_row][vc_row full_width="stretch_row" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1470204983543{background-color: #f3f3f3 !important;}"][vc_column][vc_custom_heading text="Hotel Facilities" font_container="tag:h3|text_align:center"][vc_row_inner][vc_column_inner width="1/6"][vc_hf_icon icon_text="Lounge" icon_fontawesome="fa fa-glass"][/vc_column_inner][vc_column_inner width="1/6"][vc_hf_icon icon_text="Fitness" icon_fontawesome="fa fa-beer"][/vc_column_inner][vc_column_inner width="1/6"][vc_hf_icon icon_text="Wifi" icon_fontawesome="fa fa-wifi"][/vc_column_inner][vc_column_inner width="1/6"][vc_hf_icon icon_text="Newspapers" icon_fontawesome="fa fa-newspaper-o"][/vc_column_inner][vc_column_inner width="1/6"][vc_hf_icon icon_text="Wheel Chair" style="square" icon_fontawesome="fa fa-wheelchair"][/vc_column_inner][vc_column_inner width="1/6"][vc_hf_icon icon_text="Fax Service" icon_fontawesome="fa fa-fax"][/vc_column_inner][/vc_row_inner][vc_empty_space][/vc_column][/vc_row]
-CONTENT;
-  
-    vc_add_default_templates( $data );
-}
-
-
-/*-------------------------------------------------------------------------------
- Custom Template For Blog
--------------------------------------------------------------------------------*/
-
-add_action( 'vc_load_default_templates_action','new_template_for_vc_blog' ); // Hook in
- 
-function new_template_for_vc_blog() {
-    $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Blog', 'my-text-domain' ); // Assign name for your custom template
-    $data['weight']     = 0; // Weight of your template in the template list
-    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
-    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
-    $data['content']    = <<<CONTENT
-        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column][vc_archive_post archieve_post="post"][/vc_column][/vc_row]
 CONTENT;
   
     vc_add_default_templates( $data );
@@ -1505,32 +1930,12 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_accommodatio
  
 function new_template_for_vc_accommodation() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Accommodation', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '2. Accommodation Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
     $data['content']    = <<<CONTENT
         [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column][vc_archive_accom][/vc_column][/vc_row]
-CONTENT;
-  
-    vc_add_default_templates( $data );
-}
-
-
-/*-------------------------------------------------------------------------------
- Custom Template For Taxonomies
--------------------------------------------------------------------------------*/
-
-add_action( 'vc_load_default_templates_action','new_template_for_vc_taxonomies' ); // Hook in
- 
-function new_template_for_vc_taxonomies() {
-    $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Taxonomies', 'my-text-domain' ); // Assign name for your custom template
-    $data['weight']     = 0; // Weight of your template in the template list
-    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
-    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
-    $data['content']    = <<<CONTENT
-        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column][vc_column_text][/vc_column_text][/vc_column][/vc_row][vc_row][vc_column][vc_taxonomy][/vc_column][/vc_row]
 CONTENT;
   
     vc_add_default_templates( $data );
@@ -1544,7 +1949,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_facility' );
  
 function new_template_for_vc_facility() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Facility', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '3. Facility Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1563,7 +1968,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_offer' ); //
  
 function new_template_for_vc_offer() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Offer', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '4. Offers Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1575,6 +1980,26 @@ CONTENT;
 }
 
 
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Event
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_event' ); // Hook in
+ 
+function new_template_for_vc_event() {
+    $data               = array(); // Create new array
+    $data['name']       = __( '5. Events Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column][vc_archive_event][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
 /*-------------------------------------------------------------------------------
  Custom Template For Destination
 -------------------------------------------------------------------------------*/
@@ -1583,7 +2008,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_destination'
  
 function new_template_for_vc_destination() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Destination', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '6. Destination Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1596,23 +2021,24 @@ CONTENT;
 
 
 /*-------------------------------------------------------------------------------
- Custom Template For Event
+ Custom Template For Blog
 -------------------------------------------------------------------------------*/
 
-add_action( 'vc_load_default_templates_action','new_template_for_vc_event' ); // Hook in
+add_action( 'vc_load_default_templates_action','new_template_for_vc_blog' ); // Hook in
  
-function new_template_for_vc_event() {
+function new_template_for_vc_blog() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Event', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '7. Blog Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
     $data['content']    = <<<CONTENT
-        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column][vc_archive_event][/vc_column][/vc_row]
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column][vc_archive_post archieve_post="post"][/vc_column][/vc_row]
 CONTENT;
   
     vc_add_default_templates( $data );
 }
+
 
 /*-------------------------------------------------------------------------------
  Custom Template For Header
@@ -1622,7 +2048,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_header' ); /
  
 function new_template_for_vc_header() {
     $data               = array(); // Create new array
-    $data['name']       = __( 'Template for Header', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( '8. Template for Header', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1632,4 +2058,246 @@ CONTENT;
   
     vc_add_default_templates( $data );
 }
+
+/*--------------VC ELEMENT FOR LATEST FEATURED OFFER/EVENT ---------------*/
+
+vc_map( array(
+        "name"      => __( "Latest Featured Offer/Event", "__x__" ),
+        "base"      => "vc_featured_offer_event",
+		
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+            array(
+                'type' => 'textfield',
+                'value' => '',
+                'heading' => 'City Name',
+                'param_name' => 'city_name',
+            ), 
+        ),
+        
+    ) );
+	
+	
+	// SNH Offer/ Events widget
+// =============================================================================
+ 
+function x_featured_offer_event( $atts ) {
+	ob_start();
+	$a = shortcode_atts( array(
+        'city_name' => 'city_name',
+        
+    ), $atts );
+ $city_name  = $a['city_name'];
+ include (locate_template('templates/content-offers_events_widget.php'));
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+}
+ 
+add_shortcode( 'vc_featured_offer_event', 'x_featured_offer_event' );
+
+/*---------------VC ELEMENT FOR Further Available Offers------------------------*/
+vc_map( array(
+        "name"      => __( "Further Offers/Events", "__x__" ),
+        "base"      => "vc_further_available_offer",  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+				
+				array(
+                'type' => 'loop',
+                'value' => '',
+                'heading' => 'Query for Taxonomy',
+                'param_name' => 'taxonomy_loop',
+            ),
+			))); 
+// SNH Archive Offer
+function x_shortcode_further_available_offer( $atts ) {
+	ob_start();
+ extract( shortcode_atts( array(
+        'taxonomy_loop' => 'taxonomy_loop',
+        
+    ), $atts));
+
+ $query=$taxonomy_loop;
+ $query=explode('|',$query);
+ foreach($query as $query_part)
+	{
+		$q_part=explode(':',$query_part);
+		switch($q_part[0])
+		{
+			case 'post_type':
+				$query_post_type=explode(',',$q_part[1]);
+			break;
+			
+			case 'size':
+				$query_posts_per_page=($q_part[1]=='All' ? -1:$q_part[1]);
+			break;
+			
+			case 'order_by':
+				
+				$query_meta_key='';
+				$query_orderby='';
+				
+				$public_orders_array=array('ID','date','author','title','modified','rand','comment_count','menu_order');
+				if(in_array($q_part[1],$public_orders_array))
+				{
+					$query_orderby=$q_part[1];
+				}else
+				{
+					$query_meta_key=$q_part[1];
+					$query_orderby='meta_value_num';
+				}
+				
+			break;
+			
+			case 'order':
+				$query_order=$q_part[1];
+			break;
+			
+			case 'by_id':
+				$query_by_id=explode(',',$q_part[1]);
+				$query_by_id_not_in=array();
+				$query_by_id_in=array();
+				foreach($query_by_id as $ids)
+				{
+					if($ids<0)
+					{
+						$query_by_id_not_in[]=$ids;
+					}else{
+						$query_by_id_in[]=$ids;
+					}
+				}
+			break;
+			
+			case 'categories':
+				$query_categories=explode(',',$q_part[1]);
+				$query_cat_not_in=array();
+				$query_cat_in=array();
+				foreach($query_categories as $cat)
+				{
+					if($cat<0)
+					{
+						$query_cat_not_in[]=$cat;
+					}else
+					{
+						$query_cat_in[]=$cat;
+					}
+				}
+			break;
+			
+			case 'tags':
+				$query_tags=explode(',',$q_part[1]);
+				$query_tags_not_in=array();
+				$query_tags_in=array();
+				foreach($query_tags as $tags)
+				{
+					if($tags<0)
+					{
+						$query_tags_not_in[]=$tags;
+					}else
+					{
+						$query_tags_in[]=$tags;
+					}
+				}
+			break;
+			
+			case 'authors':
+				$query_author=explode(',',$q_part[1]);
+				$query_author_not_in=array();
+				$query_author_in=array();
+				foreach($query_author as $author)
+				{
+					if($tags<0)
+					{
+						$query_author_not_in[]=$author;
+					}else
+					{
+						$query_author_in[]=$author;
+					}
+				}
+				
+			break;
+
+			case 'tax_query':
+				$all_tax=get_object_taxonomies( $query_post_type );
+
+				$tax_query=array();
+				$query_tax_query=array('relation' => 'AND');
+				foreach ( $all_tax as $tax ) {
+					$values=$tax;
+					$query_taxs_in=array();
+					$query_taxs_not_in=array();
+					
+					$query_taxs=explode(',',$q_part[1]);
+					foreach($query_taxs as $taxs)
+					{
+						if(term_exists( absint($taxs), $tax )){
+							if($taxs<0)
+							{
+								$query_taxs_not_in[]=absint($taxs);
+							}else
+							{
+								$query_taxs_in[]=$taxs;
+							}
+						}
+					}
+
+					if(count($query_taxs_not_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_not_in,
+							'operator' => 'NOT IN',
+						);
+					}else if(count($query_taxs_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_in,
+							'operator' => 'IN',
+						);
+					}
+					
+					//break;
+				}
+				
+			break;
+		}
+	}
+
+ 
+ $q = new WP_Query( array(
+  'orderby'          => $query_orderby,
+  'post_type'        => $query_post_type,
+  'posts_per_page'   => $query_posts_per_page,
+  'tax_query' => $query_tax_query,  
+    ));
+ if($query_post_type[0] == 'snhotel_offer')
+ {
+	include (locate_template('templates/content-further_available_offers.php')); 
+ }
+ if($query_post_type[0] == 'snhotel_event')
+ {
+	include (locate_template('templates/content-events_meetings.php')); 
+ }
+//get_template_part('archive-snhotel_offer');
+?>
+  <div class="clear"></div>
+  <div class="container">
+	<div class="next-previous"><?php post_pagination();?></div>
+  </div>
+<?php
+ wp_reset_postdata();
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_further_available_offer', 'x_shortcode_further_available_offer' );
+
 ?>
