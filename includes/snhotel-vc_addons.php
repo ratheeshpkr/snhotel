@@ -29,7 +29,6 @@ ob_start();
 } 
 
 add_shortcode( 'vc_menu', 'vc_menu_func');
-
 vc_map( array(
     "name" => __("Naviagtion Menu", "js_composer"), // add a name
     "base" => "vc_menu", // bind with our shortcode
@@ -79,7 +78,7 @@ function x_shortcode_archive_dest( $atts ) {
   
   
   ));
-include (locate_template('archive-snhotel_destination.php'));
+include (locate_template('vc-archive-snhotel_destination.php'));
 //get_template_part('archive-snhotel_destination');
  
   ?>
@@ -282,7 +281,7 @@ function x_shortcode_archive_accom( $atts ) {
   'tax_query' => $query_tax_query   
     ) );
 
-include (locate_template('archive-snhotel_room.php'));
+include (locate_template('vc-archive-snhotel_room.php'));
 /* get_template_part('archive-snhotel_room'); */
 
 ?>
@@ -482,7 +481,7 @@ function x_shortcode_archive_offer( $atts ) {
   'tax_query' => $query_tax_query,  
     ));
  
- include (locate_template('archive-snhotel_offer.php'));
+ include (locate_template('vc-archive-snhotel_offer.php'));
 //get_template_part('archive-snhotel_offer');
 ?>
   <div class="clear"></div>
@@ -763,7 +762,7 @@ function x_shortcode_archive_event( $atts ) {
     ) );
 ?>
 <?php 
-include (locate_template('archive-snhotel_event.php'));
+include (locate_template('vc-archive-snhotel_event.php'));
 ?>
   <div class="clear"></div>
   <div class="container">
@@ -962,7 +961,7 @@ function x_shortcode_archive_facility( $atts ) {
 
 ?>
 <?php 
-include (locate_template('archive-snhotel_facility.php'));
+include (locate_template('vc-archive-snhotel_facility.php'));
 ?>
 <?php
   
@@ -1001,7 +1000,7 @@ vc_map( array(
  
 function x_shortcode_featured_offers( $atts ) {
 	ob_start();
-	get_template_part('templates/template-featured_offers');
+	get_template_part('templates/vc-template-featured_offers');
 	$returnvariable = ob_get_clean();
 	return $returnvariable;
 }
@@ -1027,7 +1026,7 @@ vc_map( array(
  
 function x_shortcode_featured_offers_overview( $atts ) {
 	ob_start();
-	get_template_part('templates/template_featured_offer_overview');
+	get_template_part('templates/vc-template_featured_offer_overview');
 	$returnvariable = ob_get_clean();
 	return $returnvariable;
 }
@@ -1048,16 +1047,44 @@ vc_map( array(
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
         "wrapper_class" => "clearfix",
         "category" => "SNHotels Addons",
-        
+        "params" => array(
+         array(
+            "type" => "textfield",
+            "holder" => "div",
+            "class" => "",
+            "heading" => __( "Primary Title", "primary-title" ),
+            "param_name" => "primary_title",
+            "description" => __( "Enter Your Primary Page Title.", "primary-title" )
+         ),
+		array(
+            "type" => "textfield",
+            "holder" => "div",
+            "class" => "",
+            "heading" => __( "Secondary Title", "secondary-title" ),
+            "param_name" => "secondary_title",
+            "description" => __( "Enter Your Secondary Page Title.", "secondary-title" )
+         ),
+		array(
+            "type" => "attach_image", // it will bind a img choice in WP
+            "heading" => __("Image for Banner", "js_composer"),
+            "param_name" => "banner_image",
+        ),
+		), 
     ) );
  
  
- // SNH Map Shortcode
+ // SNH Banner image Shortcode
 // =============================================================================
  
 function x_shortcode_banner_image( $atts ) {
  ob_start(); 
- get_template_part('templates/template-banner');
+ $banner = shortcode_atts( array(
+        'primary_title' => 'primary_title',
+        'secondary_title' => 'secondary_title',
+		'banner_image' => 'banner_image'
+    ), $atts );
+ include(locate_template('templates/vc-template-banner.php'));
+ //get_template_part('templates/template-banner');
  $returnvariable = ob_get_clean();
  return $returnvariable;
 }
@@ -1402,7 +1429,7 @@ function vc_gmap_func( $atts, $content) {
  $marker_attributes = wp_get_attachment_image_src( $attachment_id = $a['marker_icon'] );
  $marker_icon= $marker_attributes[0];
     //get_template_part( 'mytemp', $type);
- include(locate_template('templates/template-map.php'));
+ include(locate_template('templates/vc-template-map.php'));
  $returnvariable = ob_get_clean();
  return $returnvariable;
  ?>
@@ -1448,7 +1475,7 @@ vc_map( array(
 
 function vc_related_func( $atts, $content) {
    ob_start();
-   get_template_part( 'templates/template-related_offer' );
+   get_template_part( 'templates/vc-template-related_offer' );
    $returnvariable = ob_get_clean();
    return $returnvariable; 
 } 
@@ -1578,17 +1605,17 @@ function x_shortcode_contact_us( $atts, $content ) {
 						if(!empty($add2)){
 								$output .= $add2.','."<br>";
 						}
-						$output .= $city.',<br>;';
+						$output .= $city.',<br>';
 						$output .=$state.' '.$pcode.', '.$country."<br>";
 
 						$output .= '<div class="contact-info margin-bottom-20">
 
-							<span>P:</span>'.esc_html( stripslashes( $settings["snc_phone"] ) ).'<br>';
+							<span>P: </span>'.esc_html( stripslashes( $settings["snc_phone"] ) ).'<br>';
 
 							if(!empty($settings["snc_fax"])) {
-								$output .='<span>F:</span>'.esc_html( stripslashes( $settings["snc_fax"] ) ).'<br>';
+								$output .='<span>F: </span>'.esc_html( stripslashes( $settings["snc_fax"] ) ).'<br>';
 							}
-							$output .='<span class="margin-t20">E:</span> <a href="mailto:'.esc_html( stripslashes( $settings["snc_email"] ) ).'">'.esc_html( stripslashes( $settings["snc_email"] ) ).'</a></br></div></address>';
+							$output .='<span class="margin-t20">E: </span> <a href="mailto:'.esc_html( stripslashes( $settings["snc_email"] ) ).'">'.esc_html( stripslashes( $settings["snc_email"] ) ).'</a></br></div></address>';
 					return $output;				
 	$returnvariable = ob_get_clean();
 	return $returnvariable;
@@ -1901,7 +1928,7 @@ vc_map( array(
 ) ));
 
 
-/*---------------VC Templates---------------*/
+/*---------------VC Templates For Sage---------------*/
 /*-------------------------------------------------------------------------------
  Custom Template For Homepage
 -------------------------------------------------------------------------------*/
@@ -1910,7 +1937,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc' ); // Hook 
  
 function new_template_for_vc() {
     $data               = array(); // Create new array
-    $data['name']       = __( '1. HomePage', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel HomePage', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1930,7 +1957,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_accommodatio
  
 function new_template_for_vc_accommodation() {
     $data               = array(); // Create new array
-    $data['name']       = __( '2. Accommodation Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Accommodation Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1949,7 +1976,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_facility' );
  
 function new_template_for_vc_facility() {
     $data               = array(); // Create new array
-    $data['name']       = __( '3. Facility Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Facility Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1968,7 +1995,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_offer' ); //
  
 function new_template_for_vc_offer() {
     $data               = array(); // Create new array
-    $data['name']       = __( '4. Offers Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Offers Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -1989,7 +2016,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_event' ); //
  
 function new_template_for_vc_event() {
     $data               = array(); // Create new array
-    $data['name']       = __( '5. Events Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Events Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -2008,7 +2035,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_destination'
  
 function new_template_for_vc_destination() {
     $data               = array(); // Create new array
-    $data['name']       = __( '6. Destination Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Destination Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -2028,7 +2055,7 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_blog' ); // 
  
 function new_template_for_vc_blog() {
     $data               = array(); // Create new array
-    $data['name']       = __( '7. Blog Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Blog Overview', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
@@ -2048,12 +2075,35 @@ add_action( 'vc_load_default_templates_action','new_template_for_vc_header' ); /
  
 function new_template_for_vc_header() {
     $data               = array(); // Create new array
-    $data['name']       = __( '8. Template for Header', 'my-text-domain' ); // Assign name for your custom template
+    $data['name']       = __( 'Hotel Template for Header', 'my-text-domain' ); // Assign name for your custom template
     $data['weight']     = 0; // Weight of your template in the template list
     $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
     $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
     $data['content']    = <<<CONTENT
         [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Contact US
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_contact' ); // Hook in
+ 
+function new_template_for_vc_contact() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel Contact Us', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_class="header_template"][vc_column][vc_banner_image][vc_menu][/vc_menu][vc_booking_form][vc_empty_space][/vc_column][/vc_row][vc_row][vc_column width="1/3"][vc_custom_heading text="Contact Us" use_theme_fonts="yes"][vc_contact_us][vc_column_text]Check In Time: 14:00
+Check Out Time: 10:00
+Central Reservations
+1800 303 186 (Within Australia)
+0800 480 274 (Within New Zealand)[/vc_column_text][/vc_column][vc_column width="2/3"][ninja_forms_display_form id="5"][/vc_column][/vc_row]
 CONTENT;
   
     vc_add_default_templates( $data );
@@ -2281,11 +2331,11 @@ function x_shortcode_further_available_offer( $atts ) {
     ));
  if($query_post_type[0] == 'snhotel_offer')
  {
-	include (locate_template('templates/content-further_available_offers.php')); 
+	include (locate_template('templates/vc-content-further_available_offers.php')); 
  }
  if($query_post_type[0] == 'snhotel_event')
  {
-	include (locate_template('templates/content-events_meetings.php')); 
+	include (locate_template('templates/vc-content-events_meetings.php')); 
  }
 //get_template_part('archive-snhotel_offer');
 ?>
@@ -2300,4 +2350,337 @@ function x_shortcode_further_available_offer( $atts ) {
 } 
 add_shortcode( 'vc_further_available_offer', 'x_shortcode_further_available_offer' );
 
+/*--------------------VC Element for Page List and Linked Page List------------------*/
+vc_map(
+    array(
+        'base' => 'vc_page_list',
+		'name' => __( 'Page List', 'js_composer' ),
+		'class' => '',
+		'icon' => 'icon-heart',
+		"category" => "SNHotels Addons",
+        'params' => array(
+           // params group
+            array(
+                'type' => 'param_group',
+                'value' => '',
+                'param_name' => 'titles',
+                // Note params is mapped inside param-group:
+                'params' => array(
+                    array(
+                        'type' => 'textfield',
+                        'value' => '',
+                        'heading' => 'Title',
+                        'param_name' => 'title',
+						'admin_label' => true,
+                    ),
+					array(
+                        'type' => 'textfield',
+                        'value' => '',
+                        'heading' => 'Excerpt',
+                        'param_name' => 'excerpt',
+                    ),
+					array(
+                        'type' => 'vc_link',
+                        'value' => '',
+                        'heading' => 'URL (Link)',
+                        'param_name' => 'link',
+						'description' => 'Add link to custom heading.',
+                    ),
+                )
+            )
+        )
+    )
+);
+function x_shortcode_page_list( $atts ) {
+	ob_start();
+	$titles = vc_param_group_parse_atts( $atts['titles'] );
+				$output='<div class="abt_facilities bullet"><ul>';
+				foreach ($titles as $value) {
+					$output.='<li>';
+					$output.='<h5>'.$value['title']."</h5>";
+					$output.='<p class="text-justify">'.$value['excerpt']."</p>";
+					$link=explode('|', $value['link']);					
+					$url=explode(':',$link[0]);
+					$url_text=explode(':',$link[1]);	
+					
+					$output.='<div><a href="'.urldecode($url[1]).'"  class="aboutLink">'.urldecode($url_text[1]).'</a></div></li>';
+				}
+				$output.='</ul></div>';
+return $output;
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_page_list', 'x_shortcode_page_list' );
+
+
+/*---------------VC Templates For Next Theme---------------*/
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Homepage
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_parent' ); // Hook in
+ 
+function new_template_for_vc_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 HomePage', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gallery interval="3" img_size="full" css=".vc_custom_1471587532205{margin-bottom: 0px !important;}"][vc_booking_form][/vc_column][/vc_row][vc_row][vc_column width="2/3"][vc_custom_heading text="Welcome to NEXT Hotel Brisbane" font_container="tag:h1|text_align:left" el_class="pageheader"][vc_row_inner][vc_column_inner width="1/2"][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][/vc_column_inner][vc_column_inner width="1/2"][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/3"][vc_custom_heading text="GUEST REVIEWS" font_container="tag:h1|text_align:center" el_class="pageheader"][vc_review][/vc_column][/vc_row][vc_row][vc_column][vc_separator color="white" border_width="10"][/vc_column][/vc_row][vc_row full_width="stretch_row" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_id="features-wrapper"][vc_column css=".vc_custom_1470913967347{padding-right: 0px !important;padding-left: 0px !important;}"][vc_custom_heading text="DISCOVER OUR HOTEL IN BRISBANE" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_post_order post_homepage="post_type:snhotel_facility|by_id:5643,1130,1083"][/vc_column][/vc_row][vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gmap url="https://www.thebookingbutton.com.au/silverneedlehotels/properties" map_image="7755" marker_icon="9142"][/vc_gmap][/vc_column][/vc_row][vc_row seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1471338763387{border-bottom-width: 20px !important;}"][vc_column][vc_custom_heading text="RIGHT NOW IN BRISBANE" font_container="tag:h2|text_align:center" el_class="pageheader"][/vc_column][/vc_row][vc_row seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1471348352700{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}"][vc_column width="1/2" css=".vc_custom_1471347481145{background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}"][ess_grid alias="social"][/vc_column][vc_column width="1/2"][ess_grid alias="social instagram"][/vc_column][/vc_row][vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_featured_offer_event city_name="BRISBANE"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Accommodation
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_accommodation_parent' ); // Hook in
+ 
+function new_template_for_vc_accommodation_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Accommodation Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gallery interval="3" img_size="full" css=".vc_custom_1471587667026{border-bottom-width: 0px !important;}"][/vc_column][/vc_row][vc_row][vc_column][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][/vc_column][/vc_row][vc_row][vc_column][vc_custom_heading text="OUR ROOMS AND SUITES" font_container="tag:h2|text_align:center" el_class="pageheader"][/vc_column][/vc_row][vc_row][vc_column][vc_archive_accom taxonomy_loop="size:All|post_type:snhotel_room|tax_query:8"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Facility
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_facility_parent' ); // Hook in
+ 
+function new_template_for_vc_facility_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Facility Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gallery interval="3" img_size="full" css=".vc_custom_1471587667026{border-bottom-width: 0px !important;}"][/vc_column][/vc_row][vc_row][vc_column][vc_archive_facility taxonomy_loop="post_type:snhotel_facility" post_count=""][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Offer
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_offer_parent' ); // Hook in
+ 
+function new_template_for_vc_offer_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Offers Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1470977567905{border-bottom-width: 0px !important;}"][vc_column][vc_gallery interval="3" img_size="full"][/vc_column][/vc_row][vc_row][vc_column][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][/vc_column][/vc_row][vc_row][vc_column][vc_archive_offer taxonomy_loop="size:1|post_type:snhotel_offer|tax_query:51"][/vc_column][/vc_row][vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_id="offer"][vc_column][vc_custom_heading text="FURTHER AVAILABLE OFFERS" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_further_available_offer taxonomy_loop="post_type:snhotel_offer"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Event
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_event_parent' ); // Hook in
+ 
+function new_template_for_vc_event_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Events Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1470977567905{border-bottom-width: 0px !important;}"][vc_column][vc_gallery interval="3" img_size="full"][/vc_column][/vc_row][vc_row][vc_column][vc_archive_event taxonomy_loop="post_type:snhotel_event"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Destination
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_destination_parent' ); // Hook in
+ 
+function new_template_for_vc_destination_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Destination Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gmap url="https://www.thebookingbutton.com.au/silverneedlehotels/properties" map_image="7755" marker_icon="9142"][/vc_gmap][/vc_column][/vc_row][vc_row full_width="stretch_row" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_id="features-wrapper"][vc_column css=".vc_custom_1470913967347{padding-right: 0px !important;padding-left: 0px !important;}"][vc_custom_heading text="THE WATS OF LUANG PRBANG" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_archive_dest][/vc_column][/vc_row][vc_row seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1471348352700{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}"][vc_column width="1/2" css=".vc_custom_1471347481145{background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}"][ess_grid alias="social"][/vc_column][vc_column width="1/2"][ess_grid alias="social instagram"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Blog
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_blog_parent' ); // Hook in
+ 
+function new_template_for_vc_blog_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Blog Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row][vc_column][vc_archive_post][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Header
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_header_parent' ); // Hook in
+ 
+function new_template_for_vc_header_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Template for Header', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gallery interval="3" img_size="full" css=".vc_custom_1471587532205{margin-bottom: 0px !important;}"][vc_booking_form][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+/*-------------------------------------------------------------------------------
+ Custom Template For Next Contact Us
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_contact_parent' ); // Hook in
+ 
+function new_template_for_vc_contact_parent() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Hotel 2 Contact Us', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gmap url="http://snc.staging.snhotels.com/next/" map_image="7868" marker_icon="9142"][/vc_gmap][/vc_column][/vc_row][vc_row][vc_column width="1/3"][vc_contact_us][vc_custom_heading text="RESERVATIONS" font_container="tag:h3|text_align:left" el_class="line-heading"][vc_separator][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][vc_custom_heading text="DIRECTION" font_container="tag:h3|text_align:left" el_class="line-heading"][vc_separator][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][/vc_column][vc_column width="2/3"][ninja_forms_display_form id="5"][/vc_column][/vc_row][vc_row full_width="stretch_row" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_id="offer"][vc_column][vc_custom_heading text="LATEST OFFERS" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_latest_offer latest_offer_loop="post_type:snhotel_offer"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+/*-------------------------------------------------------------------------------
+ Custom Template For Kiridara Home page
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_home_kiridara' ); // Hook in
+ 
+function new_template_for_vc_home_kiridara() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Kiridara homepage', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces" css=".vc_custom_1472114980433{margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;}"][vc_column css=".vc_custom_1472114958166{margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}"][vc_column_text css=".vc_custom_1472115191001{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}"]
+
+[the_grid name="homepage-mobile"]
+[/vc_column_text][/vc_column][/vc_row][vc_row full_width="stretch_row_content_no_spaces"][vc_column][vc_booking_form][/vc_column][/vc_row][vc_row][vc_column width="2/3"][vc_custom_heading text="SPECTACULAR VIEWS, SERENE SERVICE" font_container="tag:h1|text_align:left" el_class="pageheader"][vc_column_text]“While most hotels in heritage Luang Prabang don’t have many facilities, this one is built around its sunny swimming pool and courtyard.” (Oyster.com Hotel Tell-All)[/vc_column_text][vc_row_inner][vc_column_inner width="1/2"][vc_column_text]Situated in the north of Central Lao PDR, where the Nam Khan River meets the Mekong River, Luang Prabang is notable as a UNESCO World Heritage Site and well-known for its ancient Buddhist temples and monasteries. Kiridara offers a vast selection of cultural experiences and activities including night and morning markets, temples and alms giving.[/vc_column_text][/vc_column_inner][vc_column_inner width="1/2"][vc_column_text]The charming hotel is scaled on a hillside and surrounded by native teak forests, offering panoramic views of Mount Phou Si, with easy access to Historic Luang Prabang City Center and the International Airport.[/vc_column_text][/vc_column_inner][/vc_row_inner][/vc_column][vc_column width="1/3"][vc_custom_heading text="WHY YOU’LL LIKE US:" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_review][/vc_column][/vc_row][vc_row][vc_column][vc_separator color="white" border_width="10"][/vc_column][/vc_row][vc_row full_width="stretch_row" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" el_id="features-wrapper"][vc_column css=".vc_custom_1470913967347{padding-right: 0px !important;padding-left: 0px !important;}"][vc_custom_heading text="DISCOVER OUR BOUTIQUE HOTEL" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_post_order post_homepage="post_type:snhotel_facility|by_id:1083,1084,984"][/vc_column][/vc_row][vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_gmap url="https://www.thebookingbutton.com.au/silverneedlehotels/properties" map_image="1030" marker_icon="6917"][/vc_gmap][/vc_column][/vc_row][vc_row seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1471338763387{border-bottom-width: 20px !important;}"][vc_column][vc_custom_heading text="RIGHT NOW IN BRISBANE" font_container="tag:h2|text_align:center" el_class="pageheader"][/vc_column][/vc_row][vc_row seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0" css=".vc_custom_1471348352700{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}"][vc_column width="1/2" css=".vc_custom_1471347481145{background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}"][vc_column_text][ess_grid alias="social"][/vc_column_text][/vc_column][vc_column width="1/2"][vc_column_text][ess_grid alias="social instagram"][/vc_column_text][/vc_column][/vc_row][vc_row full_width="stretch_row_content_no_spaces" seperator_indeed_locker="" lk_t="ism_template_1" lk_io="default" lk_dm="0" lk_thm="0" lk_tuo="0" ru_on="0" uhc_on="0" ur_on="0" ref_on="0"][vc_column][vc_featured_offer_event city_name="BRISBANE"][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+/*-------------------------------------------------------------------------------
+ Custom Template For Kiridara Accommodation
+-------------------------------------------------------------------------------*/
+
+add_action( 'vc_load_default_templates_action','new_template_for_vc_accommodation_kiridara' ); // Hook in
+ 
+function new_template_for_vc_accommodation_kiridara() {
+    $data               = array(); // Create new array
+    $data['name']       = __( 'Kiridara Accommodation Overview', 'my-text-domain' ); // Assign name for your custom template
+    $data['weight']     = 0; // Weight of your template in the template list
+    $data['image_path'] = preg_replace( '/\s/', '%20', plugins_url( 'images/custom_template_thumbnail.jpg', __FILE__ ) ); // Always use preg replace to be sure that "space" will not break logic. Thumbnail should have this dimensions: 114x154px
+    $data['custom_class'] = 'custom_template_for_vc_custom_template'; // CSS class name
+    $data['content']    = <<<CONTENT
+        [vc_row full_width="stretch_row_content_no_spaces"][vc_column][vc_banner_image][/vc_column][/vc_row][vc_row css=".vc_custom_1468588668776{margin-top: 30px !important;}"][vc_column width="1/3"][vc_column_text]Set amidst the awe-inspiring backdrop of Mount Phou Si and sweet-scented Champa trees, the spacious rooms at Kiridara feature balconies, external terraces and courtyards that let you soak up the stunning natural atmosphere.[/vc_column_text][/vc_column][vc_column width="1/3"][vc_column_text]I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.[/vc_column_text][/vc_column][vc_column width="1/3"][vc_widget_sidebar sidebar_id="accomodation-archive"][/vc_column][/vc_row][vc_row css=".vc_custom_1468586158018{margin-top: 30px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;}"][vc_column][vc_archive_accom taxonomy_loop="post_type:snhotel_room"][/vc_column][/vc_row][vc_row][vc_column][vc_custom_heading text="Related Offers" font_container="tag:h2|text_align:center" el_class="pageheader"][vc_related_offer][/vc_related_offer][/vc_column][/vc_row]
+CONTENT;
+  
+    vc_add_default_templates( $data );
+}
+
+//New VC Element for Banner with button
+
+vc_map( array(
+        "name"      => __( "Banner Image with Button Element", "__x__" ),
+        "base"      => "vc_banner_btn",
+        'icon'        => 'text-output',
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+    ) );
+
+
+ // SNH Banner Button Lowest Rate
+
+ function x_banner_button( $atts, $content ) {
+  ob_start();
+  if (has_post_thumbnail($post->ID)) {
+                                    $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');
+                                    $thumb_img = get_post(get_post_thumbnail_id($post->ID));
+                                    $imagePath = $image[0];
+                                }
+   $output  = '<div class="bannerText">';
+   $output .= '<div id="page-header" style="background-image: url('. wpthumb( $imagePath, 'width=1500&height=450&crop=1&resize=1' ).')">';
+   $output .= '<div class="container">';
+
+   $output .= '<div class="container pageheader">';
+  $output .=  '<h1>'. get_the_title().'</h1>';
+  $output .= '<div class="text-separator"></div>';
+  $output .= '<h4>';
+  if ( is_plugin_active( 'secondary-title/secondary-title.php' ) ) {
+	//plugin is activated
+	 $output .=  get_secondary_title();
+	}
+	 $output .='</h4>';
+    $output .= '</div>';
+  
+     $settings = get_option("lowestroomavailable");
+     $var1 = unserialize($settings);
+     //print_r($var1);
+     //$amt = $var1->amount;
+	 if($var1->amount != 0)
+	 {
+    $output .= '<a class="btn-danger bannerbtn pull-right">Need a room tonight? Book for '. edd_currency_filter( edd_format_amount( $var1->amount ) ).'</a>';
+     }
+    $output .= '</div>';
+    $output .= '</div>';
+    $output .= '</div>';
+  
+  
+   return $output;
+   $returnvariable = ob_get_clean();
+   return $returnvariable;
+  }
+  
+  add_shortcode( 'vc_banner_btn', 'x_banner_button' );
 ?>
