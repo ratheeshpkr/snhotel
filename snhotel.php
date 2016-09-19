@@ -12,7 +12,6 @@ GitHub Branch:     master
 */
 
 
-
 // don't call the file directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
@@ -123,8 +122,9 @@ class Sn_hotel {
         }
 
         require_once dirname( __FILE__ ) . '/includes/posts-to-posts.php';
+		if( class_exists( 'Vc_Manager' ) ) {
         require_once dirname( __FILE__ ) . '/includes/snhotel-vc_addons.php';
-
+        }
 
     }
 
@@ -443,7 +443,7 @@ class Sn_hotel {
             )
         );
 
-        register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
+        /* register_taxonomy( 'snhotel_hotel_facility', array( 'snhotel_facility' ),
             array(
                 'hierarchical'   => false,
                 'label'          => __( 'Facilities Type', 'snhotel' ),
@@ -452,7 +452,7 @@ class Sn_hotel {
                 'rewrite'        => array('slug' => 'facilities', 'with_front' => FALSE),
                 'singular_label' => __( 'Facility Type', 'snhotel' )
             )
-        ); 
+        ); */
 		register_taxonomy( 'snhotel_hotel_destination', array( 'snhotel_destination' ),
             array(
                 'hierarchical'   => false,
