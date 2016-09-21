@@ -30,7 +30,7 @@ ob_start();
 
 add_shortcode( 'vc_menu', 'vc_menu_func');
 vc_map( array(
-    "name" => __("Naviagtion Menu", "js_composer"), // add a name
+    "name" => __("Navigation Menu", "js_composer"), // add a name
     "base" => "vc_menu", // bind with our shortcode
 	"category" => "SNHotels Addons",
     "content_element" => true, // set this parameter when element will has a content
@@ -42,7 +42,7 @@ vc_map( array(
 -------------------------------------------------------------------------------*/
 
 vc_map( array(
-        "name"      => __( "Archive Destination", "__x__" ),
+        "name"      => __( "Destination Overview", "__x__" ),
         "base"      => "vc_archive_dest",  
         'icon'        => 'text-output',
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
@@ -99,7 +99,7 @@ add_shortcode( 'vc_archive_dest', 'x_shortcode_archive_dest' );
  Custom SNH archive accomodation
 -------------------------------------------------------------------------------*/
 vc_map( array(
-        "name"      => __( "Archive Accomodation", "__x__" ),
+        "name"      => __( "Accomodation Overview", "__x__" ),
         "base"      => "vc_archive_accom",  
         'icon'        => 'text-output',
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
@@ -301,7 +301,7 @@ add_shortcode( 'vc_archive_accom', 'x_shortcode_archive_accom' );
  Custom SNH archive offers
 -------------------------------------------------------------------------------*/
 vc_map( array(
-        "name"      => __( "Archive Offers", "__x__" ),
+        "name"      => __( "Offers Overview", "__x__" ),
         "base"      => "vc_archive_offer",  
         'icon'        => 'text-output',
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
@@ -579,7 +579,7 @@ add_shortcode( 'vc_archive_post', 'x_shortcode_archive_post' );
 
 /* VC element for events */
 vc_map( array(
-        "name"      => __( "Archive Events", "__x__" ),
+        "name"      => __( "Events Overview", "__x__" ),
         "base"      => "vc_archive_event",  
         'icon'        => 'text-output',
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
@@ -779,7 +779,7 @@ add_shortcode( 'vc_archive_event', 'x_shortcode_archive_event' );
 
 /* VC element for facility */
 vc_map( array(
-        "name"      => __( "Archive Facility", "__x__" ),
+        "name"      => __( "Facility Overview", "__x__" ),
         "base"      => "vc_archive_facility",  
         'icon'        => 'text-output',
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
