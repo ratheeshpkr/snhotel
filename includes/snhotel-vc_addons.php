@@ -2631,7 +2631,7 @@ CONTENT;
 
 //New VC Element for Banner with button
 
-vc_map( array(
+/* vc_map( array(
         "name"      => __( "Banner Image with Button Element", "__x__" ),
         "base"      => "vc_banner_btn",
         'icon'        => 'text-output',
@@ -2682,5 +2682,5 @@ vc_map( array(
    return $returnvariable;
   }
   
-  add_shortcode( 'vc_banner_btn', 'x_banner_button' );
+  add_shortcode( 'vc_banner_btn', 'x_banner_button' ); */
 ?>
