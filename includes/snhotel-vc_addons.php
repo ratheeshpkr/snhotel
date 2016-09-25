@@ -83,9 +83,7 @@ include (locate_template('vc-archive-snhotel_destination.php'));
  
   ?>
   <div class="clear"></div>
-  <div class="container">
-	<div class="next-previous"><?php post_pagination();?></div>
-  </div>
+  
 <?php
 
  wp_reset_postdata();
@@ -276,6 +274,7 @@ function x_shortcode_archive_accom( $atts ) {
  
  $q = new WP_Query( array(
   'orderby'          => $query_orderby,
+  'order'          => $query_order,
   'post_type'        => $query_post_type,
   'posts_per_page'   => $query_posts_per_page,
   'tax_query' => $query_tax_query   
@@ -570,7 +569,7 @@ function x_shortcode_archive_post( $atts ) {
 				</div><!-- /.sidebar -->
 			</div>
  <?php
- get_template_part('archives');
+ /* get_template_part('archives'); */
  $returnvariable = ob_get_clean();
  return $returnvariable;
 } 
@@ -1634,7 +1633,10 @@ function x_shortcode_contact_us( $atts, $content ) {
 								$output .= $add2.','."<br>";
 						}
 						$output .= $city.',<br>';
-						$output .=$state.' '.$pcode.', '.$country."<br>";
+						if(!empty($state)){
+								$output .= $state.' '.$pcode.', ';
+						}
+						$output .=$country."<br>";
 
 						$output .= '<div class="contact-info margin-bottom-20">
 
@@ -2184,7 +2186,7 @@ function x_featured_offer_event( $atts ) {
         
     ), $atts );
  $city_name  = $a['city_name'];
- include (locate_template('templates/content-offers_events_widget.php'));
+ include (locate_template('templates/vc-content-offers_events_widget.php'));
  $returnvariable = ob_get_clean();
  return $returnvariable;
 }
