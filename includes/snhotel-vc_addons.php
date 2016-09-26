@@ -2671,6 +2671,36 @@ CONTENT;
     vc_add_default_templates( $data );
 }
 
+/*-------------------------------------------------------------------------------
+ Custom Homepage Call-outs Config
+-------------------------------------------------------------------------------*/
+
+vc_map( array(
+        "name"      => __( "Homepage Call-Outs", "__x__" ),
+        "base"      => "vc_post_order_facility",
+  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+        
+    ) );
+ 
+ 
+ // SNH Homepage Call-outs Config Shortcode
+// =============================================================================
+ 
+function x_shortcode_post_order_facility( $atts ) {
+ ob_start(); 
+ 
+ include(locate_template('templates/vc-template-post-order.php'));
+ //get_template_part('templates/template-banner');
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+}
+ 
+add_shortcode( 'vc_post_order_facility', 'x_shortcode_post_order_facility' );
+
 //New VC Element for Banner with button
 
 /* vc_map( array(
