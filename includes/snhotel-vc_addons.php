@@ -2672,6 +2672,36 @@ CONTENT;
 }
 
 /*-------------------------------------------------------------------------------
+ Custom Aboutus Newsletter Config
+-------------------------------------------------------------------------------*/
+
+vc_map( array(
+        "name"      => __( "Aboutus Newsletter", "__x__" ),
+        "base"      => "vc_about_news",
+  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+        
+    ) );
+ 
+ 
+ // SNH Aboutus Newsletter Shortcode
+// =============================================================================
+ 
+function x_shortcode_about_news( $atts ) {
+ ob_start(); 
+ 
+ include(locate_template('templates/vc-news-letter.php'));
+ //get_template_part('templates/template-banner');
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+}
+ 
+add_shortcode( 'vc_about_news', 'x_shortcode_about_news' );
+
+/*-------------------------------------------------------------------------------
  Custom Homepage Call-outs Config
 -------------------------------------------------------------------------------*/
 
