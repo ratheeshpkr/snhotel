@@ -1759,7 +1759,7 @@ $type = 'reviews';
 	   
 		$output .= '</div>
 		<div class="col-xs-12">
-			<a href="'.get_post_type_archive_link( $type ).'" class="all-review">
+			<a href="'.site_url().'/review" class="all-review">
 				Read all Reviews
 			</a>
 		</div>
@@ -2733,7 +2733,7 @@ add_shortcode( 'vc_post_order_facility', 'x_shortcode_post_order_facility' );
 
 //New VC Element for Banner with button
 
-/* vc_map( array(
+vc_map( array(
         "name"      => __( "Banner Image with Button Element", "__x__" ),
         "base"      => "vc_banner_btn",
         'icon'        => 'text-output',
@@ -2784,5 +2784,248 @@ add_shortcode( 'vc_post_order_facility', 'x_shortcode_post_order_facility' );
    return $returnvariable;
   }
   
-  add_shortcode( 'vc_banner_btn', 'x_banner_button' ); */
+  add_shortcode( 'vc_banner_btn', 'x_banner_button' ); 
+
+/*-------------------------------------------------------------------------------
+	Custom SNH IBE Booking Form Config
+-------------------------------------------------------------------------------*/
+global $wpdb;
+
+ 
+vc_map( array(
+        "name"      => __( "IBE Booking Form", "__x__" ),
+        "base"      => "vc_ibe_booking_form",
+		
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+            array(
+                'type' => 'textfield',
+                'value' => '',
+                'heading' => 'Offer Code',
+                'param_name' => 'offer_code',
+            ), 
+        ),        
+    ) );
+	
+	
+	// SNH Map Shortcode
+// =============================================================================
+ 
+function x_shortcode_ibe_booking_form( $atts ) {
+	ob_start();
+	$a = shortcode_atts( array(
+        'offer_code' => 'offer_code',
+        
+    ), $atts );
+ $promo  = $a['offer_code'];
+ include (locate_template('templates/content-ibe-booking.php'));
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+}
+ 
+add_shortcode( 'vc_ibe_booking_form', 'x_shortcode_ibe_booking_form' );
+/*-------------------------------------------------------------------------------
+ Custom SNH archive accomodation
+-------------------------------------------------------------------------------*/
+vc_map( array(
+        "name"      => __( "IBE Accomodation Overview", "__x__" ),
+        "base"      => "vc_ibe_archive_accom",  
+        'icon'        => 'text-output',
+        'description' => __( 'Place a Content Block in your content.', '__x__' ),
+        "wrapper_class" => "clearfix",
+        "category" => "SNHotels Addons",
+		'params' => array(
+				
+				array(
+                'type' => 'loop',
+                'value' => '',
+                'heading' => 'Query for Taxonomy',
+                'param_name' => 'taxonomy_loop',
+            ), 
+				
+		   		),
+			)); 
+// SNH Archive Rooms
+function x_shortcode_ibe_archive_accom( $atts ) {
+	ob_start();
+ extract( shortcode_atts( array(
+        'taxonomy_loop' => 'taxonomy_loop',
+        
+    ), $atts));
+
+ $query=$taxonomy_loop;
+ $query=explode('|',$query);
+ foreach($query as $query_part)
+	{
+		$q_part=explode(':',$query_part);
+		switch($q_part[0])
+		{
+			case 'post_type':
+				$query_post_type=explode(',',$q_part[1]);
+			break;
+			
+			case 'size':
+				$query_posts_per_page=($q_part[1]=='All' ? -1:$q_part[1]);
+			break;
+			
+			case 'order_by':
+				
+				$query_meta_key='';
+				$query_orderby='';
+				
+				$public_orders_array=array('ID','date','author','title','modified','rand','comment_count','menu_order');
+				if(in_array($q_part[1],$public_orders_array))
+				{
+					$query_orderby=$q_part[1];
+				}else
+				{
+					$query_meta_key=$q_part[1];
+					$query_orderby='meta_value_num';
+				}
+				
+			break;
+			
+			case 'order':
+				$query_order=$q_part[1];
+			break;
+			
+			case 'by_id':
+				$query_by_id=explode(',',$q_part[1]);
+				$query_by_id_not_in=array();
+				$query_by_id_in=array();
+				foreach($query_by_id as $ids)
+				{
+					if($ids<0)
+					{
+						$query_by_id_not_in[]=$ids;
+					}else{
+						$query_by_id_in[]=$ids;
+					}
+				}
+			break;
+			
+			case 'categories':
+				$query_categories=explode(',',$q_part[1]);
+				$query_cat_not_in=array();
+				$query_cat_in=array();
+				foreach($query_categories as $cat)
+				{
+					if($cat<0)
+					{
+						$query_cat_not_in[]=$cat;
+					}else
+					{
+						$query_cat_in[]=$cat;
+					}
+				}
+			break;
+			
+			case 'tags':
+				$query_tags=explode(',',$q_part[1]);
+				$query_tags_not_in=array();
+				$query_tags_in=array();
+				foreach($query_tags as $tags)
+				{
+					if($tags<0)
+					{
+						$query_tags_not_in[]=$tags;
+					}else
+					{
+						$query_tags_in[]=$tags;
+					}
+				}
+			break;
+			
+			case 'authors':
+				$query_author=explode(',',$q_part[1]);
+				$query_author_not_in=array();
+				$query_author_in=array();
+				foreach($query_author as $author)
+				{
+					if($tags<0)
+					{
+						$query_author_not_in[]=$author;
+					}else
+					{
+						$query_author_in[]=$author;
+					}
+				}
+				
+			break;
+
+			case 'tax_query':
+				$all_tax=get_object_taxonomies( $query_post_type );
+
+				$tax_query=array();
+				$query_tax_query=array('relation' => 'AND');
+				foreach ( $all_tax as $tax ) {
+					$values=$tax;
+					$query_taxs_in=array();
+					$query_taxs_not_in=array();
+					
+					$query_taxs=explode(',',$q_part[1]);
+					foreach($query_taxs as $taxs)
+					{
+						if(term_exists( absint($taxs), $tax )){
+							if($taxs<0)
+							{
+								$query_taxs_not_in[]=absint($taxs);
+							}else
+							{
+								$query_taxs_in[]=$taxs;
+							}
+						}
+					}
+
+					if(count($query_taxs_not_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_not_in,
+							'operator' => 'NOT IN',
+						);
+					}else if(count($query_taxs_in)>0)
+					{
+						$query_tax_query[]=array(
+							'taxonomy' => $tax,
+							'field'    => 'id',
+							'terms'    => $query_taxs_in,
+							'operator' => 'IN',
+						);
+					}
+					
+					//break;
+				}
+				
+			break;
+		}
+	}
+
+ 
+ $q = new WP_Query( array(
+  'orderby'          => $query_orderby,
+  'order'          => $query_order,
+  'post_type'        => $query_post_type,
+  'posts_per_page'   => $query_posts_per_page,
+  'tax_query' => $query_tax_query   
+    ) );
+
+include (locate_template('vc-archive-ibe_snhotel_room.php'));
+/* get_template_part('archive-snhotel_room'); */
+
+?>
+  <div class="clear"></div>
+  <div class="container">
+	<div class="next-previous"><?php post_pagination();?></div>
+  </div>
+<?php
+ wp_reset_postdata();
+ $returnvariable = ob_get_clean();
+ return $returnvariable;
+} 
+add_shortcode( 'vc_ibe_archive_accom', 'x_shortcode_ibe_archive_accom' );
 ?>
