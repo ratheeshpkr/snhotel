@@ -97,7 +97,7 @@ add_shortcode( 'vc_archive_dest', 'x_shortcode_archive_dest' );
  Custom SNH archive accomodation
 -------------------------------------------------------------------------------*/
 vc_map( array(
-        "name"      => __( "Accomodation Overview", "__x__" ),
+        "name"      => __( "Accommodation Overview", "__x__" ),
         "base"      => "vc_archive_accom",  
         'icon'        => 'text-output',
         'description' => __( 'Place a Content Block in your content.', '__x__' ),
@@ -117,6 +117,7 @@ vc_map( array(
 // SNH Archive Rooms
 function x_shortcode_archive_accom( $atts ) {
 	ob_start();
+	$settings = get_option( "snc_theme_settings" );
  extract( shortcode_atts( array(
         'taxonomy_loop' => 'taxonomy_loop',
         
@@ -279,8 +280,13 @@ function x_shortcode_archive_accom( $atts ) {
   'posts_per_page'   => $query_posts_per_page,
   'tax_query' => $query_tax_query   
     ) );
+if(esc_html( stripslashes( $settings["snc_ibe_booking"] ) )==1){
+	include (locate_template('vc-archive-ibe_snhotel_room.php'));
+ }
+ else{
+	include (locate_template('vc-archive-snhotel_room.php')); 
+ } 
 
-include (locate_template('vc-archive-snhotel_room.php'));
 /* get_template_part('archive-snhotel_room'); */
 
 ?>
@@ -1418,12 +1424,18 @@ vc_map( array(
  
 function x_shortcode_booking_form( $atts ) {
 	ob_start();
+	$settings = get_option( "snc_theme_settings" );
 	$a = shortcode_atts( array(
         'offer_code' => 'offer_code',
         
     ), $atts );
  $promo  = $a['offer_code'];
- include (locate_template('templates/content-booking.php'));
+ if(esc_html( stripslashes( $settings["snc_ibe_booking"] ) )==1){
+	include (locate_template('templates/content-ibe-booking.php'));
+ }
+ else{
+	include (locate_template('templates/content-booking.php')); 
+ } 
  $returnvariable = ob_get_clean();
  return $returnvariable;
 }
@@ -2789,7 +2801,7 @@ vc_map( array(
 /*-------------------------------------------------------------------------------
 	Custom SNH IBE Booking Form Config
 -------------------------------------------------------------------------------*/
-global $wpdb;
+/* global $wpdb;
 
  
 vc_map( array(
@@ -2826,7 +2838,7 @@ function x_shortcode_ibe_booking_form( $atts ) {
  return $returnvariable;
 }
  
-add_shortcode( 'vc_ibe_booking_form', 'x_shortcode_ibe_booking_form' );
+add_shortcode( 'vc_ibe_booking_form', 'x_shortcode_ibe_booking_form' ); */
 /*-------------------------------------------------------------------------------
  Custom SNH archive accomodation
 -------------------------------------------------------------------------------*/
