@@ -2768,7 +2768,7 @@ vc_map( array(
    $output .= '<div class="container">';
 
    $output .= '<div class="container pageheader">';
-  $output .=  '<h1>'. get_the_title().'</h1>';
+  $output .=  '<h2>'. get_the_title().'</h2>';
   $output .= '<div class="text-separator"></div>';
   $output .= '<h4>';
   if ( is_plugin_active( 'secondary-title/secondary-title.php' ) ) {
