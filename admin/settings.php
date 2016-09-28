@@ -31,6 +31,7 @@ class Sn_Hotel_Settings {
                   $settings['snc_bookinglink']	  = $_POST['snc_bookinglink'];
                   $settings['snc_hotelid']	  = $_POST['snc_hotelid'];
                   $settings['snc_hotelname']	  = $_POST['snc_hotelname'];
+				  $settings['snc_ibe_booking']	  = $_POST['snc_ibe_booking'];
     			        break;
     	        case 'location' :
     				      $settings['snc_add1']  = $_POST['snc_add1'];
@@ -139,6 +140,12 @@ class Sn_Hotel_Settings {
                     <th><label for="snc_hotelname">Hotel Name:</label></th>
                     <td>
                       <input id="snc_hotelname" name="snc_hotelname" placeholder="Enter Hotel Name" value="<?php echo esc_html( stripslashes( $settings["snc_hotelname"] ) ); ?>"><br/>
+                    </td>
+                  </tr>
+				   <tr>
+                    <th><label for="snc_hotelname">Enable IBE Booking Form:</label></th>
+                    <td>
+                      <input id="snc_ibe_booking" name="snc_ibe_booking" type="checkbox" value="1" <?php if(esc_html( stripslashes( $settings["snc_ibe_booking"] ) )==1){echo 'checked';}?>><br/>
                     </td>
                   </tr>
                   <?php
