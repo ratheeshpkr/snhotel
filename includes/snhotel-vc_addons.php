@@ -1756,8 +1756,8 @@ $type = 'reviews';
 						$output .= '</span>
 					</div>
 					<div class="col-xs-12">
-						<div class="col-xs-8 no-padding review-site-name">'.get_post_meta(get_the_ID(),'reviewsitename', true).'</div>
-						<div class="col-xs-4 no-padding" title="'.get_post_meta(get_the_ID(),'rating', true).'out of 5">
+						<div class="col-xs-8 col-sm-6 col-md-8 no-padding review-site-name">'.get_post_meta(get_the_ID(),'reviewsitename', true).'</div>
+						<div class="col-xs-4 col-sm-6 col-md-4 no-padding" title="'.get_post_meta(get_the_ID(),'rating', true).'out of 5">
 							<div class="review-star-bg"></div>
 							<div class="review-star" data-value="'. get_post_meta(get_the_ID(),'rating', true).'"></div>
 						</div>
